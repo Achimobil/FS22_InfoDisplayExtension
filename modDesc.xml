@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="61">
+    <author>Achimobil</author>
+    <version>0.1.0.0</version>
+    <title>
+		<de>Info Display Erweiterung</de>
+		<en>Info Display Extension</en>
+    </title>
+    <description>
+        <de>
+            <![CDATA[Ein kleiner Mod zur Erweiterung des Info Displays und der Anzeigen der Produktionen um die verfügbare Kapazität.
+Funktioniert erst mal bei allen Lagern und auch bei den Produktionen im Info Trigger.
+Zusätzlich auch bei den Anzeigen im Produktionsmenü. 
+]]>
+</de>
+        <en>
+            <![CDATA[A small mod to expand the info display and the displays of the productions by the available capacity.
+It works for all warehouses and also for the productions in the Info Trigger.
+It also works for the displays in the production menu. 
+]]>
+</en>
+    </description>
+    <iconFilename>ModIcon.dds</iconFilename>
+    <multiplayer supported="true" />
+
+	<extraSourceFiles>
+        <sourceFile filename="InfoDisplayExtension.lua" />
+    </extraSourceFiles>
+
+	<l10n filenamePrefix="translations/translation" />
+</modDesc>

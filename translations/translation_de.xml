@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+	<translationContributors>Achimobil</translationContributors>
+    <texts>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Lagerkapazität" />
+		<text name="infoDisplayExtension_USED_CAPACITY" text="Benutzte Kapazität" />
+		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Gesamtkapazität" />
+	</texts>
+</l10n>
