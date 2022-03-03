@@ -2,15 +2,15 @@
 Copyright (C) Achimobil, 2022
 
 Author: Achimobil (Base and pallets) / braeven (bales)
-Date: 01.03.2022
-Version: 0.1.0.0
+Date: 03.03.2022
+Version: 1.0.0.0
 
 Contact:
 https://forum.giants-software.com
 https://discord.gg/Va7JNnEkcW
 
 History:
-V 0.1.0.0 @ 01.03.2022 - First Version
+V 1.0.0.0 @ 03.03.2022 - First Release to Modhub
 
 Important:
 No copy and use in own mods allowed.
