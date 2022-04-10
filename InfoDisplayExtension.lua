@@ -248,12 +248,73 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryFood(_, superFunc, inf
 
 	table.insert(infoTable, spec.info)
 end
-
 PlaceableHusbandryFood.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryFood.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryFood)
 
+function InfoDisplayExtension:updateInfoPlaceableHusbandryMilk(_, superFunc, infoTable)
+	local spec = self.spec_husbandryMilk
 
+	superFunc(self, infoTable)
 
+	local fillLevel = self:getHusbandryFillLevel(spec.fillType)
+	local capacity = self:getHusbandryCapacity(spec.fillType)
+	spec.info.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
 
+	table.insert(infoTable, spec.info)
+end
+PlaceableHusbandryMilk.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryMilk.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryMilk)
 
+function InfoDisplayExtension:updateInfoPlaceableHusbandryLiquidManure(_, superFunc, infoTable)
+	superFunc(self, infoTable)
 
+	local spec = self.spec_husbandryLiquidManure
+	local fillLevel = self:getHusbandryFillLevel(spec.fillType)
+	local capacity = self:getHusbandryCapacity(spec.fillType)
+	spec.info.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
 
+	table.insert(infoTable, spec.info)
+end
+PlaceableHusbandryLiquidManure.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryLiquidManure.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryLiquidManure)
+
+function InfoDisplayExtension:updateInfoPlaceableHusbandryStraw(_, superFunc, infoTable)
+	superFunc(self, infoTable)
+
+	local spec = self.spec_husbandryStraw
+	local fillLevel = self:getHusbandryFillLevel(spec.inputFillType)
+	local capacity = self:getHusbandryCapacity(spec.inputFillType)
+	spec.info.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
+
+	table.insert(infoTable, spec.info)
+end
+PlaceableHusbandryStraw.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryStraw.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryStraw)
+
+function InfoDisplayExtension:updateInfoPlaceableHusbandryWater(_, superFunc, infoTable)
+	superFunc(self, infoTable)
+
+	local spec = self.spec_husbandryWater
+
+	if not spec.automaticWaterSupply then
+		local fillLevel = self:getHusbandryFillLevel(spec.fillType)
+        local capacity = self:getHusbandryCapacity(spec.fillType)
+		spec.info.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
+
+		table.insert(infoTable, spec.info)
+	end
+end
+PlaceableHusbandryWater.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryWater.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryWater)
+
+function PlaceableManureHeap:updateInfoPlaceableManureHeap(_, superFunc, infoTable)
+	superFunc(self, infoTable)
+
+	local spec = self.spec_manureHeap
+
+	if spec.manureHeap == nil then
+		return
+	end
+
+	local fillLevel = spec.manureHeap:getFillLevel(spec.manureHeap.fillTypeIndex)
+	local capacity = spec.manureHeap:getCapacity(spec.manureHeap.fillTypeIndex)
+	spec.infoFillLevel.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
+
+	table.insert(infoTable, spec.infoFillLevel)
+end
+PlaceableManureHeap.updateInfo = Utils.overwrittenFunction(PlaceableManureHeap.updateInfo, InfoDisplayExtension.updateInfoPlaceableManureHeap)
