@@ -305,7 +305,7 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryWater(_, superFunc, in
 end
 PlaceableHusbandryWater.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryWater.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryWater)
 
-function PlaceableManureHeap:updateInfoPlaceableManureHeap(_, superFunc, infoTable)
+function InfoDisplayExtension:updateInfoPlaceableManureHeap(_, superFunc, infoTable)
 	superFunc(self, infoTable)
 
 	local spec = self.spec_manureHeap
