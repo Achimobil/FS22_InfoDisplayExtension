@@ -210,7 +210,7 @@ end
 InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InfoDisplayExtension.populateCellForItemInSection)
 
 --- Original from Source 1.3
-function InGameMenuProductionFrame:updateInfoPlaceableHusbandryAnimals(_, superFunc, infoTable)
+function InfoDisplayExtension:updateInfoPlaceableHusbandryAnimals(_, superFunc, infoTable)
 	superFunc(self, infoTable)
 
 	local spec = self.spec_husbandryAnimals
@@ -236,10 +236,20 @@ function InGameMenuProductionFrame:updateInfoPlaceableHusbandryAnimals(_, superF
 	table.insert(infoTable, spec.infoHealth)
 end
 
-PlaceableHusbandryAnimals.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryAnimals.updateInfo, InGameMenuProductionFrame.updateInfoPlaceableHusbandryAnimals)
+PlaceableHusbandryAnimals.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryAnimals.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryAnimals)
 
+function InfoDisplayExtension:updateInfoPlaceableHusbandryFood(_, superFunc, infoTable)
+	superFunc(self, infoTable)
 
+	local spec = self.spec_husbandryFood
+	local fillLevel = self:getTotalFood()
+	local capacity = self:getFoodCapacity()
+	spec.info.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
 
+	table.insert(infoTable, spec.info)
+end
+
+PlaceableHusbandryFood.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryFood.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryFood)
 
 
 
