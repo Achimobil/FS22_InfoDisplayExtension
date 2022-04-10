@@ -209,7 +209,34 @@ end
 
 InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InfoDisplayExtension.populateCellForItemInSection)
 
+--- Original from Source 1.3
+function InGameMenuProductionFrame:updateInfoPlaceableHusbandryAnimals(_, superFunc, infoTable)
+	superFunc(self, infoTable)
 
+	local spec = self.spec_husbandryAnimals
+	local health = 0
+	local numAnimals = 0
+	local maxNumAnimals = spec:getMaxNumOfAnimals()
+	local clusters = spec.clusterSystem:getClusters()
+	local numClusters = #clusters
+
+	if numClusters > 0 then
+		for _, cluster in ipairs(clusters) do
+			health = health + cluster.health
+			numAnimals = numAnimals + cluster.numAnimals
+		end
+
+		health = health / numClusters
+	end
+
+	spec.infoNumAnimals.text = string.format("%d", numAnimals) .. " / " .. string.format("%d", maxNumAnimals)
+	spec.infoHealth.text = string.format("%d %%", health)
+
+	table.insert(infoTable, spec.infoNumAnimals)
+	table.insert(infoTable, spec.infoHealth)
+end
+
+PlaceableHusbandryAnimals.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryAnimals.updateInfo, InGameMenuProductionFrame.updateInfoPlaceableHusbandryAnimals)
 
 
 
