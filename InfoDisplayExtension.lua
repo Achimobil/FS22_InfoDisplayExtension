@@ -191,12 +191,15 @@ function InfoDisplayExtension:populateCellForItemInSection(_, list, section, ind
 
 			if not isInput then
 				local outputMode = productionPoint:getOutputDistributionMode(fillType)
-				local outputModeText = self.i18n:getText("ui_production_output_storing")
+				local outputModeText = g_i18n:getText("Revamp_Spawn")
 
 				if outputMode == ProductionPoint.OUTPUT_MODE.DIRECT_SELL then
 					outputModeText = self.i18n:getText("ui_production_output_selling")
 				elseif outputMode == ProductionPoint.OUTPUT_MODE.AUTO_DELIVER then
 					outputModeText = self.i18n:getText("ui_production_output_distributing")
+                --Production Revamp: Hinzugefügt um die "Einlagern" Option anzeigen zu können
+                elseif outputMode == ProductionPoint.OUTPUT_MODE.STORE then
+                    outputModeText = g_i18n:getText("Revamp_Store");
 				end
 
 				cell:getAttribute("outputMode"):setText(outputModeText)
