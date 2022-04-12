@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="64">
     <author>Achimobil</author>
-    <version>1.0.0.0</version>
+    <version>1.1.0.0</version>
     <title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -10,13 +10,25 @@
         <de>
             <![CDATA[Ein kleiner Mod zur Erweiterung des Info Displays und der Anzeigen der Produktionen um die verfügbare Kapazität.
 Funktioniert erst mal bei allen Lagern und auch bei den Produktionen im Info Trigger.
-Zusätzlich auch bei den Anzeigen im Produktionsmenü. 
+Zusätzlich auch bei den Anzeigen im Produktionsmenü.
+
+Changelog
+1.1.0.0
+- Maximalmenge für Futter, Milch, Gülle, Mist und Stroh bei Tierställe eingefügt in info trigger
+- Kompatibel zu Revamp Mod gemacht
+- Produktionen Liste wird jetzt Alphabetisch sortiert im Menü angezeigt
 ]]>
 </de>
         <en>
             <![CDATA[A small mod to expand the info display and the displays of the productions by the available capacity.
 It works for all warehouses and also for the productions in the Info Trigger.
 It also works for the displays in the production menu. 
+
+Changelog
+1.1.0.0
+- Added maximum amount for feed, milk, slurry, manure and straw for animal stables in info trigger
+- Made compatible with Revamp mod
+- Productions list is now displayed alphabetically sorted in the menu
 ]]>
 </en>
     </description>
