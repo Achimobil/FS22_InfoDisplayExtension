@@ -322,7 +322,7 @@ function InfoDisplayExtension:updateInfoPlaceableManureHeap(_, superFunc, infoTa
 end
 PlaceableManureHeap.updateInfo = Utils.overwrittenFunction(PlaceableManureHeap.updateInfo, InfoDisplayExtension.updateInfoPlaceableManureHeap)
 
-function InfoDisplayExtension:getProductionPoints()
+function InfoDisplayExtension:getProductionPoints(superFunc)
 	local productionPoints = self.chainManager:getProductionPointsForFarmId(self.playerFarm.farmId)
     table.sort(productionPoints,compProductionPoints)
     return productionPoints;
