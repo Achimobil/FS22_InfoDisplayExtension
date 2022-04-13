@@ -328,7 +328,7 @@ function InfoDisplayExtension:getProductionPoints()
     return productionPoints;
 end
 function compProductionPoints(w1,w2)
-    return w1:getName() < w2:getName();
+    return w1:getName() .. w1.id < w2:getName() .. w2.id;
 end
 InGameMenuProductionFrame.getProductionPoints = Utils.overwrittenFunction(InGameMenuProductionFrame.getProductionPoints, InfoDisplayExtension.getProductionPoints)
 
