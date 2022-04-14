@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="64">
     <author>Achimobil</author>
-    <version>1.1.0.0</version>
+    <version>1.1.1.0</version>
     <title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -13,6 +13,10 @@ Funktioniert erst mal bei allen Lagern und auch bei den Produktionen im Info Tri
 Zusätzlich auch bei den Anzeigen im Produktionsmenü.
 
 Changelog
+1.1.1.0
+- Fehler bei mehreren gleichen Produktionen behoben
+- Fehlende EN Übesetzung eingefügt
+
 1.1.0.0
 - Maximalmenge für Futter, Milch, Gülle, Mist und Stroh bei Tierställe eingefügt in info trigger
 - Kompatibel zu Revamp Mod gemacht
@@ -25,6 +29,10 @@ It works for all warehouses and also for the productions in the Info Trigger.
 It also works for the displays in the production menu. 
 
 Changelog
+1.1.1.0
+- Fixed bug with multiple same productions
+- Added missing EN translation
+
 1.1.0.0
 - Added maximum amount for feed, milk, slurry, manure and straw for animal stables in info trigger
 - Made compatible with Revamp mod
