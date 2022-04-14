@@ -4,6 +4,7 @@
     <texts>
 		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Capacity Info" />
 		<text name="infoDisplayExtension_USED_CAPACITY" text="Used Capacity" />
+		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Total Capacity" />
 		<text name="Revamp_Store" text="Store" />
 		<text name="Revamp_Spawn" text="Spawn" />
 	</texts>
