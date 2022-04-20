@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
-<modDesc descVersion="64">
+<modDesc descVersion="65">
     <author>Achimobil</author>
-    <version>1.1.1.0</version>
+    <version>1.1.2.0</version>
     <title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -13,6 +13,9 @@ Funktioniert erst mal bei allen Lagern und auch bei den Produktionen im Info Tri
 Zusätzlich auch bei den Anzeigen im Produktionsmenü.
 
 Changelog
+1.1.2.0
+- Anpassungen an Patch 1.4 wegen Paletten Maximum Warnung
+
 1.1.1.0
 - Fehler bei mehreren gleichen Produktionen behoben
 - Fehlende EN Übersetzung eingefügt
@@ -29,6 +32,9 @@ It works for all warehouses and also for the productions in the Info Trigger.
 It also works for the displays in the production menu. 
 
 Changelog
+1.1.2.0
+- Adjustments to patch 1.4 due to pallet maximum warning
+
 1.1.1.0
 - Fixed bug with multiple same productions
 - Added missing EN translation

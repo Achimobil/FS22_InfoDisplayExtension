@@ -11,6 +11,7 @@ https://discord.gg/Va7JNnEkcW
 
 History:
 V 1.0.0.0 @ 03.03.2022 - First Release to Modhub
+V 1.1.2.0 @ 20.04.2022 - Changes to game patch 1.4
 
 Important:
 No copy and use in own mods allowed.
@@ -71,10 +72,8 @@ function InfoDisplayExtension:updateInfo(superFunc, infoTable)
     
     -- print("test")
 end
-
 PlaceableSilo.updateInfo = Utils.appendedFunction(PlaceableSilo.updateInfo, InfoDisplayExtension.updateInfo)
 
---- Original from Source 1.3
 function InfoDisplayExtension:updateInfoProductionPoint(_, superFunc, infoTable)
 
 	local owningFarm = g_farmManager:getFarmById(self:getOwnerFarmId())
@@ -140,11 +139,13 @@ function InfoDisplayExtension:updateInfoProductionPoint(_, superFunc, infoTable)
 	if not fillTypesDisplayed then
 		table.insert(infoTable, self.infoTables.storageEmpty)
 	end
-end
 
+	if self.palletLimitReached then
+		table.insert(infoTable, self.infoTables.palletLimitReached)
+	end
+end
 ProductionPoint.updateInfo = Utils.overwrittenFunction(ProductionPoint.updateInfo, InfoDisplayExtension.updateInfoProductionPoint)
 
---- Original from Source 1.3
 function InfoDisplayExtension:populateCellForItemInSection(_, list, section, index, cell)
 	if list == self.productionList then
 		local productionPoint = self:getProductionPoints()[section]
@@ -209,10 +210,18 @@ function InfoDisplayExtension:populateCellForItemInSection(_, list, section, ind
 		end
 	end
 end
-
 InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InfoDisplayExtension.populateCellForItemInSection)
 
---- Original from Source 1.3
+function InfoDisplayExtension:getProductionPoints(superFunc)
+	local productionPoints = self.chainManager:getProductionPointsForFarmId(self.playerFarm.farmId)
+    table.sort(productionPoints,compProductionPoints)
+    return productionPoints;
+end
+function compProductionPoints(w1,w2)
+    return w1:getName() .. w1.id < w2:getName() .. w2.id;
+end
+InGameMenuProductionFrame.getProductionPoints = Utils.overwrittenFunction(InGameMenuProductionFrame.getProductionPoints, InfoDisplayExtension.getProductionPoints)
+
 function InfoDisplayExtension:updateInfoPlaceableHusbandryAnimals(_, superFunc, infoTable)
 	superFunc(self, infoTable)
 
@@ -238,7 +247,6 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryAnimals(_, superFunc, 
 	table.insert(infoTable, spec.infoNumAnimals)
 	table.insert(infoTable, spec.infoHealth)
 end
-
 PlaceableHusbandryAnimals.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryAnimals.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryAnimals)
 
 function InfoDisplayExtension:updateInfoPlaceableHusbandryFood(_, superFunc, infoTable)
@@ -321,14 +329,4 @@ function InfoDisplayExtension:updateInfoPlaceableManureHeap(_, superFunc, infoTa
 	table.insert(infoTable, spec.infoFillLevel)
 end
 PlaceableManureHeap.updateInfo = Utils.overwrittenFunction(PlaceableManureHeap.updateInfo, InfoDisplayExtension.updateInfoPlaceableManureHeap)
-
-function InfoDisplayExtension:getProductionPoints(superFunc)
-	local productionPoints = self.chainManager:getProductionPointsForFarmId(self.playerFarm.farmId)
-    table.sort(productionPoints,compProductionPoints)
-    return productionPoints;
-end
-function compProductionPoints(w1,w2)
-    return w1:getName() .. w1.id < w2:getName() .. w2.id;
-end
-InGameMenuProductionFrame.getProductionPoints = Utils.overwrittenFunction(InGameMenuProductionFrame.getProductionPoints, InfoDisplayExtension.getProductionPoints)
 
