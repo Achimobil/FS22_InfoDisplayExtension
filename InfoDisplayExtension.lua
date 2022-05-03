@@ -37,6 +37,24 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 	local farmId = g_currentMission:getFarmId()
     local totalFillLevel = 0;
 
+    -- collect capacities
+    local sourceStorages = spec.loadingStation:getSourceStorages();
+    local totalCapacity = 0;
+    local fillTypesCapacities = {}
+
+	for _, sourceStorage in pairs(sourceStorages) do
+		if spec.loadingStation:hasFarmAccessToStorage(farmId, sourceStorage) then
+			totalCapacity = totalCapacity + sourceStorage.capacity;
+            
+            -- todo
+            for fillType, fillLevel in pairs(sourceStorage.fillLevels) do
+                if(sourceStorage.capacities[fillType] ~= nil) then
+                    fillTypesCapacities[fillType] = Utils.getNoNil(fillTypesCapacities[fillType], 0) + sourceStorage.capacities[fillType]
+                end
+            end
+		end
+	end
+
 	for fillType, fillLevel in pairs(spec.loadingStation:getAllFillLevels(farmId)) do
 		spec.fillTypesAndLevelsAuxiliary[fillType] = (spec.fillTypesAndLevelsAuxiliary[fillType] or 0) + fillLevel
 		totalFillLevel = totalFillLevel + fillLevel
@@ -48,7 +66,9 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 		if fillLevel > 0.1 then
 			spec.fillTypeToFillTypeStorageTable[fillType] = spec.fillTypeToFillTypeStorageTable[fillType] or {
 				fillType = fillType,
-				fillLevel = fillLevel
+				fillLevel = fillLevel,
+				capacity = fillTypesCapacities[fillType],
+                title = g_fillTypeManager:getFillTypeTitleByIndex(fillType)
 			}
 			spec.fillTypeToFillTypeStorageTable[fillType].fillLevel = fillLevel
 
@@ -56,21 +76,31 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 		end
 	end
 
+    -- print("infoTriggerFillTypesAndLevels");
+    -- DebugUtil.printTableRecursively(spec.infoTriggerFillTypesAndLevels,"_",0,2);
+
 	table.clear(spec.fillTypesAndLevelsAuxiliary)
 	table.sort(spec.infoTriggerFillTypesAndLevels, function (a, b)
-		return b.fillLevel < a.fillLevel
+		return b.title < a.title
 	end)
 
-	local numEntries = math.min(#spec.infoTriggerFillTypesAndLevels, PlaceableSilo.INFO_TRIGGER_NUM_DISPLAYED_FILLTYPES)
+	local numEntries = math.min(#spec.infoTriggerFillTypesAndLevels, 25)
 
 	if numEntries > 0 then
 		for i = 1, numEntries do
 			local fillTypeAndLevel = spec.infoTriggerFillTypesAndLevels[i]
 
-			table.insert(infoTable, {
-				title = g_fillTypeManager:getFillTypeTitleByIndex(fillTypeAndLevel.fillType),
-				text = g_i18n:formatVolume(fillTypeAndLevel.fillLevel, 0)
-			})
+            if fillTypeAndLevel.capacity == nil then
+                table.insert(infoTable, {
+                    title = g_fillTypeManager:getFillTypeTitleByIndex(fillTypeAndLevel.fillType),
+                    text = g_i18n:formatVolume(fillTypeAndLevel.fillLevel, 0)
+                })
+            else
+                table.insert(infoTable, {
+                    title = g_fillTypeManager:getFillTypeTitleByIndex(fillTypeAndLevel.fillType),
+                    text = g_i18n:formatVolume(fillTypeAndLevel.fillLevel, 0) .. " / " .. g_i18n:formatVolume(fillTypeAndLevel.capacity, 0)
+                })
+            end
 		end
 	else
 		table.insert(infoTable, {
@@ -92,15 +122,6 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
             text = g_i18n:formatVolume(totalFillLevel, 0)
         }
     )
-    
-    local sourceStorages = spec.loadingStation:getSourceStorages();
-    local totalCapacity = 0;
-
-	for _, sourceStorage in pairs(sourceStorages) do
-		if spec.loadingStation:hasFarmAccessToStorage(farmId, sourceStorage) then
-			totalCapacity = totalCapacity + sourceStorage.capacity;
-		end
-	end
     
     table.insert(infoTable,
         {
