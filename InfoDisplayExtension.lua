@@ -30,14 +30,53 @@ InfoDisplayExtension.metadata = {
 InfoDisplayExtension.modDir = g_currentModDirectory;
 
 
-function InfoDisplayExtension:updateInfo(superFunc, infoTable)
+function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
+	superFunc(self, infoTable)
 
 	local spec = self.spec_silo
 	local farmId = g_currentMission:getFarmId()
-
     local totalFillLevel = 0;
+
 	for fillType, fillLevel in pairs(spec.loadingStation:getAllFillLevels(farmId)) do
+		spec.fillTypesAndLevelsAuxiliary[fillType] = (spec.fillTypesAndLevelsAuxiliary[fillType] or 0) + fillLevel
 		totalFillLevel = totalFillLevel + fillLevel
+	end
+
+	table.clear(spec.infoTriggerFillTypesAndLevels)
+
+	for fillType, fillLevel in pairs(spec.fillTypesAndLevelsAuxiliary) do
+		if fillLevel > 0.1 then
+			spec.fillTypeToFillTypeStorageTable[fillType] = spec.fillTypeToFillTypeStorageTable[fillType] or {
+				fillType = fillType,
+				fillLevel = fillLevel
+			}
+			spec.fillTypeToFillTypeStorageTable[fillType].fillLevel = fillLevel
+
+			table.insert(spec.infoTriggerFillTypesAndLevels, spec.fillTypeToFillTypeStorageTable[fillType])
+		end
+	end
+
+	table.clear(spec.fillTypesAndLevelsAuxiliary)
+	table.sort(spec.infoTriggerFillTypesAndLevels, function (a, b)
+		return b.fillLevel < a.fillLevel
+	end)
+
+	local numEntries = math.min(#spec.infoTriggerFillTypesAndLevels, PlaceableSilo.INFO_TRIGGER_NUM_DISPLAYED_FILLTYPES)
+
+	if numEntries > 0 then
+		for i = 1, numEntries do
+			local fillTypeAndLevel = spec.infoTriggerFillTypesAndLevels[i]
+
+			table.insert(infoTable, {
+				title = g_fillTypeManager:getFillTypeTitleByIndex(fillTypeAndLevel.fillType),
+				text = g_i18n:formatVolume(fillTypeAndLevel.fillLevel, 0)
+			})
+		end
+	else
+		table.insert(infoTable, {
+			text = "",
+			title = g_i18n:getText("infohud_siloEmpty")
+		})
 	end
     
     table.insert(infoTable, 
@@ -72,7 +111,7 @@ function InfoDisplayExtension:updateInfo(superFunc, infoTable)
     
     -- print("test")
 end
-PlaceableSilo.updateInfo = Utils.appendedFunction(PlaceableSilo.updateInfo, InfoDisplayExtension.updateInfo)
+PlaceableSilo.updateInfo = Utils.overwrittenFunction(PlaceableSilo.updateInfo, InfoDisplayExtension.updateInfo)
 
 function InfoDisplayExtension:updateInfoProductionPoint(_, superFunc, infoTable)
 
