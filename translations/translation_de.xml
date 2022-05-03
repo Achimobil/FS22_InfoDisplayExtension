@@ -5,7 +5,6 @@
 		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Lagerkapazität" />
 		<text name="infoDisplayExtension_USED_CAPACITY" text="Benutzte Kapazität" />
 		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Gesamtkapazität" />
-		<text name="Revamp_Store" text="Einlagern" />
-		<text name="Revamp_Spawn" text="Auslagern" />
+		<text name="infoDisplayExtension_MORE_ITEMS" text="weitere" />
 	</texts>
 </l10n>

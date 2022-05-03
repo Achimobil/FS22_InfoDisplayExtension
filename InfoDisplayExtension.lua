@@ -81,7 +81,7 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 
 	table.clear(spec.fillTypesAndLevelsAuxiliary)
 	table.sort(spec.infoTriggerFillTypesAndLevels, function (a, b)
-		return b.title < a.title
+		return b.title > a.title
 	end)
 
 	local numEntries = math.min(#spec.infoTriggerFillTypesAndLevels, 25)
@@ -102,6 +102,12 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
                 })
             end
 		end
+        if #spec.infoTriggerFillTypesAndLevels > 25 then
+            table.insert(infoTable, {
+                title = g_i18n:getText("infoDisplayExtension_MORE_ITEMS"),
+                text = string.format("%d", #spec.infoTriggerFillTypesAndLevels - 25)
+            })
+        end
 	else
 		table.insert(infoTable, {
 			text = "",
