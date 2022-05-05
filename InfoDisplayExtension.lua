@@ -395,3 +395,28 @@ function InfoDisplayExtension:updateInfoPlaceableManureHeap(_, superFunc, infoTa
 end
 PlaceableManureHeap.updateInfo = Utils.overwrittenFunction(PlaceableManureHeap.updateInfo, InfoDisplayExtension.updateInfoPlaceableManureHeap)
 
+
+function InfoDisplayExtension:updateInfoFeedingRobot(_, infoTable)
+	if self.infos ~= nil then
+		for _, info in ipairs(self.infos) do
+			local fillLevel = 0
+			local capacity = 0
+
+			for _, fillType in ipairs(info.fillTypes) do
+				fillLevel = fillLevel + self:getFillLevel(fillType)
+                local spot = self.fillTypeToUnloadingSpot[fillType]
+                if spot ~= nil then
+                    capacity = capacity + spot.capacity
+                end
+			end
+
+			info.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
+
+			table.insert(infoTable, info)
+		end
+	end
+end
+
+
+FeedingRobot.updateInfo = Utils.overwrittenFunction(FeedingRobot.updateInfo, InfoDisplayExtension.updateInfoFeedingRobot)
+
