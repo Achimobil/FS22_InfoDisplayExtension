@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="65">
     <author>Achimobil</author>
-    <version>1.1.2.0</version>
+    <version>1.2.0.0</version>
     <title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -13,6 +13,13 @@ Funktioniert erst mal bei allen Lagern und auch bei den Produktionen im Info Tri
 Zusätzlich auch bei den Anzeigen im Produktionsmenü.
 
 Changelog
+1.2.0.0
+- Revamp Texte entfernt und Anpassungen in Produktionen deaktiviert, wenn revamp genutzt wird
+- Silo Info: Einzelkapazitäten anzeigen, wenn diese im Silo pro Filltype definiert sind
+- Silo Info: Alphabetisch sortiert
+- Silo Info: Anzeige der Anzahl der Elemente, die wegen Platzmangel nicht angezeigt werden können
+- Fütterungsroboter Info: Anzeige der Kapazitäten eingefügt
+
 1.1.2.0
 - Anpassungen an Patch 1.4 wegen Paletten Maximum Warnung
 
@@ -23,7 +30,7 @@ Changelog
 1.1.0.0
 - Maximalmenge für Futter, Milch, Gülle, Mist und Stroh bei Tierställe eingefügt in info trigger
 - Kompatibel zu Revamp Mod gemacht
-- Produktionen Liste wird jetzt Alphabetisch sortiert im Menü angezeigt
+- Produktionsliste wird jetzt Alphabetisch sortiert im Menü angezeigt
 ]]>
 </de>
         <en>
@@ -32,6 +39,13 @@ It works for all warehouses and also for the productions in the Info Trigger.
 It also works for the displays in the production menu. 
 
 Changelog
+1.2.0.0
+- Revamp texts removed and override deactivated in productions when revamp is used
+- Silo Info: Display individual capacities if they are defined in the silo per fill type
+- Silo Info: Sort alphabetically
+- Silo Info: Display the number of elements that cannot be displayed due to lack of space
+- Feeding robot info: Display of capacities inserted
+
 1.1.2.0
 - Adjustments to patch 1.4 due to pallet maximum warning
 
