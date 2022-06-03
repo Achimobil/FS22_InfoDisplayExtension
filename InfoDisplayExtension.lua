@@ -392,6 +392,23 @@ function InfoDisplayExtension:updateInfoPlaceableManureHeap(_, superFunc, infoTa
 	spec.infoFillLevel.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
 
 	table.insert(infoTable, spec.infoFillLevel)
+    
+    table.insert(infoTable, 
+        {
+            title = g_i18n:getText("infoDisplayExtension_MANURE_HEAP_CONNECTED"), 
+            accentuate = true 
+        }
+    )
+    
+    for j, unloadingStation in pairs (spec.manureHeap.unloadingStations) do
+        table.insert(infoTable, {
+            title = "",
+            text = unloadingStation:getName()
+        })
+    end    
+    
+-- print("self.spec_manureHeap.manureHeap.unloadingStations")
+-- DebugUtil.printTableRecursively(self.spec_manureHeap.manureHeap.unloadingStations,"_",0,2)
 end
 PlaceableManureHeap.updateInfo = Utils.overwrittenFunction(PlaceableManureHeap.updateInfo, InfoDisplayExtension.updateInfoPlaceableManureHeap)
 

@@ -6,5 +6,6 @@
 		<text name="infoDisplayExtension_USED_CAPACITY" text="Used Capacity" />
 		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Total Capacity" />
 		<text name="infoDisplayExtension_MORE_ITEMS" text="more" />
+		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Connected to" />
 	</texts>
 </l10n>
