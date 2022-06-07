@@ -412,7 +412,6 @@ function InfoDisplayExtension:updateInfoPlaceableManureHeap(_, superFunc, infoTa
 end
 PlaceableManureHeap.updateInfo = Utils.overwrittenFunction(PlaceableManureHeap.updateInfo, InfoDisplayExtension.updateInfoPlaceableManureHeap)
 
-
 function InfoDisplayExtension:updateInfoFeedingRobot(_, infoTable)
 	if self.infos ~= nil then
 		for _, info in ipairs(self.infos) do
@@ -433,7 +432,78 @@ function InfoDisplayExtension:updateInfoFeedingRobot(_, infoTable)
 		end
 	end
 end
-
-
 FeedingRobot.updateInfo = Utils.overwrittenFunction(FeedingRobot.updateInfo, InfoDisplayExtension.updateInfoFeedingRobot)
 
+function InfoDisplayExtension:updateUI(_)
+--[[ original aus Patch 1.5 überschrieben
+Grund:
+Die Anzeige der einzelnen Balken gerücksichtig als einziges nicht ob es ein feld auf dem Farmland gibt.]]
+	if self.mapFrame ~= nil then
+		local farmId = g_currentMission:getFarmId()
+		local totalScore = self:getTotalScore(farmId)
+		local percentage = self:getTotalScore(farmId) / 100
+        
+		self.mapFrame.envScoreBarNumber:setText(string.format("%d", MathUtil.round(totalScore,1)))
+		self.mapFrame.envScoreBarDynamic:setSize(self.mapFrame.envScoreBarStatic.size[1] * percentage)
+
+		local uvs = GuiOverlay.getOverlayUVs(self.mapFrame.envScoreBarStatic.overlay, true)
+
+		self.mapFrame.envScoreBarDynamic:setImageUVs(true, uvs[1], uvs[2], uvs[3], uvs[4], (uvs[5] - uvs[1]) * percentage + uvs[1], uvs[6], (uvs[7] - uvs[3]) * percentage + uvs[3], uvs[8])
+
+		local indicatorX = self.mapFrame.envScoreBarStatic.position[1] + self.mapFrame.envScoreBarStatic.size[1] * percentage
+
+		self.mapFrame.envScoreBarIndicator:setPosition(indicatorX - self.mapFrame.envScoreBarIndicator.size[1] * 0.5)
+		self.mapFrame.envScoreBarNumber:setPosition(indicatorX - self.mapFrame.envScoreBarNumber.size[1] * 0.5)
+
+        local sumFarmlandSize = 0
+        for farmlandId, _farmId in pairs(g_farmlandManager.farmlandMapping) do
+            if _farmId == farmId then
+                local farmland = g_farmlandManager:getFarmlandById(farmlandId)
+
+                if farmland ~= nil and farmland.totalFieldArea ~= nil and farmland.totalFieldArea > 0.01 then
+                    sumFarmlandSize = sumFarmlandSize + farmland.totalFieldArea
+                end
+            end
+        end    
+    
+		for i = 1, #self.scoreValues do
+			local scoreValue = self.scoreValues[i]
+
+			if self.mapFrame.envScoreDistributionText[i] ~= nil then
+				local score = 0
+
+				if scoreValue.object ~= nil then
+					local numFarmlands = 0
+
+					for farmlandId, _farmId in pairs(g_farmlandManager.farmlandMapping) do
+						if _farmId == farmId then
+                            local farmland = g_farmlandManager:getFarmlandById(farmlandId)
+                            
+                            if farmland ~= nil and farmland.totalFieldArea ~= nil and farmland.totalFieldArea > 0.01 then
+                                score = score + scoreValue.object:getScore(farmlandId) * farmland.totalFieldArea / sumFarmlandSize
+                                numFarmlands = numFarmlands + 1
+                            end
+						end
+					end
+				end
+
+				self.mapFrame.envScoreDistributionText[i]:setText(scoreValue.name)
+				self.mapFrame.envScoreDistributionValue[i]:setText(string.format("%.1f", MathUtil.round(score * scoreValue.maxScore, 1)))
+				self.mapFrame.envScoreDistributionBar[i]:setSize(self.mapFrame.envScoreDistributionBarBackground[i].size[1] * score)
+			end
+		end
+
+		local factor = MathUtil.round(self:getSellPriceFactor(farmId) * 100)
+		local text = factor >= 1 and self.infoTextPos or factor <= -1 and self.infoTextNeg or self.infoTextNone
+
+		self.mapFrame.envScoreInfoText:setText(string.format(text, math.abs(factor)))
+	end
+end
+
+
+function InfoDisplayExtension:loadMap(name)
+    -- hier alles rein, was erst nach dem laden aller mods und der map geladen ausgetauscht werden kann
+    FS22_precisionFarming.EnvironmentalScore.updateUI = Utils.overwrittenFunction(FS22_precisionFarming.EnvironmentalScore.updateUI, InfoDisplayExtension.updateUI)
+end
+
+addModEventListener(InfoDisplayExtension)
