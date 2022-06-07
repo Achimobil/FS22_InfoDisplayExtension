@@ -273,9 +273,6 @@ function InfoDisplayExtension:populateCellForItemInSection(superFunc, list, sect
 		end
 	end
 end
-if not g_modIsLoaded["FS22_A_ProductionRevamp"] then
-    InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InfoDisplayExtension.populateCellForItemInSection)
-end
 
 function InfoDisplayExtension:getProductionPoints(superFunc)
 	local productionPoints = self.chainManager:getProductionPointsForFarmId(self.playerFarm.farmId)
@@ -504,6 +501,19 @@ end
 function InfoDisplayExtension:loadMap(name)
     -- hier alles rein, was erst nach dem laden aller mods und der map geladen ausgetauscht werden kann
     FS22_precisionFarming.EnvironmentalScore.updateUI = Utils.overwrittenFunction(FS22_precisionFarming.EnvironmentalScore.updateUI, InfoDisplayExtension.updateUI)
+    
+    local mods = g_modManager:getActiveMods(FS22_A_ProductionRevamp);
+    local revampversion = ""
+
+    for index, activemod in pairs(mods) do
+        if activemod.title == "Production Revamp" then
+          revampversion = activemod.version
+        end
+    end
+    
+    if revampversion == "" or revampversion == "1.0.0.0" then
+        InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InfoDisplayExtension.populateCellForItemInSection)
+    end
 end
 
 addModEventListener(InfoDisplayExtension)
