@@ -46,7 +46,7 @@ It also works for the displays in the production menu.
 Changelog
 1.3.0.0
 - Manure heap info: Display which sheets are connected.
-- PF partial displays corrected so that also here the farmlanda which have no field are ignored and this is done on the base of the field areas.
+- PF partial displays corrected so that also here the farmlands which have no field are ignored and this is done on the base of the field areas.
 - Maximum capacity display in productions are there again if Revamp 1.0 is available.
 
 1.2.0.0
