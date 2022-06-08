@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="65">
     <author>Achimobil</author>
-    <version>1.3.0.0 test</version>
+    <version>1.3.0.0</version>
     <title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -14,9 +14,9 @@ Zusätzlich auch bei den Anzeigen im Produktionsmenü.
 
 Changelog
 1.3.0.0
-- Misthaufen Info: Anzeige welche Ställe verbunden sind
-- PF Teilanzeigen korrigiert so dass auch hier die Grundstücke die kein Feld haben, ignoriert werden und das anhand der Feldflächen gemacht wird
-- Maximal Anzeigen in Produktionen wieder da, wenn Revamp 1.0 vorhanden ist
+- Misthaufen Info: Anzeige welche Ställe verbunden sind.
+- PF Teilanzeigen korrigiert so dass auch hier die Grundstücke die kein Feld haben, ignoriert werden und das anhand der Feldflächen gemacht wird.
+- Maximal Anzeigen in Produktionen wieder da, wenn Revamp 1.0 vorhanden ist.
 
 1.2.0.0
 - Revamp Texte entfernt und Anpassungen in Produktionen deaktiviert, wenn revamp genutzt wird
@@ -44,6 +44,11 @@ It works for all warehouses and also for the productions in the Info Trigger.
 It also works for the displays in the production menu. 
 
 Changelog
+1.3.0.0
+- Manure heap info: Display which sheets are connected.
+- PF partial displays corrected so that also here the farmlanda which have no field are ignored and this is done on the base of the field areas.
+- Maximum capacity display in productions are there again if Revamp 1.0 is available.
+
 1.2.0.0
 - Revamp texts removed and override deactivated in productions when revamp is used
 - Silo Info: Display individual capacities if they are defined in the silo per fill type
