@@ -503,7 +503,9 @@ end
 
 function InfoDisplayExtension:loadMap(name)
     -- hier alles rein, was erst nach dem laden aller mods und der map geladen ausgetauscht werden kann
-    FS22_precisionFarming.EnvironmentalScore.updateUI = Utils.overwrittenFunction(FS22_precisionFarming.EnvironmentalScore.updateUI, InfoDisplayExtension.updateUI)
+    if g_modIsLoaded["FS22_precisionFarming"] then
+        FS22_precisionFarming.EnvironmentalScore.updateUI = Utils.overwrittenFunction(FS22_precisionFarming.EnvironmentalScore.updateUI, InfoDisplayExtension.updateUI);
+    end
     
     local mods = g_modManager:getActiveMods(FS22_A_ProductionRevamp);
     local revampversion = ""
