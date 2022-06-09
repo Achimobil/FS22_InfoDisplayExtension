@@ -7,5 +7,7 @@
 		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Gesamtkapazität" />
 		<text name="infoDisplayExtension_MORE_ITEMS" text="weitere" />
 		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Verbunden mit" />
+		<text name="Revamp_Store" text="Einlagern" />
+		<text name="Revamp_Spawn" text="Auslagern" />
 	</texts>
 </l10n>
