@@ -47,9 +47,11 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 			totalCapacity = totalCapacity + sourceStorage.capacity;
             
             -- todo
-            for fillType, fillLevel in pairs(sourceStorage.fillLevels) do
-                if(sourceStorage.capacities[fillType] ~= nil) then
-                    fillTypesCapacities[fillType] = Utils.getNoNil(fillTypesCapacities[fillType], 0) + sourceStorage.capacities[fillType]
+            if(sourceStorage.capacities[fillType] ~= nil) then
+                for fillType, fillLevel in pairs(sourceStorage.fillLevels) do
+                    if(sourceStorage.capacities[fillType] ~= nil) then
+                        fillTypesCapacities[fillType] = Utils.getNoNil(fillTypesCapacities[fillType], 0) + sourceStorage.capacities[fillType]
+                    end
                 end
             end
 		end
