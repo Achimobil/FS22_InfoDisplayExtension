@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+	<translationContributors>nagor</translationContributors>
+    <texts>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Вместимость" />
+		<text name="infoDisplayExtension_USED_CAPACITY" text="Используется" />
+		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Общая" />
+		<text name="infoDisplayExtension_MORE_ITEMS" text="ещё" />
+		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Подключено к" />
+		<text name="Revamp_Store" text="Складирование" />
+		<text name="Revamp_Spawn" text="На поддоны" />
+	</texts>
+</l10n>
