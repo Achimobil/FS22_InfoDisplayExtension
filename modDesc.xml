@@ -14,6 +14,7 @@ Zusätzlich auch bei den Anzeigen im Produktionsmenü.
 
 Changelog
 1.3.0.2
+- Lua Fehler bei zu eng platzierten unterschiedlichen Loadingstations
 - Silo Gesamtanzeige ausgeblendet, wenn Modder da fehlerhafte werte eingetragen haben
 - Sortierung der Produktionsliste deaktiviert, wenn Revamp da ist, da sonst doppelt
 
