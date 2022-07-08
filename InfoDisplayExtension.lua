@@ -289,7 +289,6 @@ end
 function compProductionPoints(w1,w2)
     return w1:getName() .. w1.id < w2:getName() .. w2.id;
 end
-InGameMenuProductionFrame.getProductionPoints = Utils.overwrittenFunction(InGameMenuProductionFrame.getProductionPoints, InfoDisplayExtension.getProductionPoints)
 
 function InfoDisplayExtension:updateInfoPlaceableHusbandryAnimals(_, superFunc, infoTable)
 	superFunc(self, infoTable)
@@ -522,6 +521,7 @@ function InfoDisplayExtension:loadMap(name)
     
     if revampversion == "" or revampversion == "1.0.0.0" then
         InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InfoDisplayExtension.populateCellForItemInSection)
+        InGameMenuProductionFrame.getProductionPoints = Utils.overwrittenFunction(InGameMenuProductionFrame.getProductionPoints, InfoDisplayExtension.getProductionPoints)
     end
 end
 
