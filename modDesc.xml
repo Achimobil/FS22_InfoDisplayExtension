@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="65">
     <author>Achimobil</author>
-    <version>1.3.0.1</version>
+    <version>1.3.0.2 beta</version>
     <title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -13,6 +13,9 @@ Funktioniert erst mal bei allen Lagern und auch bei den Produktionen im Info Tri
 Zusätzlich auch bei den Anzeigen im Produktionsmenü.
 
 Changelog
+1.3.0.2
+- Silo Gesamtanzeige ausgeblendet, wenn Modder da fehlerhafte werte eingetragen haben
+
 1.3.0.1
 - Einlagern und Auslagern Texte bei Revamp 1.0 korrigiert
 - Fix für Lua fehler ohne PF

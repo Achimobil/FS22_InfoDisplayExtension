@@ -131,12 +131,14 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
         }
     )
     
-    table.insert(infoTable,
-        {
-            title = g_i18n:getText("infoDisplayExtension_TOTAL_CAPACITY"), 
-            text = g_i18n:formatVolume(totalCapacity, 0)
-        }
-    )
+    if totalCapacity ~= 0 then
+        table.insert(infoTable,
+            {
+                title = g_i18n:getText("infoDisplayExtension_TOTAL_CAPACITY"), 
+                text = g_i18n:formatVolume(totalCapacity, 0)
+            }
+        )
+    end
     
     -- print("test")
 end
