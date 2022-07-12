@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
-<modDesc descVersion="65">
+<modDesc descVersion="67">
     <author>Achimobil</author>
-    <version>1.3.0.2</version>
+    <version>1.3.0.3</version>
     <title>
-		<de>Info Display Erweiterung</de>
-		<en>Info Display Extension</en>
+        <de>Info Display Erweiterung</de>
+        <en>Info Display Extension</en>
     </title>
     <description>
-        <de>
-            <![CDATA[Ein kleiner Mod zur Erweiterung des Info Displays und der Anzeigen der Produktionen um die verfügbare Kapazität.
+        <de><![CDATA[Ein kleiner Mod zur Erweiterung des Info Displays und der Anzeigen verfügbarer Kapazitäten der Produktionen.
 Funktioniert erst mal bei allen Lagern und auch bei den Produktionen im Info Trigger.
 Zusätzlich auch bei den Anzeigen im Produktionsmenü.
 
 Changelog
+1.3.0.3
+- Beschreibungen korrigiert
+- RU Übersetzungen hinzugefügt
+
 1.3.0.2
-- Lua Fehler bei zu eng platzierten unterschiedlichen Loadingstations
-- Silo Gesamtanzeige ausgeblendet, wenn Modder da fehlerhafte werte eingetragen haben
-- Sortierung der Produktionsliste deaktiviert, wenn Revamp da ist, da sonst doppelt
+- Lua Fehler bei zu eng platzierten, unterschiedlichen Ladestationen
+- Silo Gesamtanzeige ausgeblendet, wenn Modder fehlerhafte Werte eingetragen haben
+- Sortierung der Produktionsliste deaktiviert, wenn Revamp vorhanden ist, da es ansonsten doppelt vorhanden ist
 
 1.3.0.1
 - Einlagern und Auslagern Texte bei Revamp 1.0 korrigiert
@@ -45,14 +48,16 @@ Changelog
 - Maximalmenge für Futter, Milch, Gülle, Mist und Stroh bei Tierställe eingefügt in info trigger
 - Kompatibel zu Revamp Mod gemacht
 - Produktionsliste wird jetzt Alphabetisch sortiert im Menü angezeigt
-]]>
-</de>
-        <en>
-            <![CDATA[A small mod to expand the info display and the displays of the productions by the available capacity.
+]]></de>
+        <en><![CDATA[A small mod to expand the info display and the displays of the productions by the available capacity.
 It works for all warehouses and also for the productions in the Info Trigger.
-It also works for the displays in the production menu. 
+It also works for the displays in the production menu.
 
 Changelog
+1.3.0.3
+- Description corrected
+- Added RU translation
+
 1.3.0.2
 - Lua error with too closely placed different loading stations
 - Silo total display hidden, if modder have entered wrong values there
@@ -85,15 +90,16 @@ Changelog
 - Added maximum amount for feed, milk, slurry, manure and straw for animal stables in info trigger
 - Made compatible with Revamp mod
 - Productions list is now displayed alphabetically sorted in the menu
-]]>
-</en>
+]]></en>
     </description>
+    
     <iconFilename>ModIcon.dds</iconFilename>
-    <multiplayer supported="true" />
-
-	<extraSourceFiles>
-        <sourceFile filename="InfoDisplayExtension.lua" />
+    
+    <multiplayer supported="true"/>
+    
+    <extraSourceFiles>
+        <sourceFile filename="InfoDisplayExtension.lua"/>
     </extraSourceFiles>
-
-	<l10n filenamePrefix="translations/translation" />
+    
+    <l10n filenamePrefix="translations/translation"/>
 </modDesc>
