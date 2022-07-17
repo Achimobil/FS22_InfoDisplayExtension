@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+	<translationContributors>[_Mario_]</translationContributors>
+    <texts>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Rozszerzone informacje o pojemności" />
+		<text name="infoDisplayExtension_USED_CAPACITY" text="Pojemność w użyciu" />
+		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Całkowita pojemność" />
+		<text name="infoDisplayExtension_MORE_ITEMS" text="więcej" />
+		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Połączone z " />
+		<text name="Revamp_Store" text="Magazynowanie" />
+		<text name="Revamp_Spawn" text="Przechowywanie" />
+	</texts>
+</l10n>
