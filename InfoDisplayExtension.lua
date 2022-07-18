@@ -34,7 +34,7 @@ function InfoDisplayExtension:formatVolume(liters, precision, unit)
         unit = nil;
     end
     
-    return g_i18n:formatVolume(fillTypeAndLevel.fillLevel, 0, unit)
+    return g_i18n:formatVolume(liters, precision, unit)
 end
 
 function InfoDisplayExtension:formatCapacity(liters, capacity, precision, unit)
