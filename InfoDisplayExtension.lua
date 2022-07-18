@@ -180,8 +180,6 @@ end
 PlaceableSilo.updateInfo = Utils.overwrittenFunction(PlaceableSilo.updateInfo, InfoDisplayExtension.updateInfo)
 
 function InfoDisplayExtension:updateInfoProductionPoint(_, superFunc, infoTable)
-print("KeyValueInfoHUDBox.boxWidth")
-print(KeyValueInfoHUDBox.boxWidth)
 	local owningFarm = g_farmManager:getFarmById(self:getOwnerFarmId())
 
 	table.insert(infoTable, {
