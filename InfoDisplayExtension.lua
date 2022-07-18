@@ -29,6 +29,25 @@ InfoDisplayExtension.metadata = {
 };
 InfoDisplayExtension.modDir = g_currentModDirectory;
 
+function InfoDisplayExtension:storeScaledValues(superFunc)
+	local scale = self.uiScale
+
+	local function normalize(x, y)
+		return x * scale * g_aspectScaleX / g_referenceScreenWidth, y * scale * g_aspectScaleY / g_referenceScreenHeight
+	end
+
+	self.boxWidth = normalize(440, 0)
+	local _ = nil
+	_, self.labelTextSize = normalize(0, HUDElement.TEXT_SIZE.DEFAULT_TITLE)
+	_, self.rowTextSize = normalize(0, HUDElement.TEXT_SIZE.DEFAULT_TEXT)
+	self.titleTextSize = self.labelTextSize
+	self.labelTextOffsetX, self.labelTextOffsetY = normalize(0, 3)
+	self.leftTextOffsetX, self.leftTextOffsetY = normalize(0, 6)
+	self.rightTextOffsetX, self.rightTextOffsetY = normalize(0, 6)
+	self.rowWidth, self.rowHeight = normalize(408, 26)
+	self.listMarginWidth, self.listMarginHeight = normalize(16, 15)
+end
+KeyValueInfoHUDBox.storeScaledValues = Utils.overwrittenFunction(KeyValueInfoHUDBox.storeScaledValues, InfoDisplayExtension.storeScaledValues)
 
 function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 	superFunc(self, infoTable)
@@ -91,16 +110,16 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 	if numEntries > 0 then
 		for i = 1, numEntries do
 			local fillTypeAndLevel = spec.infoTriggerFillTypesAndLevels[i]
-
+            local fillType = g_fillTypeManager:getFillTypeByIndex(fillType);
             if fillTypeAndLevel.capacity == nil then
                 table.insert(infoTable, {
-                    title = g_fillTypeManager:getFillTypeTitleByIndex(fillTypeAndLevel.fillType),
-                    text = g_i18n:formatVolume(fillTypeAndLevel.fillLevel, 0)
+                    title = fillType.title,
+                    text = g_i18n:formatVolume(fillTypeAndLevel.fillLevel, 0, fillType.unitShort)
                 })
             else
                 table.insert(infoTable, {
-                    title = g_fillTypeManager:getFillTypeTitleByIndex(fillTypeAndLevel.fillType),
-                    text = g_i18n:formatVolume(fillTypeAndLevel.fillLevel, 0) .. " / " .. g_i18n:formatVolume(fillTypeAndLevel.capacity, 0)
+                    title = fillType.title,
+                    text = g_i18n:formatVolume(fillTypeAndLevel.fillLevel, 0, "") .. " / " .. g_i18n:formatVolume(fillTypeAndLevel.capacity, 0, fillType.unitShort)
                 })
             end
 		end
@@ -145,7 +164,8 @@ end
 PlaceableSilo.updateInfo = Utils.overwrittenFunction(PlaceableSilo.updateInfo, InfoDisplayExtension.updateInfo)
 
 function InfoDisplayExtension:updateInfoProductionPoint(_, superFunc, infoTable)
-
+print("KeyValueInfoHUDBox.boxWidth")
+print(KeyValueInfoHUDBox.boxWidth)
 	local owningFarm = g_farmManager:getFarmById(self:getOwnerFarmId())
 
 	table.insert(infoTable, {
@@ -183,10 +203,10 @@ function InfoDisplayExtension:updateInfoProductionPoint(_, superFunc, infoTable)
 
 		if fillLevel > 1 then
 			fillTypesDisplayed = true
-
+            local fillType = g_fillTypeManager:getFillTypeByIndex(fillType);
 			table.insert(infoTable, {
-				title = g_fillTypeManager:getFillTypeTitleByIndex(fillType),
-				text = g_i18n:formatVolume(fillLevel, 0) .. " / " .. g_i18n:formatVolume(fillLevelCapacity, 0)
+				title = fillType.title,
+				text = g_i18n:formatVolume(fillLevel, 0, "") .. " / " .. g_i18n:formatVolume(fillLevelCapacity, 0, fillType.unitShort)
 			})
 		end
 	end
@@ -198,10 +218,10 @@ function InfoDisplayExtension:updateInfoProductionPoint(_, superFunc, infoTable)
 
 		if fillLevel > 1 then
 			fillTypesDisplayed = true
-
+            local fillType = g_fillTypeManager:getFillTypeByIndex(fillType);
 			table.insert(infoTable, {
-				title = g_fillTypeManager:getFillTypeTitleByIndex(fillType),
-				text = g_i18n:formatVolume(fillLevel, 0) .. " / " .. g_i18n:formatVolume(fillLevelCapacity, 0)
+				title = fillType.title,
+				text = g_i18n:formatVolume(fillLevel, 0, "") .. " / " .. g_i18n:formatVolume(fillLevelCapacity, 0, fillType.unitShort)
 			})
 		end
 	end
@@ -258,7 +278,7 @@ function InfoDisplayExtension:populateCellForItemInSection(superFunc, list, sect
 
 			cell:getAttribute("icon"):setImageFilename(fillTypeDesc.hudOverlayFilename)
 			cell:getAttribute("fillType"):setText(fillTypeDesc.title)
-			cell:getAttribute("fillLevel"):setText(self.i18n:formatVolume(fillLevel, 0) .. " / " .. self.i18n:formatVolume(capacity, 0))
+			cell:getAttribute("fillLevel"):setText(self.i18n:formatVolume(fillLevel, 0, fillTypeDesc.unitShort) .. " / " .. self.i18n:formatVolume(capacity, 0, fillTypeDesc.unitShort))
 
 			if not isInput then
 				local outputMode = productionPoint:getOutputDistributionMode(fillType)
