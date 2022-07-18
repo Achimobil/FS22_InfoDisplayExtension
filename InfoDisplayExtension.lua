@@ -29,6 +29,22 @@ InfoDisplayExtension.metadata = {
 };
 InfoDisplayExtension.modDir = g_currentModDirectory;
 
+function InfoDisplayExtension:formatVolume(liters, precision, unit)
+    if unit == "" then
+        unit = nil;
+    end
+    
+    return g_i18n:formatVolume(fillTypeAndLevel.fillLevel, 0, unit)
+end
+
+function InfoDisplayExtension:formatCapacity(liters, capacity, precision, unit)
+    if unit == "" then
+        unit = nil;
+    end
+
+    return g_i18n:formatVolume(liters, precision, "") .. " / " .. g_i18n:formatVolume(capacity, precision, unit);
+end
+
 function InfoDisplayExtension:storeScaledValues(superFunc)
 	local scale = self.uiScale
 
@@ -110,16 +126,16 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 	if numEntries > 0 then
 		for i = 1, numEntries do
 			local fillTypeAndLevel = spec.infoTriggerFillTypesAndLevels[i]
-            local fillType = g_fillTypeManager:getFillTypeByIndex(fillType);
+            local fillType = g_fillTypeManager:getFillTypeByIndex(fillTypeAndLevel.fillType);
             if fillTypeAndLevel.capacity == nil then
                 table.insert(infoTable, {
                     title = fillType.title,
-                    text = g_i18n:formatVolume(fillTypeAndLevel.fillLevel, 0, fillType.unitShort)
+                    text = InfoDisplayExtension:formatVolume(fillTypeAndLevel.fillLevel, 0, fillType.unitShort)
                 })
             else
                 table.insert(infoTable, {
                     title = fillType.title,
-                    text = g_i18n:formatVolume(fillTypeAndLevel.fillLevel, 0, "") .. " / " .. g_i18n:formatVolume(fillTypeAndLevel.capacity, 0, fillType.unitShort)
+                    text = InfoDisplayExtension:formatCapacity(fillTypeAndLevel.fillLevel, fillTypeAndLevel.capacity, 0, fillType.unitShort)
                 })
             end
 		end
@@ -146,7 +162,7 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
     table.insert(infoTable,
         {
             title = g_i18n:getText("infoDisplayExtension_USED_CAPACITY"), 
-            text = g_i18n:formatVolume(totalFillLevel, 0)
+            text = InfoDisplayExtension:formatVolume(totalFillLevel, 0)
         }
     )
     
@@ -154,7 +170,7 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
         table.insert(infoTable,
             {
                 title = g_i18n:getText("infoDisplayExtension_TOTAL_CAPACITY"), 
-                text = g_i18n:formatVolume(totalCapacity, 0)
+                text = InfoDisplayExtension:formatVolume(totalCapacity, 0)
             }
         )
     end
@@ -206,7 +222,7 @@ print(KeyValueInfoHUDBox.boxWidth)
             local fillType = g_fillTypeManager:getFillTypeByIndex(fillType);
 			table.insert(infoTable, {
 				title = fillType.title,
-				text = g_i18n:formatVolume(fillLevel, 0, "") .. " / " .. g_i18n:formatVolume(fillLevelCapacity, 0, fillType.unitShort)
+				text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort)
 			})
 		end
 	end
@@ -221,7 +237,7 @@ print(KeyValueInfoHUDBox.boxWidth)
             local fillType = g_fillTypeManager:getFillTypeByIndex(fillType);
 			table.insert(infoTable, {
 				title = fillType.title,
-				text = g_i18n:formatVolume(fillLevel, 0, "") .. " / " .. g_i18n:formatVolume(fillLevelCapacity, 0, fillType.unitShort)
+				text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort)
 			})
 		end
 	end
@@ -278,7 +294,7 @@ function InfoDisplayExtension:populateCellForItemInSection(superFunc, list, sect
 
 			cell:getAttribute("icon"):setImageFilename(fillTypeDesc.hudOverlayFilename)
 			cell:getAttribute("fillType"):setText(fillTypeDesc.title)
-			cell:getAttribute("fillLevel"):setText(self.i18n:formatVolume(fillLevel, 0, fillTypeDesc.unitShort) .. " / " .. self.i18n:formatVolume(capacity, 0, fillTypeDesc.unitShort))
+			cell:getAttribute("fillLevel"):setText(InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0, fillTypeDesc.unitShort));
 
 			if not isInput then
 				local outputMode = productionPoint:getOutputDistributionMode(fillType)
@@ -343,7 +359,7 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryFood(_, superFunc, inf
 	local spec = self.spec_husbandryFood
 	local fillLevel = self:getTotalFood()
 	local capacity = self:getFoodCapacity()
-	spec.info.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
+	spec.info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
 
 	table.insert(infoTable, spec.info)
 end
@@ -356,7 +372,7 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryMilk(_, superFunc, inf
 
 	local fillLevel = self:getHusbandryFillLevel(spec.fillType)
 	local capacity = self:getHusbandryCapacity(spec.fillType)
-	spec.info.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
+	spec.info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
 
 	table.insert(infoTable, spec.info)
 end
@@ -368,7 +384,7 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryLiquidManure(_, superF
 	local spec = self.spec_husbandryLiquidManure
 	local fillLevel = self:getHusbandryFillLevel(spec.fillType)
 	local capacity = self:getHusbandryCapacity(spec.fillType)
-	spec.info.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
+	spec.info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
 
 	table.insert(infoTable, spec.info)
 end
@@ -380,7 +396,7 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryStraw(_, superFunc, in
 	local spec = self.spec_husbandryStraw
 	local fillLevel = self:getHusbandryFillLevel(spec.inputFillType)
 	local capacity = self:getHusbandryCapacity(spec.inputFillType)
-	spec.info.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
+	spec.info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
 
 	table.insert(infoTable, spec.info)
 end
@@ -394,7 +410,7 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryWater(_, superFunc, in
 	if not spec.automaticWaterSupply then
 		local fillLevel = self:getHusbandryFillLevel(spec.fillType)
         local capacity = self:getHusbandryCapacity(spec.fillType)
-		spec.info.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
+		spec.info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
 
 		table.insert(infoTable, spec.info)
 	end
@@ -412,7 +428,7 @@ function InfoDisplayExtension:updateInfoPlaceableManureHeap(_, superFunc, infoTa
 
 	local fillLevel = spec.manureHeap:getFillLevel(spec.manureHeap.fillTypeIndex)
 	local capacity = spec.manureHeap:getCapacity(spec.manureHeap.fillTypeIndex)
-	spec.infoFillLevel.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
+	spec.infoFillLevel.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
 
 	table.insert(infoTable, spec.infoFillLevel)
     
@@ -449,7 +465,7 @@ function InfoDisplayExtension:updateInfoFeedingRobot(_, infoTable)
                 end
 			end
 
-			info.text = string.format("%d l", fillLevel) .. " / " .. string.format("%d l", capacity)
+			info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
 
 			table.insert(infoTable, info)
 		end
