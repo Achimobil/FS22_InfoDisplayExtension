@@ -8,6 +8,6 @@
 		<text name="infoDisplayExtension_MORE_ITEMS" text="ещё" />
 		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Подключено к" />
 		<text name="Revamp_Store" text="Складирование" />
-		<text name="Revamp_Spawn" text="На поддоны" />
+		<text name="Revamp_Spawn" text="Создание" />
 	</texts>
 </l10n>
