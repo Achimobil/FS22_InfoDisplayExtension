@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="67">
     <author>Achimobil</author>
-    <version>1.4.0.0 beta</version>
+    <version>1.4.0.0</version>
     <title>
         <de>Info Display Erweiterung</de>
         <en>Info Display Extension</en>
@@ -13,7 +13,7 @@ Funktioniert erst mal bei allen Lagern und auch bei den Produktionen im Info Tri
 Zusätzlich auch bei den Anzeigen im Produktionsmenü.
 
 Changelog
-1.4.0.0 beta
+1.4.0.0
 - Übersetzungen hinzugefügt für SV und PL
 - Breitere Anzeige aller Info Anzeigen um 20% zur besseren Lesbarkeit der Mengen und Volumen
 - Anzeige der richtigen Einheiten bei den Mengen für Lager und Produktionen
@@ -42,24 +42,17 @@ Changelog
 - Silo Info: Alphabetisch sortiert
 - Silo Info: Anzeige der Anzahl der Elemente, die wegen Platzmangel nicht angezeigt werden können
 - Fütterungsroboter Info: Anzeige der Kapazitäten eingefügt
-
-1.1.2.0
-- Anpassungen an Patch 1.4 wegen Paletten Maximum Warnung
-
-1.1.1.0
-- Fehler bei mehreren gleichen Produktionen behoben
-- Fehlende EN Übersetzung eingefügt
-
-1.1.0.0
-- Maximalmenge für Futter, Milch, Gülle, Mist und Stroh bei Tierställe eingefügt in info trigger
-- Kompatibel zu Revamp Mod gemacht
-- Produktionsliste wird jetzt Alphabetisch sortiert im Menü angezeigt
 ]]></de>
         <en><![CDATA[A small mod to expand the info display and the displays of the productions by the available capacity.
 It works for all warehouses and also for the productions in the Info Trigger.
 It also works for the displays in the production menu.
 
 Changelog
+1.4.0.0
+- Added SV and PL translations
+- Wider display of all info displays by 20% for better readability of quantities and volumes
+- Display of the correct units for quantities for warehouses and productions
+
 1.3.0.3
 - Description corrected
 - Added RU translation
@@ -84,18 +77,6 @@ Changelog
 - Silo Info: Sort alphabetically
 - Silo Info: Display the number of elements that cannot be displayed due to lack of space
 - Feeding robot info: Display of capacities inserted
-
-1.1.2.0
-- Adjustments to patch 1.4 due to pallet maximum warning
-
-1.1.1.0
-- Fixed bug with multiple same productions
-- Added missing EN translation
-
-1.1.0.0
-- Added maximum amount for feed, milk, slurry, manure and straw for animal stables in info trigger
-- Made compatible with Revamp mod
-- Productions list is now displayed alphabetically sorted in the menu
 ]]></en>
     </description>
     
