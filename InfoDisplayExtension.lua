@@ -455,13 +455,9 @@ function InfoDisplayExtension:updateInfoFeedingRobot(_, infoTable)
 			local fillLevel = 0
 			local capacity = 0
 
-			for _, fillType in ipairs(info.fillTypes) do
-				fillLevel = fillLevel + self:getFillLevel(fillType)
-                local spot = self.fillTypeToUnloadingSpot[fillType]
-                if spot ~= nil then
-                    capacity = capacity + spot.capacity
-                end
-			end
+			-- nur den ersten filltype abfragen, da die anderen da schon drin sind
+            fillLevel = self:getFillLevel(info.fillTypes[1]);
+            capacity = self.fillTypeToUnloadingSpot[info.fillTypes[1]].capacity;
 
 			info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
 
