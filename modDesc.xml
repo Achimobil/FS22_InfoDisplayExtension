@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="67">
     <author>Achimobil</author>
-    <version>1.4.0.0</version>
+    <version>1.4.1.0</version>
     <title>
         <de>Info Display Erweiterung</de>
         <en>Info Display Extension</en>
@@ -13,6 +13,9 @@ Funktioniert erst mal bei allen Lagern und auch bei den Produktionen im Info Tri
 Zusätzlich auch bei den Anzeigen im Produktionsmenü.
 
 Changelog
+1.4.1.0
+- Fehler in der Mengenanzeige bei Fütterungsroboter behoben, wenn im Rezept alternativen benutzt werden
+
 1.4.0.0
 - Übersetzungen hinzugefügt für SV und PL
 - Breitere Anzeige aller Info Anzeigen um 20% zur besseren Lesbarkeit der Mengen und Volumen
@@ -48,6 +51,9 @@ It works for all warehouses and also for the productions in the Info Trigger.
 It also works for the displays in the production menu.
 
 Changelog
+1.4.1.0
+- Solve error in the quantities shown of feeding robots when the receipe has alternative fill types
+
 1.4.0.0
 - Added SV and PL translations
 - Wider display of all info displays by 20% for better readability of quantities and volumes
