@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
-<modDesc descVersion="67">
-    <author>Achimobil</author>
-    <version>1.4.1.0</version>
-    <title>
-        <de>Info Display Erweiterung</de>
-        <en>Info Display Extension</en>
-        <pl>Rozszerzone informacje</pl>
-    </title>
-    <description>
-        <de><![CDATA[Ein kleiner Mod zur Erweiterung des Info Displays und der Anzeigen verfügbarer Kapazitäten der Produktionen.
-Funktioniert erst mal bei allen Lagern und auch bei den Produktionen im Info Trigger.
-Zusätzlich auch bei den Anzeigen im Produktionsmenü.
+<modDesc descVersion="71">
+	<author>Achimobil</author>
+	<version>1.5.0.0</version>
+	<title>
+		<de>Info Display Erweiterung</de>
+		<en>Info Display Extension</en>
+		<pl>Rozszerzone informacje</pl>
+	</title>
+	<description>
+		<de><![CDATA[Ein kleiner Mod zur Erweiterung der Anzeigen.
+
+Erweitert die Info Hud Anzeigen von
+- Silos
+- Produktionen (inkl. der Anzeige im Produktionsmenü)
+- Tierställen
+- Misthaufen
+- Bäumen
+
+Korrigiert Anzeigefehler von PF in der Gesamtbewertung.
+Verbreitert die Info Anzeige.
+Korrigiert Fehlerhafte Anzeige der Fütterungsroboter bei alternativen Rezepten für Futtermischungen.
+Fügt wo möglich die Einheiten der zahlen zu, da nicht alles in Litern ist.
+
+Upload auf anderen Seiten nur durch mich selbst, Verlinkung nur mit Original Downloadlink. KEIN Ersatzlink!
+Das verändern oder erneutes hochladen, ob ganz oder in Teilen ist nicht gestattet!
 
 Changelog
+1.5.0.0
+- Erweiterte Anzeige für Bäume wie Wachstumsstatus, Durchmesser und Alter in Stunden
+
 1.4.1.0
 - Fehler in der Mengenanzeige bei Fütterungsroboter behoben, wenn im Rezept alternativen benutzt werden
 
@@ -29,28 +45,28 @@ Changelog
 - Lua Fehler bei zu eng platzierten, unterschiedlichen Ladestationen
 - Silo Gesamtanzeige ausgeblendet, wenn Modder fehlerhafte Werte eingetragen haben
 - Sortierung der Produktionsliste deaktiviert, wenn Revamp vorhanden ist, da es ansonsten doppelt vorhanden ist
-
-1.3.0.1
-- Einlagern und Auslagern Texte bei Revamp 1.0 korrigiert
-- Fix für Lua fehler ohne PF
-
-1.3.0.0
-- Misthaufen Info: Anzeige welche Ställe verbunden sind.
-- PF Teilanzeigen korrigiert so dass auch hier die Grundstücke die kein Feld haben, ignoriert werden und das anhand der Feldflächen gemacht wird.
-- Maximal Anzeigen in Produktionen wieder da, wenn Revamp 1.0 vorhanden ist.
-
-1.2.0.0
-- Revamp Texte entfernt und Anpassungen in Produktionen deaktiviert, wenn revamp genutzt wird
-- Silo Info: Einzelkapazitäten anzeigen, wenn diese im Silo pro Filltype definiert sind
-- Silo Info: Alphabetisch sortiert
-- Silo Info: Anzeige der Anzahl der Elemente, die wegen Platzmangel nicht angezeigt werden können
-- Fütterungsroboter Info: Anzeige der Kapazitäten eingefügt
 ]]></de>
-        <en><![CDATA[A small mod to expand the info display and the displays of the productions by the available capacity.
-It works for all warehouses and also for the productions in the Info Trigger.
-It also works for the displays in the production menu.
+		<en><![CDATA[A small mod to extend the displays.
+
+Extends the Info Hud displays of
+- silos
+- Productions (incl. the display in the production menu)
+- animal sheeds
+- dung heaps
+- trees
+
+Corrects display errors of PF in the total score.
+Widened the info display.
+Corrects incorrect display of feeding robots in alternative recipes for feed mixes.
+Adds units of numbers where possible as not everything is in litres.
+
+Upload on other sites only by myself, linking only with original download link. NO substitute link!
+Modifying and re-uploading in whole or in part is not allowed!
 
 Changelog
+1.5.0.0
+- Extended display for trees like growth status, diameter and age in hours
+
 1.4.1.0
 - Solve error in the quantities shown of feeding robots when the receipe has alternative fill types
 
@@ -67,32 +83,16 @@ Changelog
 - Lua error with too closely placed different loading stations
 - Silo total display hidden, if modder have entered wrong values there
 - Sorting of the production list deactivated, if Revamp is there, since otherwise double
-
-1.3.0.1
-- Store and Spawn texts with Revamp 1.0 corrected
-- Fix for Lua errror without PF
-
-1.3.0.0
-- Manure heap info: Display which sheets are connected.
-- PF partial displays corrected so that also here the farmlands which have no field are ignored and this is done on the base of the field areas.
-- Maximum capacity display in productions are there again if Revamp 1.0 is available.
-
-1.2.0.0
-- Revamp texts removed and override deactivated in productions when revamp is used
-- Silo Info: Display individual capacities if they are defined in the silo per fill type
-- Silo Info: Sort alphabetically
-- Silo Info: Display the number of elements that cannot be displayed due to lack of space
-- Feeding robot info: Display of capacities inserted
 ]]></en>
-    </description>
-    
-    <iconFilename>ModIcon.dds</iconFilename>
-    
-    <multiplayer supported="true"/>
-    
-    <extraSourceFiles>
-        <sourceFile filename="InfoDisplayExtension.lua"/>
-    </extraSourceFiles>
-    
-    <l10n filenamePrefix="translations/translation"/>
+	</description>
+	
+	<iconFilename>ModIcon.dds</iconFilename>
+	
+	<multiplayer supported="true"/>
+	
+	<extraSourceFiles>
+		<sourceFile filename="InfoDisplayExtension.lua"/>
+	</extraSourceFiles>
+	
+	<l10n filenamePrefix="translations/translation"/>
 </modDesc>

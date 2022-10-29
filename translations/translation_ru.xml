@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <l10n>
 	<translationContributors>nagor</translationContributors>
-    <texts>
+	<texts>
 		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Вместимость" />
 		<text name="infoDisplayExtension_USED_CAPACITY" text="Используется" />
 		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Общая" />
@@ -9,5 +9,9 @@
 		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Подключено к" />
 		<text name="Revamp_Store" text="Складирование" />
 		<text name="Revamp_Spawn" text="Создание" />
+		<text name="infohud_diameter" text="Диаметр" />
+		<text name="infohud_growthState" text="Стадия роста" />
+		<text name="infohud_ageInHours" text="Возраст" />
+		<text name="infohud_fullGrown" text="Полностью вырос" />
 	</texts>
 </l10n>

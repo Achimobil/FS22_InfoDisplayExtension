@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <l10n>
 	<translationContributors>Swedish Fika</translationContributors>
-    <texts>
-        <text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Lagringsutrymme" />
-        <text name="infoDisplayExtension_USED_CAPACITY" text="Använt lagringsutrymme" />
-        <text name="infoDisplayExtension_TOTAL_CAPACITY" text="Total lagringsutrymme" />
-        <text name="infoDisplayExtension_MORE_ITEMS" text="Mer" />
-        <text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Kopplad till" />
-        <text name="Revamp_Store" text="Lagra" />
-        <text name="Revamp_Spawn" text="Generera" />
+	<texts>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Lagringsutrymme" />
+		<text name="infoDisplayExtension_USED_CAPACITY" text="Använt lagringsutrymme" />
+		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Total lagringsutrymme" />
+		<text name="infoDisplayExtension_MORE_ITEMS" text="Mer" />
+		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Kopplad till" />
+		<text name="Revamp_Store" text="Lagra" />
+		<text name="Revamp_Spawn" text="Generera" />
+		<text name="infohud_diameter" text="Diameter" />
+		<text name="infohud_growthState" text="Growth Stage" />
+		<text name="infohud_ageInHours" text="Age" />
+		<text name="infohud_fullGrown" text="Fullt utvuxen" />
 	</texts>
 </l10n>

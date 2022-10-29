@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <l10n>
 	<translationContributors>Achimobil</translationContributors>
-    <texts>
+	<texts>
 		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Lagerkapazität" />
 		<text name="infoDisplayExtension_USED_CAPACITY" text="Benutzte Kapazität" />
 		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Gesamtkapazität" />
@@ -9,5 +9,9 @@
 		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Verbunden mit" />
 		<text name="Revamp_Store" text="Einlagern" />
 		<text name="Revamp_Spawn" text="Auslagern" />
+		<text name="infohud_diameter" text="Durchmesser" />
+		<text name="infohud_growthState" text="Wachstumsphase" />
+		<text name="infohud_ageInHours" text="Alter" />
+		<text name="infohud_fullGrown" text="Ausgewachsen" />
 	</texts>
 </l10n>

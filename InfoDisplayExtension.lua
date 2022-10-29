@@ -22,27 +22,27 @@ Das verändern und wiederöffentlichen, auch in Teilen, ist untersagt und wird a
 InfoDisplayExtension = {}
 
 InfoDisplayExtension.metadata = {
-    title = "InfoDisplayExtension",
-    notes = "Erweiterung des Infodisplays für Silos und Produktionen",
-    author = "Achimobil",
-    info = "Das verändern und wiederöffentlichen, auch in Teilen, ist untersagt und wird abgemahnt."
+	title = "InfoDisplayExtension",
+	notes = "Erweiterung des Infodisplays für Silos und Produktionen",
+	author = "Achimobil",
+	info = "Das verändern und wiederöffentlichen, auch in Teilen, ist untersagt und wird abgemahnt."
 };
 InfoDisplayExtension.modDir = g_currentModDirectory;
 
 function InfoDisplayExtension:formatVolume(liters, precision, unit)
-    if unit == "" then
-        unit = nil;
-    end
-    
-    return g_i18n:formatVolume(liters, precision, unit)
+	if unit == "" then
+		unit = nil;
+	end
+	
+	return g_i18n:formatVolume(liters, precision, unit)
 end
 
 function InfoDisplayExtension:formatCapacity(liters, capacity, precision, unit)
-    if unit == "" then
-        unit = nil;
-    end
+	if unit == "" then
+		unit = nil;
+	end
 
-    return g_i18n:formatVolume(liters, precision, "") .. " / " .. g_i18n:formatVolume(capacity, precision, unit);
+	return g_i18n:formatVolume(liters, precision, "") .. " / " .. g_i18n:formatVolume(capacity, precision, unit);
 end
 
 function InfoDisplayExtension:storeScaledValues(superFunc)
@@ -70,25 +70,25 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 
 	local spec = self.spec_silo
 	local farmId = g_currentMission:getFarmId()
-    local totalFillLevel = 0;
+	local totalFillLevel = 0;
 
-    -- collect capacities
-    local sourceStorages = spec.loadingStation:getSourceStorages();
-    local totalCapacity = 0;
-    local fillTypesCapacities = {}
+	-- collect capacities
+	local sourceStorages = spec.loadingStation:getSourceStorages();
+	local totalCapacity = 0;
+	local fillTypesCapacities = {}
 
 	for _, sourceStorage in pairs(sourceStorages) do
 		if spec.loadingStation:hasFarmAccessToStorage(farmId, sourceStorage) then
 			totalCapacity = totalCapacity + sourceStorage.capacity;
-            
-            -- todo
-            if(sourceStorage.capacities ~= nil) then
-                for fillType, fillLevel in pairs(sourceStorage.fillLevels) do
-                    if(sourceStorage.capacities[fillType] ~= nil) then
-                        fillTypesCapacities[fillType] = Utils.getNoNil(fillTypesCapacities[fillType], 0) + sourceStorage.capacities[fillType]
-                    end
-                end
-            end
+			
+			-- todo
+			if(sourceStorage.capacities ~= nil) then
+				for fillType, fillLevel in pairs(sourceStorage.fillLevels) do
+					if(sourceStorage.capacities[fillType] ~= nil) then
+						fillTypesCapacities[fillType] = Utils.getNoNil(fillTypesCapacities[fillType], 0) + sourceStorage.capacities[fillType]
+					end
+				end
+			end
 		end
 	end
 
@@ -105,7 +105,7 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 				fillType = fillType,
 				fillLevel = fillLevel,
 				capacity = fillTypesCapacities[fillType],
-                title = g_fillTypeManager:getFillTypeTitleByIndex(fillType)
+				title = g_fillTypeManager:getFillTypeTitleByIndex(fillType)
 			}
 			spec.fillTypeToFillTypeStorageTable[fillType].fillLevel = fillLevel
 
@@ -113,8 +113,8 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 		end
 	end
 
-    -- print("infoTriggerFillTypesAndLevels");
-    -- DebugUtil.printTableRecursively(spec.infoTriggerFillTypesAndLevels,"_",0,2);
+	-- print("infoTriggerFillTypesAndLevels");
+	-- DebugUtil.printTableRecursively(spec.infoTriggerFillTypesAndLevels,"_",0,2);
 
 	table.clear(spec.fillTypesAndLevelsAuxiliary)
 	table.sort(spec.infoTriggerFillTypesAndLevels, function (a, b)
@@ -126,56 +126,56 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 	if numEntries > 0 then
 		for i = 1, numEntries do
 			local fillTypeAndLevel = spec.infoTriggerFillTypesAndLevels[i]
-            local fillType = g_fillTypeManager:getFillTypeByIndex(fillTypeAndLevel.fillType);
-            if fillTypeAndLevel.capacity == nil then
-                table.insert(infoTable, {
-                    title = fillType.title,
-                    text = InfoDisplayExtension:formatVolume(fillTypeAndLevel.fillLevel, 0, fillType.unitShort)
-                })
-            else
-                table.insert(infoTable, {
-                    title = fillType.title,
-                    text = InfoDisplayExtension:formatCapacity(fillTypeAndLevel.fillLevel, fillTypeAndLevel.capacity, 0, fillType.unitShort)
-                })
-            end
+			local fillType = g_fillTypeManager:getFillTypeByIndex(fillTypeAndLevel.fillType);
+			if fillTypeAndLevel.capacity == nil then
+				table.insert(infoTable, {
+					title = fillType.title,
+					text = InfoDisplayExtension:formatVolume(fillTypeAndLevel.fillLevel, 0, fillType.unitShort)
+				})
+			else
+				table.insert(infoTable, {
+					title = fillType.title,
+					text = InfoDisplayExtension:formatCapacity(fillTypeAndLevel.fillLevel, fillTypeAndLevel.capacity, 0, fillType.unitShort)
+				})
+			end
 		end
-        if #spec.infoTriggerFillTypesAndLevels > 25 then
-            table.insert(infoTable, {
-                title = g_i18n:getText("infoDisplayExtension_MORE_ITEMS"),
-                text = string.format("%d", #spec.infoTriggerFillTypesAndLevels - 25)
-            })
-        end
+		if #spec.infoTriggerFillTypesAndLevels > 25 then
+			table.insert(infoTable, {
+				title = g_i18n:getText("infoDisplayExtension_MORE_ITEMS"),
+				text = string.format("%d", #spec.infoTriggerFillTypesAndLevels - 25)
+			})
+		end
 	else
 		table.insert(infoTable, {
 			text = "",
 			title = g_i18n:getText("infohud_siloEmpty")
 		})
 	end
-    
-    table.insert(infoTable, 
-        {
-            title = g_i18n:getText("infoDisplayExtension_TOTAL_CAPACITY_TITLE"), 
-            accentuate = true 
-        }
-    )
-    
-    table.insert(infoTable,
-        {
-            title = g_i18n:getText("infoDisplayExtension_USED_CAPACITY"), 
-            text = InfoDisplayExtension:formatVolume(totalFillLevel, 0)
-        }
-    )
-    
-    if totalCapacity ~= 0 then
-        table.insert(infoTable,
-            {
-                title = g_i18n:getText("infoDisplayExtension_TOTAL_CAPACITY"), 
-                text = InfoDisplayExtension:formatVolume(totalCapacity, 0)
-            }
-        )
-    end
-    
-    -- print("test")
+	
+	table.insert(infoTable, 
+		{
+			title = g_i18n:getText("infoDisplayExtension_TOTAL_CAPACITY_TITLE"), 
+			accentuate = true 
+		}
+	)
+	
+	table.insert(infoTable,
+		{
+			title = g_i18n:getText("infoDisplayExtension_USED_CAPACITY"), 
+			text = InfoDisplayExtension:formatVolume(totalFillLevel, 0)
+		}
+	)
+	
+	if totalCapacity ~= 0 then
+		table.insert(infoTable,
+			{
+				title = g_i18n:getText("infoDisplayExtension_TOTAL_CAPACITY"), 
+				text = InfoDisplayExtension:formatVolume(totalCapacity, 0)
+			}
+		)
+	end
+	
+	-- print("test")
 end
 PlaceableSilo.updateInfo = Utils.overwrittenFunction(PlaceableSilo.updateInfo, InfoDisplayExtension.updateInfo)
 
@@ -217,7 +217,7 @@ function InfoDisplayExtension:updateInfoProductionPoint(_, superFunc, infoTable)
 
 		if fillLevel > 1 then
 			fillTypesDisplayed = true
-            local fillType = g_fillTypeManager:getFillTypeByIndex(fillType);
+			local fillType = g_fillTypeManager:getFillTypeByIndex(fillType);
 			table.insert(infoTable, {
 				title = fillType.title,
 				text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort)
@@ -232,7 +232,7 @@ function InfoDisplayExtension:updateInfoProductionPoint(_, superFunc, infoTable)
 
 		if fillLevel > 1 then
 			fillTypesDisplayed = true
-            local fillType = g_fillTypeManager:getFillTypeByIndex(fillType);
+			local fillType = g_fillTypeManager:getFillTypeByIndex(fillType);
 			table.insert(infoTable, {
 				title = fillType.title,
 				text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort)
@@ -302,9 +302,9 @@ function InfoDisplayExtension:populateCellForItemInSection(superFunc, list, sect
 					outputModeText = self.i18n:getText("ui_production_output_selling")
 				elseif outputMode == ProductionPoint.OUTPUT_MODE.AUTO_DELIVER then
 					outputModeText = self.i18n:getText("ui_production_output_distributing")
-                --Production Revamp: Hinzugefügt um die "Einlagern" Option anzeigen zu können
-                elseif outputMode == ProductionPoint.OUTPUT_MODE.STORE then
-                    outputModeText = g_i18n:getText("Revamp_Store");
+				--Production Revamp: Hinzugefügt um die "Einlagern" Option anzeigen zu können
+				elseif outputMode == ProductionPoint.OUTPUT_MODE.STORE then
+					outputModeText = g_i18n:getText("Revamp_Store");
 				end
 
 				cell:getAttribute("outputMode"):setText(outputModeText)
@@ -317,11 +317,11 @@ end
 
 function InfoDisplayExtension:getProductionPoints(superFunc)
 	local productionPoints = self.chainManager:getProductionPointsForFarmId(self.playerFarm.farmId)
-    table.sort(productionPoints,compProductionPoints)
-    return productionPoints;
+	table.sort(productionPoints,compProductionPoints)
+	return productionPoints;
 end
 function compProductionPoints(w1,w2)
-    return w1:getName() .. w1.id < w2:getName() .. w2.id;
+	return w1:getName() .. w1.id < w2:getName() .. w2.id;
 end
 
 function InfoDisplayExtension:updateInfoPlaceableHusbandryAnimals(_, superFunc, infoTable)
@@ -407,7 +407,7 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryWater(_, superFunc, in
 
 	if not spec.automaticWaterSupply then
 		local fillLevel = self:getHusbandryFillLevel(spec.fillType)
-        local capacity = self:getHusbandryCapacity(spec.fillType)
+		local capacity = self:getHusbandryCapacity(spec.fillType)
 		spec.info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
 
 		table.insert(infoTable, spec.info)
@@ -429,21 +429,21 @@ function InfoDisplayExtension:updateInfoPlaceableManureHeap(_, superFunc, infoTa
 	spec.infoFillLevel.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
 
 	table.insert(infoTable, spec.infoFillLevel)
-    
-    table.insert(infoTable, 
-        {
-            title = g_i18n:getText("infoDisplayExtension_MANURE_HEAP_CONNECTED"), 
-            accentuate = true 
-        }
-    )
-    
-    for j, unloadingStation in pairs (spec.manureHeap.unloadingStations) do
-        table.insert(infoTable, {
-            title = "",
-            text = unloadingStation:getName()
-        })
-    end    
-    
+	
+	table.insert(infoTable, 
+		{
+			title = g_i18n:getText("infoDisplayExtension_MANURE_HEAP_CONNECTED"), 
+			accentuate = true 
+		}
+	)
+	
+	for j, unloadingStation in pairs (spec.manureHeap.unloadingStations) do
+		table.insert(infoTable, {
+			title = "",
+			text = unloadingStation:getName()
+		})
+	end	
+	
 -- print("self.spec_manureHeap.manureHeap.unloadingStations")
 -- DebugUtil.printTableRecursively(self.spec_manureHeap.manureHeap.unloadingStations,"_",0,2)
 end
@@ -456,8 +456,8 @@ function InfoDisplayExtension:updateInfoFeedingRobot(_, infoTable)
 			local capacity = 0
 
 			-- nur den ersten filltype abfragen, da die anderen da schon drin sind
-            fillLevel = self:getFillLevel(info.fillTypes[1]);
-            capacity = self.fillTypeToUnloadingSpot[info.fillTypes[1]].capacity;
+			fillLevel = self:getFillLevel(info.fillTypes[1]);
+			capacity = self.fillTypeToUnloadingSpot[info.fillTypes[1]].capacity;
 
 			info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
 
@@ -467,6 +467,105 @@ function InfoDisplayExtension:updateInfoFeedingRobot(_, infoTable)
 end
 FeedingRobot.updateInfo = Utils.overwrittenFunction(FeedingRobot.updateInfo, InfoDisplayExtension.updateInfoFeedingRobot)
 
+function InfoDisplayExtension:PlayerHUDUpdaterShowSplitShapeInfo(superFunc, splitShape)
+--[[ original aus Patch 1.8.1 überschrieben
+Grund:
+Weitere informationen zu Bäumen anzeigen.]]
+	if not entityExists(splitShape) or not getHasClassId(splitShape, ClassIds.MESH_SPLIT_SHAPE) then
+		return
+	end
+
+	local splitTypeId = getSplitType(splitShape)
+
+	if splitTypeId == 0 then
+		return
+	end
+
+	local isSplit = getIsSplitShapeSplit(splitShape)
+	local isStatic = getRigidBodyType(splitShape) == RigidBodyType.STATIC
+
+	if isSplit and isStatic then
+		return
+	end
+
+	local sizeX, sizeY, sizeZ, numConvexes, numAttachments = getSplitShapeStats(splitShape)
+	local splitType = g_splitTypeManager:getSplitTypeByIndex(splitTypeId)
+	local splitTypeName = splitType and splitType.title
+	local length = math.max(sizeX, sizeY, sizeZ)
+	local box = self.objectBox
+
+	box:clear()
+
+	if isSplit then
+		box:setTitle(g_i18n:getText("infohud_wood"))
+	else
+		box:setTitle(g_i18n:getText("infohud_tree"))		
+	end
+
+	if splitTypeName ~= nil then
+		box:addLine(g_i18n:getText("infohud_type"), splitTypeName)
+	end
+
+	box:addLine(g_i18n:getText("infohud_length"), g_i18n:formatNumber(length, 1) .. " m")
+	
+	-- durchmesser ist auch interessant
+	local diameter = math.min(sizeX, sizeY, sizeZ)
+	box:addLine(g_i18n:getText("infohud_diameter"), g_i18n:formatNumber(diameter, 1) .. " m")
+
+	if g_currentMission:getIsServer() and not isStatic then
+		local mass = getMass(splitShape)
+
+		box:addLine(g_i18n:getText("infohud_mass"), g_i18n:formatMass(mass))
+	end
+	
+	if not isSplit then
+		-- Anzeigenzusätzlicher informationen
+		local foundTree = nil;
+		
+		-- in 3 ebenen suchen erst mal
+		local splitShapeParent = getParent(splitShape);
+		local splitShapeGrandParent = getParent(splitShapeParent);
+		
+		-- suchen der Infos in den treesData.growingTrees
+		for id, tree in pairs(g_treePlantManager.treesData.growingTrees) do
+			if tree.node == splitShape or tree.node == splitShapeParent or tree.node == splitShapeGrandParent then
+				foundTree = tree;
+			end
+		end
+		for id, tree in pairs(g_treePlantManager.treesData.splitTrees) do
+			if tree.node == splitShape or tree.node == splitShapeParent or tree.node == splitShapeGrandParent then
+				foundTree = tree;
+			end
+		end
+		
+		if foundTree ~= nil then
+			local treeTypeDesc = g_treePlantManager:getTreeTypeDescFromIndex(foundTree.treeType)
+			
+			local growStateText = g_i18n:getText("infohud_fullGrown");
+			if foundTree.growthState ~= 1 then
+				local numOfGrowStates = table.getn(treeTypeDesc.treeFilenames);
+				local growthStateI = math.floor(foundTree.growthState * (numOfGrowStates - 1)) + 1
+				growStateText = tostring(growthStateI) .. " / " .. tostring(numOfGrowStates);
+			end
+			box:addLine(g_i18n:getText("infohud_growthState"), growStateText)
+			
+			-- alter in Stunden mit Angabe des maximal alters
+			local ageText = g_i18n:getText("infohud_fullGrown");
+			if foundTree.growthState ~= 1 then
+				local totalGrowHours = treeTypeDesc.growthTimeHours / g_currentMission.environment.timeAdjustment;
+				local ageInHours = totalGrowHours * foundTree.growthState;
+				ageText = g_i18n:formatNumber(ageInHours) .. " / " .. g_i18n:formatNumber(totalGrowHours) .. "h";
+			end
+			
+			box:addLine(g_i18n:getText("infohud_ageInHours"), ageText)
+		end
+	end
+
+	box:showNextFrame()
+end
+PlayerHUDUpdater.showSplitShapeInfo = Utils.overwrittenFunction(PlayerHUDUpdater.showSplitShapeInfo, InfoDisplayExtension.PlayerHUDUpdaterShowSplitShapeInfo)
+
+
 function InfoDisplayExtension:updateUI(_)
 --[[ original aus Patch 1.5 überschrieben
 Grund:
@@ -475,7 +574,7 @@ Die Anzeige der einzelnen Balken gerücksichtig als einziges nicht ob es ein fel
 		local farmId = g_currentMission:getFarmId()
 		local totalScore = self:getTotalScore(farmId)
 		local percentage = self:getTotalScore(farmId) / 100
-        
+		
 		self.mapFrame.envScoreBarNumber:setText(string.format("%d", MathUtil.round(totalScore,1)))
 		self.mapFrame.envScoreBarDynamic:setSize(self.mapFrame.envScoreBarStatic.size[1] * percentage)
 
@@ -488,17 +587,17 @@ Die Anzeige der einzelnen Balken gerücksichtig als einziges nicht ob es ein fel
 		self.mapFrame.envScoreBarIndicator:setPosition(indicatorX - self.mapFrame.envScoreBarIndicator.size[1] * 0.5)
 		self.mapFrame.envScoreBarNumber:setPosition(indicatorX - self.mapFrame.envScoreBarNumber.size[1] * 0.5)
 
-        local sumFarmlandSize = 0
-        for farmlandId, _farmId in pairs(g_farmlandManager.farmlandMapping) do
-            if _farmId == farmId then
-                local farmland = g_farmlandManager:getFarmlandById(farmlandId)
+		local sumFarmlandSize = 0
+		for farmlandId, _farmId in pairs(g_farmlandManager.farmlandMapping) do
+			if _farmId == farmId then
+				local farmland = g_farmlandManager:getFarmlandById(farmlandId)
 
-                if farmland ~= nil and farmland.totalFieldArea ~= nil and farmland.totalFieldArea > 0.01 then
-                    sumFarmlandSize = sumFarmlandSize + farmland.totalFieldArea
-                end
-            end
-        end    
-    
+				if farmland ~= nil and farmland.totalFieldArea ~= nil and farmland.totalFieldArea > 0.01 then
+					sumFarmlandSize = sumFarmlandSize + farmland.totalFieldArea
+				end
+			end
+		end	
+	
 		for i = 1, #self.scoreValues do
 			local scoreValue = self.scoreValues[i]
 
@@ -510,12 +609,12 @@ Die Anzeige der einzelnen Balken gerücksichtig als einziges nicht ob es ein fel
 
 					for farmlandId, _farmId in pairs(g_farmlandManager.farmlandMapping) do
 						if _farmId == farmId then
-                            local farmland = g_farmlandManager:getFarmlandById(farmlandId)
-                            
-                            if farmland ~= nil and farmland.totalFieldArea ~= nil and farmland.totalFieldArea > 0.01 then
-                                score = score + scoreValue.object:getScore(farmlandId) * farmland.totalFieldArea / sumFarmlandSize
-                                numFarmlands = numFarmlands + 1
-                            end
+							local farmland = g_farmlandManager:getFarmlandById(farmlandId)
+							
+							if farmland ~= nil and farmland.totalFieldArea ~= nil and farmland.totalFieldArea > 0.01 then
+								score = score + scoreValue.object:getScore(farmlandId) * farmland.totalFieldArea / sumFarmlandSize
+								numFarmlands = numFarmlands + 1
+							end
 						end
 					end
 				end
@@ -535,24 +634,24 @@ end
 
 
 function InfoDisplayExtension:loadMap(name)
-    -- hier alles rein, was erst nach dem laden aller mods und der map geladen ausgetauscht werden kann
-    if g_modIsLoaded["FS22_precisionFarming"] then
-        FS22_precisionFarming.EnvironmentalScore.updateUI = Utils.overwrittenFunction(FS22_precisionFarming.EnvironmentalScore.updateUI, InfoDisplayExtension.updateUI);
-    end
-    
-    local mods = g_modManager:getActiveMods(FS22_A_ProductionRevamp);
-    local revampversion = ""
+	-- hier alles rein, was erst nach dem laden aller mods und der map geladen ausgetauscht werden kann
+	if g_modIsLoaded["FS22_precisionFarming"] then
+		FS22_precisionFarming.EnvironmentalScore.updateUI = Utils.overwrittenFunction(FS22_precisionFarming.EnvironmentalScore.updateUI, InfoDisplayExtension.updateUI);
+	end
+	
+	local mods = g_modManager:getActiveMods(FS22_A_ProductionRevamp);
+	local revampversion = ""
 
-    for index, activemod in pairs(mods) do
-        if activemod.title == "Production Revamp" then
-          revampversion = activemod.version
-        end
-    end
-    
-    if revampversion == "" or revampversion == "1.0.0.0" then
-        InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InfoDisplayExtension.populateCellForItemInSection)
-        InGameMenuProductionFrame.getProductionPoints = Utils.overwrittenFunction(InGameMenuProductionFrame.getProductionPoints, InfoDisplayExtension.getProductionPoints)
-    end
+	for index, activemod in pairs(mods) do
+		if activemod.title == "Production Revamp" then
+		  revampversion = activemod.version
+		end
+	end
+	
+	if revampversion == "" or revampversion == "1.0.0.0" then
+		InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InfoDisplayExtension.populateCellForItemInSection)
+		InGameMenuProductionFrame.getProductionPoints = Utils.overwrittenFunction(InGameMenuProductionFrame.getProductionPoints, InfoDisplayExtension.getProductionPoints)
+	end
 end
 
 addModEventListener(InfoDisplayExtension)
