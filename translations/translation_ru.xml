@@ -11,7 +11,7 @@
 		<text name="Revamp_Spawn" text="Создание" />
 		<text name="infohud_diameter" text="Диаметр" />
 		<text name="infohud_growthState" text="Стадия роста" />
-		<text name="infohud_ageInHours" text="Возраст" />
-		<text name="infohud_fullGrown" text="Полностью вырос" />
+		<text name="infohud_ageInHours" text="Время роста" />
+		<text name="infohud_fullGrown" text="Больше не растёт" />
 	</texts>
 </l10n>
