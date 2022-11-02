@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="71">
 	<author>Achimobil</author>
-	<version>1.5.0.0 beta 1</version>
+	<version>1.5.0.0</version>
 	<title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -18,12 +18,12 @@ Erweitert die Info Hud Anzeigen von
 - Bäumen
 
 Korrigiert Anzeigefehler von PF in der Gesamtbewertung.
-Verbreitert die Info Anzeige.
+Verbreitert die Infoanzeige.
 Korrigiert Fehlerhafte Anzeige der Fütterungsroboter bei alternativen Rezepten für Futtermischungen.
-Fügt wo möglich die Einheiten der zahlen zu, da nicht alles in Litern ist.
+Fügt, wo möglich, die Einheiten der Zahlen hinzu, da nicht alles in Litern ist.
 
-Upload auf anderen Seiten nur durch mich selbst, Verlinkung nur mit Original Downloadlink. KEIN Ersatzlink!
-Das verändern oder erneutes hochladen, ob ganz oder in Teilen ist nicht gestattet!
+Upload auf anderen Seiten nur durch mich selbst, Verlinkung nur mit Original-Downloadlink. KEIN Ersatzlink!
+Das Verändern oder erneutes hochladen, ob ganz oder in Teilen, ist nicht gestattet!
 
 Changelog
 1.5.0.0
