@@ -537,11 +537,6 @@ Weitere informationen zu Bäumen anzeigen.]]
 				foundTree = tree;
 			end
 		end
-		for id, tree in pairs(g_treePlantManager.treesData.clientTrees) do
-			if tree.node == splitShape or tree.node == splitShapeParent or tree.node == splitShapeGrandParent then
-				foundTree = tree;
-			end
-		end
 		
 		if foundTree ~= nil then
 			local treeTypeDesc = g_treePlantManager:getTreeTypeDescFromIndex(foundTree.treeType)
