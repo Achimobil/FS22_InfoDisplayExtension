@@ -13,5 +13,7 @@
 		<text name="infohud_growthState" text="Wachstumsphase" />
 		<text name="infohud_ageInHours" text="Alter" />
 		<text name="infohud_fullGrown" text="Ausgewachsen" />
+		<text name="infohud_missing" text="fehlt" />
+		<text name="infohud_remaingTime" text="Restzeit" />
 	</texts>
 </l10n>

@@ -566,6 +566,64 @@ end
 PlayerHUDUpdater.showSplitShapeInfo = Utils.overwrittenFunction(PlayerHUDUpdater.showSplitShapeInfo, InfoDisplayExtension.PlayerHUDUpdaterShowSplitShapeInfo)
 
 
+function InfoDisplayExtension:updateInfoRollercoasterStateBuilding(superFunc, infoTable)
+	table.insert(infoTable, self.infoBoxRequiredGoods)
+	
+	local remainingSeconds = 0;
+
+	for i, input in ipairs(self.inputs) do
+		if input.remainingAmount > 0 then
+			local fillLevel = self.rollercoaster:getFillLevel(input.fillType.index);
+			local missing = math.max(0, input.remainingAmount - fillLevel)
+			if missing ~= 0 then
+				input.infoTableEntry.text = g_i18n:formatVolume(input.remainingAmount) .. " (" .. g_i18n:getText("infohud_missing") .. " " .. g_i18n:formatVolume(missing) .. ")"
+			end
+			
+			-- restlaufzeit bis state ende
+			if input.remainingAmount > 0 then
+				local remainSecondsHere = input.remainingAmount / input.usagePerSecond;
+				remainingSeconds = math.max(remainingSeconds, remainSecondsHere)
+			end
+			
+			table.insert(infoTable, input.infoTableEntry)
+		end
+	end
+	
+	table.insert(infoTable, {
+		title = g_i18n:getText("infohud_remaingTime"),
+		text = g_i18n:formatMinutes(remainingSeconds / 60)
+	})
+end
+
+function InfoDisplayExtension:updateInfoBoatyardStateBuilding(superFunc, infoTable)
+	table.insert(infoTable, self.infoBoxRequiredGoods)
+	
+	local remainingSeconds = 0;
+
+	for i, input in ipairs(self.inputs) do
+		if input.remainingAmount > 0 then
+			local fillLevel = self.boatyard:getFillLevel(input.fillType.index);
+			local missing = math.max(0, input.remainingAmount - fillLevel)
+			if missing ~= 0 then
+				input.infoTableEntry.text = g_i18n:formatVolume(input.remainingAmount) .. " (" .. g_i18n:getText("infohud_missing") .. " " .. g_i18n:formatVolume(missing) .. ")"
+			end
+			
+			-- restlaufzeit bis state ende
+			if input.remainingAmount > 0 then
+				local remainSecondsHere = input.remainingAmount / input.usagePerSecond;
+				remainingSeconds = math.max(remainingSeconds, remainSecondsHere)
+			end
+			
+			table.insert(infoTable, input.infoTableEntry)
+		end
+	end
+	
+	table.insert(infoTable, {
+		title = g_i18n:getText("infohud_remaingTime"),
+		text = g_i18n:formatMinutes(remainingSeconds / 60)
+	})
+end
+
 function InfoDisplayExtension:updateUI(_)
 --[[ original aus Patch 1.5 überschrieben
 Grund:
@@ -638,6 +696,10 @@ function InfoDisplayExtension:loadMap(name)
 	if g_modIsLoaded["FS22_precisionFarming"] then
 		FS22_precisionFarming.EnvironmentalScore.updateUI = Utils.overwrittenFunction(FS22_precisionFarming.EnvironmentalScore.updateUI, InfoDisplayExtension.updateUI);
 	end
+	
+	-- prüfen ob dlc aktiv
+	pdlc_forestryPack.RollercoasterStateBuilding.updateInfo = Utils.overwrittenFunction(pdlc_forestryPack.RollercoasterStateBuilding.updateInfo, InfoDisplayExtension.updateInfoRollercoasterStateBuilding)
+	pdlc_forestryPack.BoatyardStateBuilding.updateInfo = Utils.overwrittenFunction(pdlc_forestryPack.BoatyardStateBuilding.updateInfo, InfoDisplayExtension.updateInfoBoatyardStateBuilding)
 	
 	local mods = g_modManager:getActiveMods(FS22_A_ProductionRevamp);
 	local revampversion = ""

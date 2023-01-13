@@ -13,5 +13,7 @@
 		<text name="infohud_growthState" text="Стадия роста" />
 		<text name="infohud_ageInHours" text="Время роста" />
 		<text name="infohud_fullGrown" text="Больше не растёт" />
+		<text name="infohud_missing" text="missing" />
+		<text name="infohud_remaingTime" text="Remaining Time" />
 	</texts>
 </l10n>
