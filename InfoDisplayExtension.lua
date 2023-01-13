@@ -694,8 +694,10 @@ function InfoDisplayExtension:loadMap(name)
 	end
 	
 	-- prüfen ob dlc aktiv
-	pdlc_forestryPack.RollercoasterStateBuilding.updateInfo = Utils.overwrittenFunction(pdlc_forestryPack.RollercoasterStateBuilding.updateInfo, InfoDisplayExtension.updateInfoRollercoasterStateBuilding)
-	pdlc_forestryPack.BoatyardStateBuilding.updateInfo = Utils.overwrittenFunction(pdlc_forestryPack.BoatyardStateBuilding.updateInfo, InfoDisplayExtension.updateInfoBoatyardStateBuilding)
+	if g_modIsLoaded["pdlc_forestryPack"] then
+		pdlc_forestryPack.RollercoasterStateBuilding.updateInfo = Utils.overwrittenFunction(pdlc_forestryPack.RollercoasterStateBuilding.updateInfo, InfoDisplayExtension.updateInfoRollercoasterStateBuilding)
+		pdlc_forestryPack.BoatyardStateBuilding.updateInfo = Utils.overwrittenFunction(pdlc_forestryPack.BoatyardStateBuilding.updateInfo, InfoDisplayExtension.updateInfoBoatyardStateBuilding)
+	end
 	
 	local mods = g_modManager:getActiveMods(FS22_A_ProductionRevamp);
 	local revampversion = ""
