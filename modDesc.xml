@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="72">
 	<author>Achimobil</author>
-	<version>1.6.0.0 Beta 1</version>
+	<version>1.5.1.0</version>
 	<title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -26,8 +26,8 @@ Upload auf anderen Seiten nur durch mich selbst, Verlinkung nur mit Original-Dow
 Das Verändern oder erneutes hochladen, ob ganz oder in Teilen, ist nicht gestattet!
 
 Changelog
-1.6.0.0
-- Erweiterte Anzeige für Platinum DLC Achterbahn und Bootswerft
+1.5.1.0
+- Erweiterte Anzeige für Platinum DLC Achterbahn und Bootswerft (Fehlmenge und Restlaufzeit)
 
 1.5.0.0
 - Erweiterte Anzeige für Bäume wie Wachstumsstatus, Durchmesser und Alter in Stunden
@@ -67,6 +67,9 @@ Upload on other sites only by myself, linking only with original download link. 
 Modifying and re-uploading in whole or in part is not allowed!
 
 Changelog
+1.5.1.0
+- Extended display for Platinum DLC Rollercoaster and Boatyard (shortage and remaining time)
+
 1.5.0.0
 - Extended display for trees like growth status, diameter and age in hours
 
@@ -89,7 +92,7 @@ Changelog
 ]]></en>
 	</description>
 	
-	<iconFilename>ModIcon.dds</iconFilename>
+	<iconFilename>icon_InfoDisplayExtension.dds</iconFilename>
 	
 	<multiplayer supported="true"/>
 	

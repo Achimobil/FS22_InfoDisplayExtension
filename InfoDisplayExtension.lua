@@ -1,17 +1,13 @@
 --[[
-Copyright (C) Achimobil, 2022
+Copyright (C) Achimobil, 2022/2023
 
-Author: Achimobil (Base and pallets) / braeven (bales)
-Date: 03.03.2022
-Version: 1.0.0.0
+Author: Achimobil
+Date: 13.01.2023
+Version: 1.0.1.0
 
 Contact:
-https://forum.giants-software.com
-https://discord.gg/Va7JNnEkcW
+https://www.achimobil.de/ls-19-22-modding/
 
-History:
-V 1.0.0.0 @ 03.03.2022 - First Release to Modhub
-V 1.1.2.0 @ 20.04.2022 - Changes to game patch 1.4
 
 Important:
 No copy and use in own mods allowed.
