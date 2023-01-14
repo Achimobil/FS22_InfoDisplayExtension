@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="72">
 	<author>Achimobil</author>
-	<version>1.5.1.0</version>
+	<version>1.5.1.1</version>
 	<title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -26,6 +26,9 @@ Upload auf anderen Seiten nur durch mich selbst, Verlinkung nur mit Original-Dow
 Das Verändern oder erneutes hochladen, ob ganz oder in Teilen, ist nicht gestattet!
 
 Changelog
+1.5.1.1
+- RU übersetzungen für 1.5.1.0
+
 1.5.1.0
 - Erweiterte Anzeige für Platinum DLC Achterbahn und Bootswerft (Fehlmenge und Restlaufzeit)
 
