@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="72">
 	<author>Achimobil</author>
-	<version>1.5.1.1</version>
+	<version>1.5.2.0</version>
 	<title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -16,6 +16,7 @@ Erweitert die Info Hud Anzeigen von
 - Tierställen
 - Misthaufen
 - Bäumen
+- Achterbahn/Bootswerft(Platinum DLC)
 
 Korrigiert Anzeigefehler von PF in der Gesamtbewertung.
 Verbreitert die Infoanzeige.
@@ -26,11 +27,9 @@ Upload auf anderen Seiten nur durch mich selbst, Verlinkung nur mit Original-Dow
 Das Verändern oder erneutes hochladen, ob ganz oder in Teilen, ist nicht gestattet!
 
 Changelog
-1.5.1.1
-- RU übersetzungen für 1.5.1.0
-
-1.5.1.0
+1.5.2.0
 - Erweiterte Anzeige für Platinum DLC Achterbahn und Bootswerft (Fehlmenge und Restlaufzeit)
+- Formatierung bei den Tierställen korrigiert
 
 1.5.0.0
 - Erweiterte Anzeige für Bäume wie Wachstumsstatus, Durchmesser und Alter in Stunden
@@ -60,6 +59,7 @@ Extends the Info Hud displays of
 - animal sheeds
 - dung heaps
 - trees
+- Rollercoaster/Boatyard(Platinum DLC)
 
 Corrects display errors of PF in the total score.
 Widened the info display.
@@ -70,8 +70,9 @@ Upload on other sites only by myself, linking only with original download link. 
 Modifying and re-uploading in whole or in part is not allowed!
 
 Changelog
-1.5.1.0
-- Extended display for Platinum DLC Rollercoaster and Boatyard (shortage and remaining time)
+1.5.2.0
+- Extended display for Platinum DLC Rollercoaster and Boatyard (missing amount and remaining time)
+- Formating corrected at animal sheeds
 
 1.5.0.0
 - Extended display for trees like growth status, diameter and age in hours

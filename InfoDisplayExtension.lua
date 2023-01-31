@@ -353,7 +353,7 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryFood(_, superFunc, inf
 	local spec = self.spec_husbandryFood
 	local fillLevel = self:getTotalFood()
 	local capacity = self:getFoodCapacity()
-	spec.info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
+	spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
 
 	table.insert(infoTable, spec.info)
 end
@@ -366,7 +366,7 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryMilk(_, superFunc, inf
 
 	local fillLevel = self:getHusbandryFillLevel(spec.fillType)
 	local capacity = self:getHusbandryCapacity(spec.fillType)
-	spec.info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
+	spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
 
 	table.insert(infoTable, spec.info)
 end
@@ -375,10 +375,10 @@ PlaceableHusbandryMilk.updateInfo = Utils.overwrittenFunction(PlaceableHusbandry
 function InfoDisplayExtension:updateInfoPlaceableHusbandryLiquidManure(_, superFunc, infoTable)
 	superFunc(self, infoTable)
 
-	local spec = self.spec_husbandryLiquidManure
-	local fillLevel = self:getHusbandryFillLevel(spec.fillType)
-	local capacity = self:getHusbandryCapacity(spec.fillType)
-	spec.info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
+	local spec = self.spec_husbandryLiquidManure;
+	local fillLevel = self:getHusbandryFillLevel(spec.fillType);
+	local capacity = self:getHusbandryCapacity(spec.fillType);
+	spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
 
 	table.insert(infoTable, spec.info)
 end
@@ -387,10 +387,10 @@ PlaceableHusbandryLiquidManure.updateInfo = Utils.overwrittenFunction(PlaceableH
 function InfoDisplayExtension:updateInfoPlaceableHusbandryStraw(_, superFunc, infoTable)
 	superFunc(self, infoTable)
 
-	local spec = self.spec_husbandryStraw
-	local fillLevel = self:getHusbandryFillLevel(spec.inputFillType)
-	local capacity = self:getHusbandryCapacity(spec.inputFillType)
-	spec.info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
+	local spec = self.spec_husbandryStraw;
+	local fillLevel = self:getHusbandryFillLevel(spec.inputFillType);
+	local capacity = self:getHusbandryCapacity(spec.inputFillType);
+	spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
 
 	table.insert(infoTable, spec.info)
 end
@@ -402,9 +402,9 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryWater(_, superFunc, in
 	local spec = self.spec_husbandryWater
 
 	if not spec.automaticWaterSupply then
-		local fillLevel = self:getHusbandryFillLevel(spec.fillType)
-		local capacity = self:getHusbandryCapacity(spec.fillType)
-		spec.info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
+		local fillLevel = self:getHusbandryFillLevel(spec.fillType);
+		local capacity = self:getHusbandryCapacity(spec.fillType);
+		spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
 
 		table.insert(infoTable, spec.info)
 	end
@@ -420,9 +420,9 @@ function InfoDisplayExtension:updateInfoPlaceableManureHeap(_, superFunc, infoTa
 		return
 	end
 
-	local fillLevel = spec.manureHeap:getFillLevel(spec.manureHeap.fillTypeIndex)
-	local capacity = spec.manureHeap:getCapacity(spec.manureHeap.fillTypeIndex)
-	spec.infoFillLevel.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
+	local fillLevel = spec.manureHeap:getFillLevel(spec.manureHeap.fillTypeIndex);
+	local capacity = spec.manureHeap:getCapacity(spec.manureHeap.fillTypeIndex);
+	spec.infoFillLevel.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
 
 	table.insert(infoTable, spec.infoFillLevel)
 	
@@ -455,7 +455,7 @@ function InfoDisplayExtension:updateInfoFeedingRobot(_, infoTable)
 			fillLevel = self:getFillLevel(info.fillTypes[1]);
 			capacity = self.fillTypeToUnloadingSpot[info.fillTypes[1]].capacity;
 
-			info.text = string.format("%d", fillLevel) .. " / " .. string.format("%d l", capacity)
+			info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
 
 			table.insert(infoTable, info)
 		end
@@ -572,7 +572,7 @@ function InfoDisplayExtension:updateInfoRollercoasterStateBuilding(superFunc, in
 			local fillLevel = self.rollercoaster:getFillLevel(input.fillType.index);
 			local missing = math.max(0, input.remainingAmount - fillLevel)
 			if missing ~= 0 then
-				input.infoTableEntry.text = g_i18n:formatVolume(input.remainingAmount) .. " (" .. g_i18n:getText("infohud_missing") .. " " .. g_i18n:formatVolume(missing) .. ")"
+				input.infoTableEntry.text = InfoDisplayExtension:formatVolume(input.remainingAmount, 0) .. " (" .. g_i18n:getText("infohud_missing") .. " " .. InfoDisplayExtension:formatVolume(missing, 0) .. ")";
 			end
 			
 			-- restlaufzeit bis state ende
@@ -601,7 +601,7 @@ function InfoDisplayExtension:updateInfoBoatyardStateBuilding(superFunc, infoTab
 			local fillLevel = self.boatyard:getFillLevel(input.fillType.index);
 			local missing = math.max(0, input.remainingAmount - fillLevel)
 			if missing ~= 0 then
-				input.infoTableEntry.text = g_i18n:formatVolume(input.remainingAmount) .. " (" .. g_i18n:getText("infohud_missing") .. " " .. g_i18n:formatVolume(missing) .. ")"
+				input.infoTableEntry.text = InfoDisplayExtension:formatVolume(input.remainingAmount, 0) .. " (" .. g_i18n:getText("infohud_missing") .. " " .. InfoDisplayExtension:formatVolume(missing, 0) .. ")";
 			end
 			
 			-- restlaufzeit bis state ende
