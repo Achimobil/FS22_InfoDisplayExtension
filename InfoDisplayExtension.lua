@@ -344,8 +344,137 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryAnimals(_, superFunc, 
 
 	table.insert(infoTable, spec.infoNumAnimals)
 	table.insert(infoTable, spec.infoHealth)
+	
+	local isHorse = spec.animalTypeIndex == AnimalType.HORSE;
+	local moreInfos = PlaceableHusbandryAnimals.setMoreInfos(clusters, isHorse);
+	for title, moreInfo in pairs(moreInfos) do
+		table.insert(infoTable,
+			{
+				-- title = g_i18n:getText("infoDisplayExtension_" .. title), 
+				title = title, 
+				text = tostring(moreInfo)
+			}
+		)
+	end
 end
 PlaceableHusbandryAnimals.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryAnimals.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryAnimals)
+
+-- mor info from HappyLooser
+function PlaceableHusbandryAnimals.setMoreInfos(clusters, isHorse)
+	local moreInfos = {};
+	if clusters ~= nil and type(clusters) == "table" and #clusters > 0 then
+		local totalSellPrice = 0;
+		local horseClusters = 0;
+		local cleanliness = 0;
+		local healthClusters = 0;
+		local health = 0;
+		local highestHealth = 0;
+		local lowestHealth = 0;
+		local reproductionClusters = 0;
+		local reproduction = 0;
+		local noReproduction = 0;
+		local highestReproduction = 0;				
+		local lowestReproduction = 0;				
+		local durationClusters = 0;
+		local duration = 0;
+		local highestDuration = 0;
+		local lowestDuration = 0;
+		local lowestDurationTotal = 0;
+		local fitness = 0;
+		local highestFitness = 0;
+		local lowestFitness = 0;
+		local dirt = 0;
+		local highestDirt = 0;
+		local lowestDirt = 0;
+		local riding = 0;
+		local highestRiding = 0;
+		local lowestRiding = 0;
+		local rate = 0;
+		local highestRate = 0;
+		local lowestRate = 0;
+		
+		for _, cluster in ipairs(clusters) do
+			--cleanliness = cleanliness + cluster.cleanliness;
+			totalSellPrice = totalSellPrice + cluster:getSellPrice();
+			if cluster.health > highestHealth then highestHealth = cluster.health;end;
+			if (cluster.health < lowestHealth) or lowestHealth == 0 then lowestHealth = cluster.health;end;
+			health = health + cluster.health;
+			healthClusters = healthClusters+1;
+			local subType = g_currentMission.animalSystem:getSubTypeByIndex(cluster.subTypeIndex);
+			if subType ~= nil then
+				if string.find(subType.name:lower(), "rooster") or not subType.supportsReproduction then
+					noReproduction = noReproduction+1;
+				end;
+				if test1 and object.typeName == "chickenHusbandry" then
+					test1 = false;
+					print(DebugUtil.printTableRecursively(subType, "sybType ", 0, 2))					
+				end;
+				if subType.supportsReproduction and subType.reproductionMinHealth <= cluster:getHealthFactor() and subType.reproductionMinAgeMonth <= cluster.age then
+					duration = duration + subType.reproductionDurationMonth; --g_i18n:formatNumMonth(subType.reproductionDurationMonth); --g_i18n:formatNumMonth(subType.reproductionMinAgeMonth)
+					if subType.reproductionDurationMonth > highestDuration then highestDuration = subType.reproductionDurationMonth;end;
+					if (subType.reproductionDurationMonth < lowestDuration) or lowestDuration == 0 then lowestDuration = subType.reproductionDurationMonth;end;
+					if lowestDuration == subType.reproductionDurationMonth then lowestDurationTotal = lowestDurationTotal+1;end;
+					durationClusters = durationClusters+1;
+				end;
+				if cluster.age < subType.reproductionMinAgeMonth then
+					local minAgeFactor = MathUtil.clamp(cluster.age / subType.reproductionMinAgeMonth, 0, 1);
+					if minAgeFactor > highestReproduction then highestReproduction = minAgeFactor;end;
+					if (minAgeFactor < lowestReproduction) or lowestReproduction == 0 then lowestReproduction = minAgeFactor;end;
+					reproduction = reproduction + minAgeFactor;
+					reproductionClusters = reproductionClusters+1;
+				else
+					if cluster.reproduction > highestReproduction then highestReproduction = cluster.reproduction;end;
+					if (cluster.reproduction < lowestReproduction) or lowestReproduction == 0 then lowestReproduction = cluster.reproduction;end;
+					reproduction = reproduction + cluster.reproduction;
+					reproductionClusters = reproductionClusters+1;
+				end;
+				--rate = g_currentMission.animalSystem:getReproductionTimePerDay(subType.fillType);
+				--if rate > highestRate then highestRate = tempRate;end;
+			end;
+			if isHorse and cluster.dirt ~= nil and cluster.fitness ~= nil and cluster.riding ~= nil then							
+				horseClusters = horseClusters+1;
+				if cluster.dirt > highestDirt then highestDirt = cluster.dirt;end;
+				if (cluster.dirt < lowestDirt) or lowestDirt == 0 then lowestDirt = cluster.dirt;end;
+				dirt = dirt + cluster.dirt;						
+				if cluster.fitness > highestFitness then highestFitness = cluster.fitness;end;
+				if (cluster.fitness < lowestFitness) or lowestFitness == 0 then lowestFitness = cluster.fitness;end;
+				fitness = fitness + cluster.fitness;
+				if cluster.riding > highestRiding then highestRiding = cluster.riding;end;
+				if (cluster.riding < lowestRiding) or lowestRiding == 0 then lowestRiding = cluster.riding;end;
+				riding = riding + cluster.riding;						
+			end;
+		end;
+		
+		moreInfos.totalSellPrice = totalSellPrice;
+		moreInfos.health = health / healthClusters;
+		moreInfos.healthClusters = healthClusters;
+		moreInfos.highestHealth = highestHealth;
+		moreInfos.lowestHealth = lowestHealth;
+		moreInfos.noReproduction = noReproduction;
+		moreInfos.reproduction = reproduction / reproductionClusters;
+		moreInfos.reproductionClusters = reproductionClusters;
+		moreInfos.highestReproduction = highestReproduction;
+		moreInfos.lowestReproduction = lowestReproduction;
+		moreInfos.duration = duration / durationClusters;
+		moreInfos.durationClusters = durationClusters;
+		moreInfos.highestDuration = highestDuration;
+		moreInfos.lowestDuration = lowestDuration;
+		moreInfos.lowestDurationTotal = lowestDurationTotal;
+		if isHorse then
+			moreInfos.dirt = 100 - (dirt / horseClusters);					
+			moreInfos.horseClusters = horseClusters;
+			moreInfos.highestDirt = 100 - highestDirt;
+			moreInfos.lowestDirt = 100 - lowestDirt;
+			moreInfos.fitness = fitness / horseClusters;
+			moreInfos.highestFitness = highestFitness;
+			moreInfos.lowestFitness = lowestFitness;
+			moreInfos.riding = riding / horseClusters;
+			moreInfos.highestRiding = highestRiding;
+			moreInfos.lowestRiding = lowestRiding;
+		end;				
+	end;
+	return moreInfos;
+end;
 
 function InfoDisplayExtension:updateInfoPlaceableHusbandryFood(_, superFunc, infoTable)
 	superFunc(self, infoTable)
