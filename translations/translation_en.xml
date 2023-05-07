@@ -15,5 +15,22 @@
 		<text name="infohud_fullGrown" text="Fully Grown" />
 		<text name="infohud_missing" text="missing" />
 		<text name="infohud_remaingTime" text="Remaining Time" />
+		
+		<!-- Animal Texts -->
+		<text name="infoDisplayExtension_animals_health" text="Health" />
+		<text name="infoDisplayExtension_animals_healthRange" text="Health" />
+		<text name="infoDisplayExtension_animals_duration" text="Reproduction Time" />
+		<text name="infoDisplayExtension_animals_durationRange" text="Reproduction Time" />
+		<text name="infoDisplayExtension_animals_reproduction" text="Reproduction Rate" />
+		<text name="infoDisplayExtension_animals_reproductionRange" text="Reproduction Rate" />
+		<text name="infoDisplayExtension_animals_beforeReproduction" text="Sexual Maturity" />
+		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Sexual Maturity" />
+		<text name="infoDisplayExtension_animals_nextBirthIn" text="Offspring in" />
+		<text name="infoDisplayExtension_animals_dirt" text="Cleanliness" />
+		<text name="infoDisplayExtension_animals_dirtRange" text="Cleanliness" />
+		<text name="infoDisplayExtension_animals_riding" text="Riding" />
+		<text name="infoDisplayExtension_animals_ridingRange" text="Riding" />
+		<text name="infoDisplayExtension_animals_fitness" text="Fitness" />
+		<text name="infoDisplayExtension_animals_fitnessRange" text="Fitness" />
 	</texts>
 </l10n>

@@ -15,5 +15,22 @@
 		<text name="infohud_fullGrown" text="Ausgewachsen" />
 		<text name="infohud_missing" text="fehlt" />
 		<text name="infohud_remaingTime" text="Restzeit" />
+		
+		<!-- Animal Texts -->
+		<text name="infoDisplayExtension_animals_health" text="Gesundheit" />
+		<text name="infoDisplayExtension_animals_healthRange" text="Gesundheit" />
+		<text name="infoDisplayExtension_animals_duration" text="Reproduktionzeit" />
+		<text name="infoDisplayExtension_animals_durationRange" text="Reproduktionzeit" />
+		<text name="infoDisplayExtension_animals_reproduction" text="Reproduktionsrate" />
+		<text name="infoDisplayExtension_animals_reproductionRange" text="Reproduktionsrate" />
+		<text name="infoDisplayExtension_animals_beforeReproduction" text="Geschlechtsreife" />
+		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Geschlechtsreife" />
+		<text name="infoDisplayExtension_animals_nextBirthIn" text="Nachwuchs in" />
+		<text name="infoDisplayExtension_animals_dirt" text="Sauberkeit" />
+		<text name="infoDisplayExtension_animals_dirtRange" text="Sauberkeit" />
+		<text name="infoDisplayExtension_animals_riding" text="Reiten" />
+		<text name="infoDisplayExtension_animals_ridingRange" text="Reiten" />
+		<text name="infoDisplayExtension_animals_fitness" text="Fitness" />
+		<text name="infoDisplayExtension_animals_fitnessRange" text="Fitness" />
 	</texts>
 </l10n>

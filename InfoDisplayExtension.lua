@@ -340,12 +340,245 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryAnimals(_, superFunc, 
 	end
 
 	spec.infoNumAnimals.text = string.format("%d", numAnimals) .. " / " .. string.format("%d", maxNumAnimals)
-	spec.infoHealth.text = string.format("%d %%", health)
+	-- spec.infoHealth.text = string.format("%d %%", health)
 
 	table.insert(infoTable, spec.infoNumAnimals)
-	table.insert(infoTable, spec.infoHealth)
+	-- table.insert(infoTable, spec.infoHealth)
+	
+	local isHorse = spec.animalTypeIndex == AnimalType.HORSE;
+	local moreInfos = PlaceableHusbandryAnimals.setMoreInfos(clusters, isHorse);
+	
+	-- Alles irgendwie hübsch anzeigen
+	if moreInfos.health ~= nil and moreInfos.highestHealth ~= nil and moreInfos.lowestHealth ~= nil then
+		if moreInfos.health == moreInfos.highestHealth and moreInfos.health == moreInfos.lowestHealth then
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "health", string.format("%d %%", moreInfos.health))
+		else
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "healthRange", string.format("%d - %d %%", moreInfos.lowestHealth, moreInfos.highestHealth))
+		end
+	end
+	
+	if moreInfos.duration ~= nil and moreInfos.lowestDuration ~= nil and moreInfos.highestDuration ~= nil then
+		if moreInfos.duration == moreInfos.lowestDuration and moreInfos.duration == moreInfos.highestDuration then
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "duration", g_i18n:formatNumMonth(moreInfos.duration))
+		else
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "durationRange", moreInfos.lowestDuration .. " - " .. g_i18n:formatNumMonth(moreInfos.highestDuration))
+		end
+	end
+	
+	if moreInfos.reproduction ~= nil and moreInfos.highestReproduction ~= nil and moreInfos.lowestReproduction ~= nil then
+		if moreInfos.reproduction == moreInfos.highestReproduction and moreInfos.reproduction == moreInfos.lowestReproduction then
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "reproduction", string.format("%d %%", moreInfos.reproduction))
+		else
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "reproductionRange", string.format("%d - %d %%", moreInfos.lowestReproduction, moreInfos.highestReproduction))
+		end
+	end
+	
+	if moreInfos.beforeReproduction ~= nil and moreInfos.highestBeforeReproduction ~= nil and moreInfos.lowestBeforeReproduction ~= nil then
+		if moreInfos.beforeReproduction == moreInfos.highestBeforeReproduction and moreInfos.beforeReproduction == moreInfos.lowestBeforeReproduction then
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "beforeReproduction", string.format("%d %%", moreInfos.beforeReproduction))
+		else
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "beforeReproductionRange", string.format("%d - %d %%", moreInfos.lowestBeforeReproduction, moreInfos.highestBeforeReproduction))
+		end
+	end
+	
+	if moreInfos.nextBirthIn ~= nil and moreInfos.nextBirthIn ~= 0 then
+		PlaceableHusbandryAnimals.AddInfoText(infoTable, "nextBirthIn", g_i18n:formatNumMonth(moreInfos.nextBirthIn))
+	end
+	
+	if moreInfos.dirt ~= nil and moreInfos.highestDirt ~= nil and moreInfos.lowestDirt ~= nil then
+		if moreInfos.dirt == moreInfos.highestDirt and moreInfos.dirt == moreInfos.lowestDirt then
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "dirt", string.format("%d %%", moreInfos.dirt))
+		else
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "dirtRange", string.format("%d - %d %%", moreInfos.lowestDirt, moreInfos.highestDirt))
+		end
+	end
+	
+	if moreInfos.riding ~= nil and moreInfos.highestRiding ~= nil and moreInfos.lowestRiding ~= nil then
+		if moreInfos.riding == moreInfos.highestRiding and moreInfos.riding == moreInfos.lowestRiding then
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "riding", string.format("%d %%", moreInfos.riding))
+		else
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "ridingRange", string.format("%d - %d %%", moreInfos.lowestRiding, moreInfos.highestRiding))
+		end
+	end
+	
+	if moreInfos.fitness ~= nil and moreInfos.highestFitness ~= nil and moreInfos.lowestFitness ~= nil then
+		if moreInfos.fitness == moreInfos.highestFitness and moreInfos.fitness == moreInfos.lowestFitness then
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "fitness", string.format("%d %%", moreInfos.fitness))
+		else
+			PlaceableHusbandryAnimals.AddInfoText(infoTable, "fitnessRange", string.format("%d - %d %%", moreInfos.lowestFitness, moreInfos.highestFitness))
+		end
+	end
+	
+	-- for title, moreInfo in pairs(moreInfos) do
+		-- table.insert(infoTable,
+			-- {
+				-- title = title, 
+				-- text = tostring(moreInfo)
+			-- }
+		-- )
+	-- end
 end
 PlaceableHusbandryAnimals.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryAnimals.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryAnimals)
+
+function PlaceableHusbandryAnimals.AddInfoText(infoTable, title, text)
+	table.insert(infoTable,
+		{
+			title = g_i18n:getText("infoDisplayExtension_animals_" .. title), 
+			-- title = title, 
+			text = tostring(text)
+		}
+	)
+end
+
+-- mor info from HappyLooser
+function PlaceableHusbandryAnimals.setMoreInfos(clusters, isHorse)
+	local moreInfos = {};
+	if clusters ~= nil and type(clusters) == "table" and #clusters > 0 then
+		local totalSellPrice = 0;
+		local horseClusters = 0;
+		local healthClusters = 0;
+		local health = 0;
+		local highestHealth = 0;
+		local lowestHealth = 0;
+		local reproductionClusters = 0;
+		local reproduction = 0;
+		local highestReproduction = 0;
+		local lowestReproduction = 0;
+		local beforeReproductionClusters = 0;
+		local beforeReproduction = 0;
+		local highestBeforeReproduction = 0;
+		local lowestBeforeReproduction = 0;
+		local durationClusters = 0;
+		local duration = 0;
+		local highestDuration = 0;
+		local lowestDuration = 0;
+		local fitness = 0;
+		local highestFitness = 0;
+		local lowestFitness = 0;
+		local dirt = 0;
+		local highestDirt = 0;
+		local lowestDirt = 0;
+		local riding = 0;
+		local highestRiding = 0;
+		local lowestRiding = 0;
+		local nextBirthIn = 0;
+		
+		for _, cluster in ipairs(clusters) do
+			totalSellPrice = totalSellPrice + cluster:getSellPrice();
+			if cluster.health > highestHealth then highestHealth = cluster.health;end;
+			if (cluster.health < lowestHealth) or lowestHealth == 0 then lowestHealth = cluster.health;end;
+			health = health + cluster.health;
+			healthClusters = healthClusters+1;
+			local subType = g_currentMission.animalSystem:getSubTypeByIndex(cluster.subTypeIndex);
+			if subType ~= nil then
+				if subType.supportsReproduction and subType.reproductionMinHealth <= cluster:getHealthFactor() and subType.reproductionMinAgeMonth <= cluster.age then
+					-- reproduktionzeit der Tiere ausrechnen
+					duration = duration + subType.reproductionDurationMonth;
+					durationClusters = durationClusters+1;					
+					if subType.reproductionDurationMonth > highestDuration then highestDuration = subType.reproductionDurationMonth;end;
+					if lowestDuration == 0 then lowestDuration = subType.reproductionDurationMonth;end;
+					if subType.reproductionDurationMonth < lowestDuration then lowestDuration = subType.reproductionDurationMonth;end;
+				end;
+				if cluster.age < subType.reproductionMinAgeMonth then
+					-- Rate für 
+					local minAgeFactor = MathUtil.clamp(cluster.age / subType.reproductionMinAgeMonth, 0, 1) * 100
+					if minAgeFactor > highestBeforeReproduction then highestBeforeReproduction = minAgeFactor;end;
+					if lowestBeforeReproduction == 0 then lowestBeforeReproduction = minAgeFactor;end;
+					if minAgeFactor < lowestBeforeReproduction then lowestBeforeReproduction = minAgeFactor;end;
+					beforeReproduction = beforeReproduction + minAgeFactor;
+					beforeReproductionClusters = beforeReproductionClusters+1;
+				else
+					if cluster.reproduction > highestReproduction then highestReproduction = cluster.reproduction;end;
+					if lowestReproduction == 0 then lowestReproduction = cluster.reproduction;end;
+					if cluster.reproduction < lowestReproduction then lowestReproduction = cluster.reproduction;end;
+					reproduction = reproduction + cluster.reproduction;
+					reproductionClusters = reproductionClusters+1;
+					-- wann der nächste Nachwuchs?
+					
+					if cluster:getCanReproduce() then
+						local months = subType.reproductionDurationMonth - (subType.reproductionDurationMonth * cluster:getReproductionFactor())
+						if nextBirthIn == 0 then nextBirthIn = months;end;
+						if months < nextBirthIn then nextBirthIn = months;end;
+					end
+				end;
+			end;
+			if isHorse and cluster.dirt ~= nil and cluster.fitness ~= nil and cluster.riding ~= nil then							
+				horseClusters = horseClusters+1;
+				if cluster.dirt > highestDirt then highestDirt = cluster.dirt;end;
+				if (cluster.dirt < lowestDirt) or lowestDirt == 0 then lowestDirt = cluster.dirt;end;
+				dirt = dirt + cluster.dirt;						
+				if cluster.fitness > highestFitness then highestFitness = cluster.fitness;end;
+				if (cluster.fitness < lowestFitness) or lowestFitness == 0 then lowestFitness = cluster.fitness;end;
+				fitness = fitness + cluster.fitness;
+				if cluster.riding > highestRiding then highestRiding = cluster.riding;end;
+				if (cluster.riding < lowestRiding) or lowestRiding == 0 then lowestRiding = cluster.riding;end;
+				riding = riding + cluster.riding;						
+			end;
+		end;
+		
+		moreInfos.totalSellPrice = totalSellPrice;
+		
+		if healthClusters == 0 then 
+			moreInfos.healthClusters = nil;
+		else
+			moreInfos.health = health / healthClusters;
+		end
+		moreInfos.highestHealth = highestHealth;
+		moreInfos.lowestHealth = lowestHealth;
+		
+		if durationClusters == 0 then 
+			moreInfos.durationClusters = nil;
+		else
+			moreInfos.duration = duration / durationClusters;
+		end
+		moreInfos.highestDuration = highestDuration;
+		moreInfos.lowestDuration = lowestDuration;
+		
+		if reproductionClusters == 0 then 
+			moreInfos.reproductionClusters = nil;
+		else
+			moreInfos.reproduction = reproduction / reproductionClusters;
+		end
+		moreInfos.highestReproduction = highestReproduction;
+		moreInfos.lowestReproduction = lowestReproduction;
+				
+		if beforeReproduction == 0 then 
+			moreInfos.beforeReproduction = nil;
+		else
+			moreInfos.beforeReproduction = beforeReproduction / beforeReproductionClusters;
+		end
+		moreInfos.highestBeforeReproduction = highestBeforeReproduction;
+		moreInfos.lowestBeforeReproduction = lowestBeforeReproduction;
+		moreInfos.nextBirthIn = nextBirthIn;
+		
+		if isHorse then
+			if horseClusters == 0 then 
+				moreInfos.dirt = nil;
+			else
+				moreInfos.dirt = 100 - (dirt / horseClusters);
+			end
+			moreInfos.highestDirt = 100 - highestDirt;
+			moreInfos.lowestDirt = 100 - lowestDirt;
+			
+			if horseClusters == 0 then 
+				moreInfos.fitness = nil;
+			else
+				moreInfos.fitness = fitness / horseClusters;
+			end
+			moreInfos.highestFitness = highestFitness;
+			moreInfos.lowestFitness = lowestFitness;
+			
+			if horseClusters == 0 then 
+				moreInfos.riding = nil;
+			else
+				moreInfos.riding = riding / horseClusters;
+			end
+			moreInfos.highestRiding = highestRiding;
+			moreInfos.lowestRiding = lowestRiding;
+		end;				
+	end;
+	return moreInfos;
+end;
 
 function InfoDisplayExtension:updateInfoPlaceableHusbandryFood(_, superFunc, infoTable)
 	superFunc(self, infoTable)
