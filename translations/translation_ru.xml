@@ -19,18 +19,18 @@
 		<!-- Animal Texts -->
 		<text name="infoDisplayExtension_animals_health" text="Здоровье" />
 		<text name="infoDisplayExtension_animals_healthRange" text="Здоровье" />
-		<text name="infoDisplayExtension_animals_duration" text="Время размножения" />
-		<text name="infoDisplayExtension_animals_durationRange" text="Время размножения" />
-		<text name="infoDisplayExtension_animals_reproduction" text="Скорость размножения" />
-		<text name="infoDisplayExtension_animals_reproductionRange" text="Скорость размножения" />
-		<text name="infoDisplayExtension_animals_beforeReproduction" text="Половая зрелость" />
-		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Половая зрелость" />
-		<text name="infoDisplayExtension_animals_nextBirthIn" text="Потомство в" />
+		<text name="infoDisplayExtension_animals_duration" text="Время воспроизводства" />
+		<text name="infoDisplayExtension_animals_durationRange" text="Время воспроизводства" />
+		<text name="infoDisplayExtension_animals_reproduction" text="Воспроизводство" />
+		<text name="infoDisplayExtension_animals_reproductionRange" text="Воспроизводство" />
+		<text name="infoDisplayExtension_animals_beforeReproduction" text="Пубертат" />
+		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Пубертат" />
+		<text name="infoDisplayExtension_animals_nextBirthIn" text="Потомство через" />
 		<text name="infoDisplayExtension_animals_dirt" text="Чистота" />
 		<text name="infoDisplayExtension_animals_dirtRange" text="Чистота" />
-		<text name="infoDisplayExtension_animals_riding" text="Езда" />
-		<text name="infoDisplayExtension_animals_ridingRange" text="Езда" />
-		<text name="infoDisplayExtension_animals_fitness" text="Фитнес" />
-		<text name="infoDisplayExtension_animals_fitnessRange" text="Фитнес" />
+		<text name="infoDisplayExtension_animals_riding" text="Ежедневная прогулка" />
+		<text name="infoDisplayExtension_animals_ridingRange" text="Ежедневная прогулка" />
+		<text name="infoDisplayExtension_animals_fitness" text="Физ. форма" />
+		<text name="infoDisplayExtension_animals_fitnessRange" text="Физ. форма" />
 	</texts>
 </l10n>
