@@ -794,6 +794,33 @@ Weitere informationen zu Bäumen anzeigen.]]
 end
 PlayerHUDUpdater.showSplitShapeInfo = Utils.overwrittenFunction(PlayerHUDUpdater.showSplitShapeInfo, InfoDisplayExtension.PlayerHUDUpdaterShowSplitShapeInfo)
 
+-- hier brauche ich nicht überschreiben, nur direkt die funktion möglich machen reicht.
+function Wearable:showInfo(superFunc, box)
+	-- print(string.format("Wearable.showInfo(%s, %s)", superFunc, box));
+	-- local damage = self.spec_wearable.damage
+	if self.ideNeededPowerValue == nil then
+		
+		local neededPower = PowerConsumer.loadSpecValueNeededPower(self.xmlFile)
+		
+		self.ideNeededPowerValue = neededPower.base;
+		
+		if self.configurations.powerConsumer ~= nil then
+			self.ideNeededPowerValue = neededPower.config[self.configurations.powerConsumer];
+		end
+		
+		if self.ideNeededPowerValue == nil then
+			self.ideNeededPowerValue = 0;
+		end
+	end
+
+	if self.ideNeededPowerValue ~= nil and self.ideNeededPowerValue ~= 0 then
+		local hp, kw = g_i18n:getPower(self.ideNeededPowerValue)
+		local neededPower = string.format(g_i18n:getText("shop_neededPowerValue"), MathUtil.round(kw), MathUtil.round(hp));
+		box:addLine(g_i18n:getText("shop_neededPower"), neededPower)
+	end
+
+	superFunc(self, box)
+end
 
 function InfoDisplayExtension:updateInfoRollercoasterStateBuilding(superFunc, infoTable)
 	table.insert(infoTable, self.infoBoxRequiredGoods)
@@ -918,7 +945,6 @@ Die Anzeige der einzelnen Balken gerücksichtig als einziges nicht ob es ein fel
 		self.mapFrame.envScoreInfoText:setText(string.format(text, math.abs(factor)))
 	end
 end
-
 
 function InfoDisplayExtension:loadMap(name)
 	-- hier alles rein, was erst nach dem laden aller mods und der map geladen ausgetauscht werden kann

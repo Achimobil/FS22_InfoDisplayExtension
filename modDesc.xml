@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="74">
 	<author>Achimobil</author>
-	<version>1.6.0.0_beta_1</version>
+	<version>1.6.0.0_beta_2</version>
 	<title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -29,6 +29,7 @@ Das Verändern oder erneutes hochladen, ob ganz oder in Teilen, ist nicht gestat
 Changelog
 1.6.0.0_beta_1
 - Ausgaben an Tierställen erweitert
+- Anzeige des Leistungsbedarfs auf dem Shop bei Anbaugeräten eingefügt
 
 1.5.2.0
 - Erweiterte Anzeige für Platinum DLC Achterbahn und Bootswerft (Fehlmenge und Restlaufzeit)
