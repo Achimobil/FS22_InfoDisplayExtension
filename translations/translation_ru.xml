@@ -19,8 +19,8 @@
 		<!-- Animal Texts -->
 		<text name="infoDisplayExtension_animals_health" text="Здоровье" />
 		<text name="infoDisplayExtension_animals_healthRange" text="Здоровье" />
-		<text name="infoDisplayExtension_animals_duration" text="Время воспроизводства" />
-		<text name="infoDisplayExtension_animals_durationRange" text="Время воспроизводства" />
+		<text name="infoDisplayExtension_animals_duration" text="Период созревания" />
+		<text name="infoDisplayExtension_animals_durationRange" text="Период созревания" />
 		<text name="infoDisplayExtension_animals_reproduction" text="Воспроизводство" />
 		<text name="infoDisplayExtension_animals_reproductionRange" text="Воспроизводство" />
 		<text name="infoDisplayExtension_animals_beforeReproduction" text="Пубертат" />
