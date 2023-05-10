@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="74">
 	<author>Achimobil</author>
-	<version>1.6.0.0_beta_2</version>
+	<version>1.6.0.0_beta_3</version>
 	<title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -29,9 +29,10 @@ Das Verändern oder erneutes hochladen, ob ganz oder in Teilen, ist nicht gestat
 Fehler und Anregungen gerne auf <a href="https://github.com/Achimobil/FS22_InfoDisplayExtension">GitHub</a>
 
 Changelog
-1.6.0.0_beta_1
+1.6.0.0
 - Ausgaben an Tierställen erweitert
 - Anzeige des Leistungsbedarfs auf dem Shop bei Anbaugeräten eingefügt
+- Anzeige der Leistung von Fahrzeugen
 
 1.5.2.0
 - Erweiterte Anzeige für Platinum DLC Achterbahn und Bootswerft (Fehlmenge und Restlaufzeit)

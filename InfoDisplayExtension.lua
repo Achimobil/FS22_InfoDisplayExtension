@@ -822,6 +822,30 @@ function Wearable:showInfo(superFunc, box)
 	superFunc(self, box)
 end
 
+function InfoDisplayExtension:showInfo(box)
+	if self.ideHasPower == nil then
+		local powerConfig = Motorized.loadSpecValuePowerConfig(self.xmlFile)
+		
+		self.ideHasPower = 0;
+		
+		for configName, config in pairs(self.configurations) do
+			local configPower = powerConfig[configName][config]
+
+			if configPower ~= nil then
+				self.ideHasPower = configPower
+			end
+		end
+	end
+	
+	if self.ideHasPower ~= nil and self.ideHasPower ~= 0 then
+		local hp, kw = g_i18n:getPower(self.ideHasPower)
+		local neededPower = string.format(g_i18n:getText("shop_neededPowerValue"), MathUtil.round(kw), MathUtil.round(hp));
+		box:addLine(g_i18n:getText("infoDisplayExtension_currentPower"), neededPower)
+	end
+end
+
+Vehicle.showInfo = Utils.appendedFunction(Vehicle.showInfo, InfoDisplayExtension.showInfo)
+
 function InfoDisplayExtension:updateInfoRollercoasterStateBuilding(superFunc, infoTable)
 	table.insert(infoTable, self.infoBoxRequiredGoods)
 	
