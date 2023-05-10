@@ -2,11 +2,11 @@
 Copyright (C) Achimobil, 2022/2023
 
 Author: Achimobil
-Date: 13.01.2023
-Version: 1.0.1.0
+Date: 10.05.2023
+Version: 1.6.0.0
 
 Contact:
-https://www.achimobil.de/ls-19-22-modding/
+https://github.com/Achimobil/FS22_InfoDisplayExtension
 
 
 Important:
