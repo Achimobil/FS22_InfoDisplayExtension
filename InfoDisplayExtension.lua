@@ -828,11 +828,13 @@ function InfoDisplayExtension:showInfo(box)
 		
 		self.ideHasPower = 0;
 		
-		for configName, config in pairs(self.configurations) do
-			local configPower = powerConfig[configName][config]
+		if powerConfig ~= nil then
+			for configName, config in pairs(self.configurations) do
+				local configPower = powerConfig[configName][config]
 
-			if configPower ~= nil then
-				self.ideHasPower = configPower
+				if configPower ~= nil then
+					self.ideHasPower = configPower
+				end
 			end
 		end
 	end
