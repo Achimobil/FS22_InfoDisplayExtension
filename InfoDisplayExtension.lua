@@ -417,6 +417,8 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryAnimals(_, superFunc, 
 			-- }
 		-- )
 	-- end
+-- print("moreInfos")
+-- DebugUtil.printTableRecursively(moreInfos,"_",0,2)
 end
 PlaceableHusbandryAnimals.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryAnimals.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryAnimals)
 
@@ -443,15 +445,15 @@ function PlaceableHusbandryAnimals.setMoreInfos(clusters, isHorse)
 		local reproductionClusters = 0;
 		local reproduction = 0;
 		local highestReproduction = 0;
-		local lowestReproduction = 0;
+		local lowestReproduction = nil;
 		local beforeReproductionClusters = 0;
 		local beforeReproduction = 0;
 		local highestBeforeReproduction = 0;
-		local lowestBeforeReproduction = 0;
+		local lowestBeforeReproduction = nil;
 		local durationClusters = 0;
 		local duration = 0;
 		local highestDuration = 0;
-		local lowestDuration = 0;
+		local lowestDuration = nil;
 		local fitness = 0;
 		local highestFitness = 0;
 		local lowestFitness = 0;
@@ -476,20 +478,20 @@ function PlaceableHusbandryAnimals.setMoreInfos(clusters, isHorse)
 					duration = duration + subType.reproductionDurationMonth;
 					durationClusters = durationClusters+1;					
 					if subType.reproductionDurationMonth > highestDuration then highestDuration = subType.reproductionDurationMonth;end;
-					if lowestDuration == 0 then lowestDuration = subType.reproductionDurationMonth;end;
+					if lowestDuration == nil then lowestDuration = subType.reproductionDurationMonth;end;
 					if subType.reproductionDurationMonth < lowestDuration then lowestDuration = subType.reproductionDurationMonth;end;
 				end;
 				if cluster.age < subType.reproductionMinAgeMonth then
 					-- Rate für 
 					local minAgeFactor = MathUtil.clamp(cluster.age / subType.reproductionMinAgeMonth, 0, 1) * 100
 					if minAgeFactor > highestBeforeReproduction then highestBeforeReproduction = minAgeFactor;end;
-					if lowestBeforeReproduction == 0 then lowestBeforeReproduction = minAgeFactor;end;
+					if lowestBeforeReproduction == nil then lowestBeforeReproduction = minAgeFactor;end;
 					if minAgeFactor < lowestBeforeReproduction then lowestBeforeReproduction = minAgeFactor;end;
 					beforeReproduction = beforeReproduction + minAgeFactor;
 					beforeReproductionClusters = beforeReproductionClusters+1;
 				else
 					if cluster.reproduction > highestReproduction then highestReproduction = cluster.reproduction;end;
-					if lowestReproduction == 0 then lowestReproduction = cluster.reproduction;end;
+					if lowestReproduction == nil then lowestReproduction = cluster.reproduction;end;
 					if cluster.reproduction < lowestReproduction then lowestReproduction = cluster.reproduction;end;
 					reproduction = reproduction + cluster.reproduction;
 					reproductionClusters = reproductionClusters+1;
@@ -532,7 +534,7 @@ function PlaceableHusbandryAnimals.setMoreInfos(clusters, isHorse)
 			moreInfos.duration = duration / durationClusters;
 		end
 		moreInfos.highestDuration = highestDuration;
-		moreInfos.lowestDuration = lowestDuration;
+		moreInfos.lowestDuration = lowestDuration or 0;
 		
 		if reproductionClusters == 0 then 
 			moreInfos.reproductionClusters = nil;
@@ -540,7 +542,7 @@ function PlaceableHusbandryAnimals.setMoreInfos(clusters, isHorse)
 			moreInfos.reproduction = reproduction / reproductionClusters;
 		end
 		moreInfos.highestReproduction = highestReproduction;
-		moreInfos.lowestReproduction = lowestReproduction;
+		moreInfos.lowestReproduction = lowestReproduction or 0;
 				
 		if beforeReproduction == 0 then 
 			moreInfos.beforeReproduction = nil;
@@ -548,7 +550,7 @@ function PlaceableHusbandryAnimals.setMoreInfos(clusters, isHorse)
 			moreInfos.beforeReproduction = beforeReproduction / beforeReproductionClusters;
 		end
 		moreInfos.highestBeforeReproduction = highestBeforeReproduction;
-		moreInfos.lowestBeforeReproduction = lowestBeforeReproduction;
+		moreInfos.lowestBeforeReproduction = lowestBeforeReproduction or 0;
 		moreInfos.nextBirthIn = nextBirthIn;
 		
 		if isHorse then
