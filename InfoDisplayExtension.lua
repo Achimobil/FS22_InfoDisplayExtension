@@ -286,6 +286,9 @@ function InfoDisplayExtension:populateCellForItemInSection(superFunc, list, sect
 			local capacity = self.selectedProductionPoint:getCapacity(fillType)
 			local fillTypeDesc = g_fillTypeManager:getFillTypeByIndex(fillType)
 
+-- für große breiten rechts ausrichten
+			cell:getAttribute("fillLevel").textAlignment = RenderText.ALIGN_RIGHT
+			
 			cell:getAttribute("icon"):setImageFilename(fillTypeDesc.hudOverlayFilename)
 			cell:getAttribute("fillType"):setText(fillTypeDesc.title)
 			cell:getAttribute("fillLevel"):setText(InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0, fillTypeDesc.unitShort));
