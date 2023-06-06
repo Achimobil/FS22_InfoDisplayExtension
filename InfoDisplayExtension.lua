@@ -313,8 +313,17 @@ end
 
 function InfoDisplayExtension:getProductionPoints(superFunc)
 	local productionPoints = self.chainManager:getProductionPointsForFarmId(self.playerFarm.farmId)
-	table.sort(productionPoints,compProductionPoints)
-	return productionPoints;
+	
+	local shownProductionPoint = {}
+	for _, productionPoint in ipairs (productionPoints) do
+		-- remove the hidden productions of GtX Extended production points 
+		if productionPoint.hiddenOnUI == nil or productionPoint.hiddenOnUI == false then
+			table.insert(shownProductionPoint, productionPoint)
+		end
+	end
+	
+	table.sort(shownProductionPoint,compProductionPoints)
+	return shownProductionPoint;
 end
 function compProductionPoints(w1,w2)
 	return w1:getName() .. w1.id < w2:getName() .. w2.id;
