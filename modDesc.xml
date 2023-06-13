@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
-<modDesc descVersion="74">
+<modDesc descVersion="75">
 	<author>Achimobil</author>
-	<version>1.6.0.0_beta_6</version>
+	<version>1.6.0.0</version>
 	<title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -17,6 +17,7 @@ Erweitert die Info Hud Anzeigen von
 - Misthaufen
 - Bäumen
 - Achterbahn/Bootswerft(Platinum DLC)
+- Fahrzeuge und Anbaugeräte
 
 Korrigiert Anzeigefehler von PF in der Gesamtbewertung.
 Verbreitert die Infoanzeige.
@@ -50,15 +51,6 @@ Changelog
 - Übersetzungen hinzugefügt für SV und PL
 - Breitere Anzeige aller Info Anzeigen um 20% zur besseren Lesbarkeit der Mengen und Volumen
 - Anzeige der richtigen Einheiten bei den Mengen für Lager und Produktionen
-
-1.3.0.3
-- Beschreibungen korrigiert
-- RU Übersetzungen hinzugefügt
-
-1.3.0.2
-- Lua Fehler bei zu eng platzierten, unterschiedlichen Ladestationen
-- Silo Gesamtanzeige ausgeblendet, wenn Modder fehlerhafte Werte eingetragen haben
-- Sortierung der Produktionsliste deaktiviert, wenn Revamp vorhanden ist, da es ansonsten doppelt vorhanden ist
 ]]></de>
 		<en><![CDATA[A small mod to extend the displays.
 
@@ -69,6 +61,7 @@ Extends the Info Hud displays of
 - dung heaps
 - trees
 - Rollercoaster/Boatyard(Platinum DLC)
+- Vehicles and attachments
 
 Corrects display errors of PF in the total score.
 Widened the info display.
@@ -81,6 +74,13 @@ Modifying and re-uploading in whole or in part is not allowed!
 Bugs and suggestions welcome on <a href="https://github.com/Achimobil/FS22_InfoDisplayExtension">GitHub</a>.
 
 Changelog
+1.6.0.0
+- Outputs on animal stables extended
+- Display of power requirement on store added for attachments
+- Display of the power of vehicles
+- Stock quantities no longer skip on 21:9 monitors
+- Productions hidden by GTX production script are no longer displayed
+
 1.5.2.0
 - Extended display for Platinum DLC Rollercoaster and Boatyard (missing amount and remaining time)
 - Formating corrected at animal sheeds
@@ -95,15 +95,6 @@ Changelog
 - Added SV and PL translations
 - Wider display of all info displays by 20% for better readability of quantities and volumes
 - Display of the correct units for quantities for warehouses and productions
-
-1.3.0.3
-- Description corrected
-- Added RU translation
-
-1.3.0.2
-- Lua error with too closely placed different loading stations
-- Silo total display hidden, if modder have entered wrong values there
-- Sorting of the production list deactivated, if Revamp is there, since otherwise double
 ]]></en>
 	</description>
 	
