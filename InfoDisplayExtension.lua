@@ -694,8 +694,6 @@ PlaceableManureHeap.updateInfo = Utils.overwrittenFunction(PlaceableManureHeap.u
 
 function InfoDisplayExtension:updateInfoFeedingRobot(_, infoTable)
 	if self.infos ~= nil then
-print("self.infos")
-DebugUtil.printTableRecursively(self.infos,"_",0,2)
 		for _, info in ipairs(self.infos) do
 			local fillLevel = 0
 			local capacity = 0
