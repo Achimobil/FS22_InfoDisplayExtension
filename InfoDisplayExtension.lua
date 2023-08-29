@@ -694,13 +694,18 @@ PlaceableManureHeap.updateInfo = Utils.overwrittenFunction(PlaceableManureHeap.u
 
 function InfoDisplayExtension:updateInfoFeedingRobot(_, infoTable)
 	if self.infos ~= nil then
+print("self.infos")
+DebugUtil.printTableRecursively(self.infos,"_",0,2)
 		for _, info in ipairs(self.infos) do
 			local fillLevel = 0
 			local capacity = 0
 
 			-- nur den ersten filltype abfragen, da die anderen da schon drin sind
 			fillLevel = self:getFillLevel(info.fillTypes[1]);
-			capacity = self.fillTypeToUnloadingSpot[info.fillTypes[1]].capacity;
+			local spot = self.fillTypeToUnloadingSpot[info.fillTypes[1]]
+			if spot ~= nil then
+				capacity = spot.capacity;
+			end
 
 			info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
 
