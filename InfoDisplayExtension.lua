@@ -812,9 +812,8 @@ end
 PlayerHUDUpdater.showSplitShapeInfo = Utils.overwrittenFunction(PlayerHUDUpdater.showSplitShapeInfo, InfoDisplayExtension.PlayerHUDUpdaterShowSplitShapeInfo)
 
 -- hier brauche ich nicht überschreiben, nur direkt die funktion möglich machen reicht.
-function Wearable:showInfo(superFunc, box)
-	-- print(string.format("Wearable.showInfo(%s, %s)", superFunc, box));
-	-- local damage = self.spec_wearable.damage
+function InfoDisplayExtension:WearableShowInfo(superFunc, box)
+	-- print(string.format("InfoDisplayExtension:WearableShowInfo(%s, %s)", superFunc, box));
 	if self.ideNeededPowerValue == nil then
 		
 		local neededPower = PowerConsumer.loadSpecValueNeededPower(self.xmlFile)
@@ -835,9 +834,8 @@ function Wearable:showInfo(superFunc, box)
 		local neededPower = string.format(g_i18n:getText("shop_neededPowerValue"), MathUtil.round(kw), MathUtil.round(hp));
 		box:addLine(g_i18n:getText("shop_neededPower"), neededPower)
 	end
-
-	superFunc(self, box)
 end
+Wearable.showInfo = Utils.appendedFunction(Wearable.showInfo, InfoDisplayExtension.WearableShowInfo)
 
 function InfoDisplayExtension:showInfo(box)
 	if self.ideHasPower == nil then

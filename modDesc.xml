@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="77">
 	<author>Achimobil</author>
-	<version>1.6.0.1</version>
+	<version>1.6.0.2</version>
 	<title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -30,6 +30,7 @@ Das Verändern oder erneutes hochladen, ob ganz oder in Teilen, ist nicht gestat
 Fehler und Anregungen gerne auf <a href="https://github.com/Achimobil/FS22_InfoDisplayExtension">GitHub</a>
 
 Changelog
+1.6.0.2 - Benötigte Leistung Korrigiert so dass die standard Schadensanzeige wieder da ist
 1.6.0.1 - Lua Fehler bei Produktionen die keinem gehören behoben
 
 1.6.0.0
