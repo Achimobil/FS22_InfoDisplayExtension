@@ -2,8 +2,6 @@
 Copyright (C) Achimobil, 2022/2023
 
 Author: Achimobil
-Date: 10.05.2023
-Version: 1.6.0.0
 
 Contact:
 https://github.com/Achimobil/FS22_InfoDisplayExtension
@@ -178,10 +176,12 @@ PlaceableSilo.updateInfo = Utils.overwrittenFunction(PlaceableSilo.updateInfo, I
 function InfoDisplayExtension:updateInfoProductionPoint(_, superFunc, infoTable)
 	local owningFarm = g_farmManager:getFarmById(self:getOwnerFarmId())
 
-	table.insert(infoTable, {
-		title = g_i18n:getText("fieldInfo_ownedBy"),
-		text = owningFarm.name
-	})
+	if owningFarm ~= nil then
+		table.insert(infoTable, {
+			title = g_i18n:getText("fieldInfo_ownedBy"),
+			text = owningFarm.name
+		})
+	end
 
 	if #self.activeProductions > 0 then
 		table.insert(infoTable, self.infoTables.activeProds)
