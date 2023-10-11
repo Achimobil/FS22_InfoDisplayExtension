@@ -860,8 +860,24 @@ function InfoDisplayExtension:showInfo(box)
 		box:addLine(g_i18n:getText("infoDisplayExtension_currentPower"), neededPower)
 	end
 end
-
 Vehicle.showInfo = Utils.appendedFunction(Vehicle.showInfo, InfoDisplayExtension.showInfo)
+
+function InfoDisplayExtension:WashableShowInfo(superFunc, box)
+	-- print(string.format("InfoDisplayExtension:WashableShowInfo(%s, %s)", superFunc, box));
+	if self.getDirtAmount ~= nil then
+		local dirt = self:getDirtAmount();
+
+		if dirt ~= nil and dirt > 0.01 then
+			box:addLine(g_i18n:getText("groundType_dirt"), string.format("%d %%", dirt * 100))
+		end
+	end
+
+	superFunc(self, box)
+end
+function Washable.registerOverwrittenFunctions(vehicleType)
+	-- Washable hat die funktion nicht, deshalb direkt rein müsste gehen
+	SpecializationUtil.registerOverwrittenFunction(vehicleType, "showInfo", InfoDisplayExtension.WashableShowInfo)
+end
 
 function InfoDisplayExtension:updateInfoRollercoasterStateBuilding(superFunc, infoTable)
 	table.insert(infoTable, self.infoBoxRequiredGoods)
