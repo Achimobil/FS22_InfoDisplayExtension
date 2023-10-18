@@ -15,7 +15,7 @@
 		<text name="infohud_fullGrown" text="Fullt utvuxen" />
 		<text name="infohud_missing" text="missing" />
 		<text name="infohud_remaingTime" text="Remaining Time" />
-		<text name="infoDisplayExtension_currentPower" text="effekt:" />
+		<text name="infoDisplayExtension_currentPower" text="effekt" />
 		
 		<!-- Animal Texts -->
 		<text name="infoDisplayExtension_animals_health" text="Health" />

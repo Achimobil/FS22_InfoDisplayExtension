@@ -828,11 +828,34 @@ function InfoDisplayExtension:WearableShowInfo(superFunc, box)
 			self.ideNeededPowerValue = 0;
 		end
 	end
+	
+	-- auslesen der Arbeitsbreite wie bei der benötigten Leistung, da config file gelesen werden muss per cache
+	if self.ideWorkingWidthValue == nil then
+	
+		-- basis daten ohne config auslesen als ersten wert
+		self.ideWorkingWidthValue = Vehicle.loadSpecValueWorkingWidth(self.xmlFile)
+		
+		-- config laden geht nur, wenn es auch per config geht, sonst ist das was kommt nil
+		local workingWidth = Vehicle.loadSpecValueWorkingWidthConfig(self.xmlFile);		
+		if workingWidth ~= nil then
+			if self.configurations.workArea ~= nil and workingWidth.workArea ~= nil and workingWidth.workArea[self.configurations.workArea] ~= nil then
+				self.ideWorkingWidthValue = workingWidth.workArea[self.configurations.workArea];
+			end
+		end
+		if self.ideWorkingWidthValue == nil then
+			self.ideWorkingWidthValue = 0;
+		end
+	end
 
 	if self.ideNeededPowerValue ~= nil and self.ideNeededPowerValue ~= 0 then
 		local hp, kw = g_i18n:getPower(self.ideNeededPowerValue)
 		local neededPower = string.format(g_i18n:getText("shop_neededPowerValue"), MathUtil.round(kw), MathUtil.round(hp));
-		box:addLine(g_i18n:getText("shop_neededPower"), neededPower)
+		box:addLine(g_i18n:getText("shop_neededPower"):gsub(":", ""), neededPower)
+	end
+
+	if self.ideWorkingWidthValue ~= nil and self.ideWorkingWidthValue ~= 0 then
+		local workingWidth = string.format(g_i18n:getText("shop_workingWidthValue"), g_i18n:formatNumber(self.ideWorkingWidthValue, 1, true));
+		box:addLine(g_i18n:getText("shop_workingWidth"):gsub(":", ""), workingWidth)
 	end
 end
 Wearable.showInfo = Utils.appendedFunction(Wearable.showInfo, InfoDisplayExtension.WearableShowInfo)

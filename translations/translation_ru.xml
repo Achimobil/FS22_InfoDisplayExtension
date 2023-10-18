@@ -15,7 +15,7 @@
 		<text name="infohud_fullGrown" text="Больше не растёт" />
 		<text name="infohud_missing" text="требуется ещё" />
 		<text name="infohud_remaingTime" text="Осталось времени" />
-		<text name="infoDisplayExtension_currentPower" text="Мощность:" />
+		<text name="infoDisplayExtension_currentPower" text="Мощность" />
 		
 		<!-- Animal Texts -->
 		<text name="infoDisplayExtension_animals_health" text="Здоровье" />
