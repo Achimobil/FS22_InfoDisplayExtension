@@ -902,6 +902,26 @@ function Washable.registerOverwrittenFunctions(vehicleType)
 	SpecializationUtil.registerOverwrittenFunction(vehicleType, "showInfo", InfoDisplayExtension.WashableShowInfo)
 end
 
+AnimalItemStockExtension = {}
+
+function AnimalItemStockExtension.new(cluster, superFunc)
+	local self = superFunc(cluster);
+
+	
+	if cluster.numAnimals ~= nil and cluster.numAnimals >= 1 then
+		table.insert(self.infos, {
+			title = g_i18n:getText("infohud_numAnimals"),
+			value = cluster.numAnimals
+		})
+	end
+	
+	return self
+end
+
+AnimalItemStock.new = Utils.overwrittenFunction(AnimalItemStock.new, AnimalItemStockExtension.new)
+
+
+-- DLC stuff
 function InfoDisplayExtension:updateInfoRollercoasterStateBuilding(superFunc, infoTable)
 	table.insert(infoTable, self.infoBoxRequiredGoods)
 	
