@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="77">
 	<author>Achimobil</author>
-	<version>1.6.0.5</version>
+	<version>1.7.0.0</version>
 	<title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -30,11 +30,12 @@ Das Verändern oder erneutes hochladen, ob ganz oder in Teilen, ist nicht gestat
 Fehler und Anregungen gerne auf <a href="https://github.com/Achimobil/FS22_InfoDisplayExtension">GitHub</a>
 
 Changelog
-1.6.0.5 - Beim Tierverladen wird bei den eigenen Tieren jetzt die Menge angezeigt, wenn es mehr als 1 ist
-1.6.0.4 - Anzeige der gekauften Arbeitsbreite hinzugefügt
-1.6.0.3 - Dreck in Prozent wird jetzt auch Angezeigt, wenn das Fahrzeug Dreckig ist
-1.6.0.2 - Benötigte Leistung Korrigiert so dass die standard Schadensanzeige wieder da ist
-1.6.0.1 - Lua Fehler bei Produktionen die keinem gehören behoben
+1.7.0.0
+- Beim Tierverladen wird bei den eigenen Tieren jetzt die vorhandene Menge angezeigt
+- Anzeige der gekauften Arbeitsbreite bei Geräten hinzugefügt
+- Dreck in Prozent wird jetzt auch Angezeigt, wenn das Fahrzeug Dreckig ist
+- Benötigte Leistung Korrigiert so dass die standard Schadensanzeige wieder da ist
+- Lua Fehler bei Produktionen die keinem gehören behoben
 
 1.6.0.0
 - Ausgaben an Tierställen erweitert
@@ -80,6 +81,13 @@ Modifying and re-uploading in whole or in part is not allowed!
 Bugs and suggestions welcome on <a href="https://github.com/Achimobil/FS22_InfoDisplayExtension">GitHub</a>.
 
 Changelog
+1.7.0.0
+- When loading animals, the available quantity is now displayed for the own animals
+- Display of the purchased working width for implements added
+- Dirt in percent is now also displayed if the vehicle is dirty
+- Power required corrected so that the standard damage display is there again
+- Lua error for productions that do not belong to anyone fixed
+
 1.6.0.0
 - Outputs on animal stables extended
 - Display of power requirement on store added for attachments
