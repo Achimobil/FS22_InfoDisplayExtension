@@ -173,7 +173,7 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 end
 PlaceableSilo.updateInfo = Utils.overwrittenFunction(PlaceableSilo.updateInfo, InfoDisplayExtension.updateInfo)
 
-function InfoDisplayExtension:updateInfoProductionPoint(_, superFunc, infoTable)
+function InfoDisplayExtension:updateInfoProductionPoint(superFunc, infoTable)
 	local owningFarm = g_farmManager:getFarmById(self:getOwnerFarmId())
 
 	if owningFarm ~= nil then
