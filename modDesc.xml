@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
-<modDesc descVersion="77">
+<modDesc descVersion="79">
 	<author>Achimobil</author>
-	<version>1.6.0.5</version>
+	<version>1.6.0.6</version>
 	<title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -30,6 +30,7 @@ Das Verändern oder erneutes hochladen, ob ganz oder in Teilen, ist nicht gestat
 Fehler und Anregungen gerne auf <a href="https://github.com/Achimobil/FS22_InfoDisplayExtension">GitHub</a>
 
 Changelog
+1.6.0.6 - Fix für Patch 1.13.1
 1.6.0.5 - Beim Tierverladen wird bei den eigenen Tieren jetzt die Menge angezeigt, wenn es mehr als 1 ist
 1.6.0.4 - Anzeige der gekauften Arbeitsbreite hinzugefügt
 1.6.0.3 - Dreck in Prozent wird jetzt auch Angezeigt, wenn das Fahrzeug Dreckig ist
