@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <l10n>
 	<translationContributors>[_Mario_]</translationContributors>
+	<version>1.7.0.0</version>
 	<texts>
 		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Rozszerzone informacje o pojemności" />
 		<text name="infoDisplayExtension_USED_CAPACITY" text="Pojemność w użyciu" />
@@ -13,25 +14,25 @@
 		<text name="infohud_growthState" text="Etap wzrostu" />
 		<text name="infohud_ageInHours" text="Wiek" />
 		<text name="infohud_fullGrown" text="W pełni wyrośnięty" />
-		<text name="infohud_missing" text="missing" />
-		<text name="infohud_remaingTime" text="Remaining Time" />
+		<text name="infohud_missing" text="brakujący" />
+		<text name="infohud_remaingTime" text="Pozostały czas" />
 		<text name="infoDisplayExtension_currentPower" text="Moc" />
 		
 		<!-- Animal Texts -->
 		<text name="infoDisplayExtension_animals_health" text="Zdrowie" />
-		<text name="infoDisplayExtension_animals_healthRange" text="Health" />
+		<text name="infoDisplayExtension_animals_healthRange" text="Zdrowie" />
 		<text name="infoDisplayExtension_animals_duration" text="Czas reprodukcji" />
 		<text name="infoDisplayExtension_animals_durationRange" text="Czas reprodukcji" />
-		<text name="infoDisplayExtension_animals_reproduction" text="Reproduction Rate" />
-		<text name="infoDisplayExtension_animals_reproductionRange" text="Reproduction Rate" />
-		<text name="infoDisplayExtension_animals_beforeReproduction" text="Sexual Maturity" />
-		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Sexual Maturity" />
+		<text name="infoDisplayExtension_animals_reproduction" text="Współczynnik reprodukcji" />
+		<text name="infoDisplayExtension_animals_reproductionRange" text="Współczynnik reprodukcji" />
+		<text name="infoDisplayExtension_animals_beforeReproduction" text="Dojrzałość płciowa" />
+		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Dojrzałość płciowa" />
 		<text name="infoDisplayExtension_animals_nextBirthIn" text="Potomstwo w" />
 		<text name="infoDisplayExtension_animals_dirt" text="Czystość" />
 		<text name="infoDisplayExtension_animals_dirtRange" text="Czystość" />
 		<text name="infoDisplayExtension_animals_riding" text="Jazda" />
 		<text name="infoDisplayExtension_animals_ridingRange" text="Jazda" />
-		<text name="infoDisplayExtension_animals_fitness" text="Fitness" />
-		<text name="infoDisplayExtension_animals_fitnessRange" text="Fitness" />
+		<text name="infoDisplayExtension_animals_fitness" text="Kondycja" />
+		<text name="infoDisplayExtension_animals_fitnessRange" text="Kondycja" />
 	</texts>
 </l10n>
