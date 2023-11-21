@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+	<translationContributors>Achimobil</translationContributors>
+	<texts>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Informations sur la capacité" />
+		<text name="infoDisplayExtension_USED_CAPACITY" text="Capacité utilisée" />
+		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Capacité totale" />
+		<text name="infoDisplayExtension_MORE_ITEMS" text="Plus" />
+		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Connecté à" />
+		<text name="Revamp_Store" text="Magasin" />
+		<text name="Revamp_Spawn" text="Apparition" />
+		<text name="infohud_diameter" text="Diamètre" />
+		<text name="infohud_growthState" text="Stade de croissance" />
+		<text name="infohud_ageInHours" text="Âge" />
+		<text name="infohud_fullGrown" text="Entièrement cultivé" />
+		<text name="infohud_missing" text="manquant" />
+		<text name="infohud_remaingTime" text="Temps restant" />
+		<text name="infoDisplayExtension_currentPower" text="Puissance" />
+		
+		<!-- Animal Texts -->
+		<text name="infoDisplayExtension_animals_health" text="Santé" />
+		<text name="infoDisplayExtension_animals_healthRange" text="Santé moyenne" />
+		<text name="infoDisplayExtension_animals_duration" text="Temps de reproduction" />
+		<text name="infoDisplayExtension_animals_durationRange" text="Temps de reproduction moyen" />
+		<text name="infoDisplayExtension_animals_reproduction" text="Taux de reproduction" />
+		<text name="infoDisplayExtension_animals_reproductionRange" text="Taux de reproduction moyen" />
+		<text name="infoDisplayExtension_animals_beforeReproduction" text="Maturité sexuelle" />
+		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Moyenne de Maturité sexuelle" />
+		<text name="infoDisplayExtension_animals_nextBirthIn" text="Prochaine naissance dans" />
+		<text name="infoDisplayExtension_animals_dirt" text="Propreté" />
+		<text name="infoDisplayExtension_animals_dirtRange" text="Moyenne de Propreté" />
+		<text name="infoDisplayExtension_animals_riding" text="Équitation" />
+		<text name="infoDisplayExtension_animals_ridingRange" text="Moyenne d'équitation" />
+		<text name="infoDisplayExtension_animals_fitness" text="Forme" />
+		<text name="infoDisplayExtension_animals_fitnessRange" text="Moyenne de forme" />
+	</texts>
+</l10n>
