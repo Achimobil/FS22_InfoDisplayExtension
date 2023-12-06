@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="79">
 	<author>Achimobil</author>
-	<version>1.7.0.1</version>
+	<version>1.7.0.2</version>
 	<title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -30,6 +30,7 @@ Das Verändern oder erneutes hochladen, ob ganz oder in Teilen, ist nicht gestat
 Fehler und Anregungen gerne auf <a href="https://github.com/Achimobil/FS22_InfoDisplayExtension">GitHub</a>
 
 Changelog
+1.7.0.2 - Bei Produktionen werden die Filltypes jetzt gesplittet angezeigt nach nur Eingang oder Ausgang oder beides
 1.7.0.1 - Übersetzungen PL verbessert. Jetzt auch übersetzt in BR und FR, danke an die Übersetzer
 
 1.7.0.0

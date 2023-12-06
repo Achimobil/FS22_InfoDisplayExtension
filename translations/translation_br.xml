@@ -2,36 +2,38 @@
 <l10n>
 	<translationContributors>Myiamoto86</translationContributors>
 	<texts>
-		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" 					text="Info de capacidade" />
-		<text name="infoDisplayExtension_USED_CAPACITY" 						text="Capacidade utilizada" />
-		<text name="infoDisplayExtension_TOTAL_CAPACITY" 						text="Capacidade total" />
-		<text name="infoDisplayExtension_MORE_ITEMS" 							text="Mais" />
-		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" 				text="Conectado a:" />
-		<text name="Revamp_Store" 												text="Armazenado" />
-		<text name="Revamp_Spawn" 												text="Desova" />
-		<text name="infohud_diameter" 											text="Diâmetro" />
-		<text name="infohud_growthState" 										text="Estágio de crescimento" />
-		<text name="infohud_ageInHours" 										text="A época" />
-		<text name="infohud_fullGrown" 											text="Totalmente crescido" />
-		<text name="infohud_missing" 											text="Faltando" />
-		<text name="infohud_remaingTime" 										text="Tempo restante" />
-		<text name="infoDisplayExtension_currentPower" 							text="Potência:" />
-		
+		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Info de capacidade"/>
+		<text name="infoDisplayExtension_USED_CAPACITY" text="Capacidade utilizada"/>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Capacidade total"/>
+		<text name="infoDisplayExtension_MORE_ITEMS" text="Mais"/>
+		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Conectado a:"/>
+		<text name="Revamp_Store" text="Armazenado"/>
+		<text name="Revamp_Spawn" text="Desova"/>
+		<text name="infohud_diameter" text="Diâmetro"/>
+		<text name="infohud_growthState" text="Estágio de crescimento"/>
+		<text name="infohud_ageInHours" text="A época"/>
+		<text name="infohud_fullGrown" text="Totalmente crescido"/>
+		<text name="infohud_missing" text="Faltando"/>
+		<text name="infohud_remaingTime" text="Tempo restante"/>
+		<text name="infoDisplayExtension_currentPower" text="Potência:"/>
+		<text name="infohud_Input" text="Input"/>
+		<text name="infohud_both" text="Input and Output"/>
+		<text name="infohud_Output" text="Output"/>
 		<!-- Animal Texts -->
-		<text name="infoDisplayExtension_animals_health" 						text="Saúde" />
-		<text name="infoDisplayExtension_animals_healthRange" 					text="Saúde" />
-		<text name="infoDisplayExtension_animals_duration" 						text="Tempo de reprodução" />
-		<text name="infoDisplayExtension_animals_durationRange" 				text="Tempo de reprodução" />
-		<text name="infoDisplayExtension_animals_reproduction" 					text="Taxa de reprodução" />
-		<text name="infoDisplayExtension_animals_reproductionRange" 			text="Taxa de reprodução" />
-		<text name="infoDisplayExtension_animals_beforeReproduction" 			text="Maturidade sexual" />
-		<text name="infoDisplayExtension_animals_beforeReproductionRange" 		text="Maturidade sexual" />
-		<text name="infoDisplayExtension_animals_nextBirthIn" 					text="Filhotes em" />
-		<text name="infoDisplayExtension_animals_dirt" 							text="Limpeza" />
-		<text name="infoDisplayExtension_animals_dirtRange" 					text="Limpeza" />
-		<text name="infoDisplayExtension_animals_riding" 						text="Cavalgado" />
-		<text name="infoDisplayExtension_animals_ridingRange" 					text="Cavalgado" />
-		<text name="infoDisplayExtension_animals_fitness" 						text="Fitness" />
-		<text name="infoDisplayExtension_animals_fitnessRange" 					text="Fitness" />
+		<text name="infoDisplayExtension_animals_health" text="Saúde"/>
+		<text name="infoDisplayExtension_animals_healthRange" text="Saúde"/>
+		<text name="infoDisplayExtension_animals_duration" text="Tempo de reprodução"/>
+		<text name="infoDisplayExtension_animals_durationRange" text="Tempo de reprodução"/>
+		<text name="infoDisplayExtension_animals_reproduction" text="Taxa de reprodução"/>
+		<text name="infoDisplayExtension_animals_reproductionRange" text="Taxa de reprodução"/>
+		<text name="infoDisplayExtension_animals_beforeReproduction" text="Maturidade sexual"/>
+		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Maturidade sexual"/>
+		<text name="infoDisplayExtension_animals_nextBirthIn" text="Filhotes em"/>
+		<text name="infoDisplayExtension_animals_dirt" text="Limpeza"/>
+		<text name="infoDisplayExtension_animals_dirtRange" text="Limpeza"/>
+		<text name="infoDisplayExtension_animals_riding" text="Cavalgado"/>
+		<text name="infoDisplayExtension_animals_ridingRange" text="Cavalgado"/>
+		<text name="infoDisplayExtension_animals_fitness" text="Fitness"/>
+		<text name="infoDisplayExtension_animals_fitnessRange" text="Fitness"/>
 	</texts>
 </l10n>

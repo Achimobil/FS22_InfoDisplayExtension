@@ -2,36 +2,38 @@
 <l10n>
 	<translationContributors>Achimobil</translationContributors>
 	<texts>
-		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Capacity Info" />
-		<text name="infoDisplayExtension_USED_CAPACITY" text="Used Capacity" />
-		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Total Capacity" />
-		<text name="infoDisplayExtension_MORE_ITEMS" text="more" />
-		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Connected to" />
-		<text name="Revamp_Store" text="Store" />
-		<text name="Revamp_Spawn" text="Spawn" />
-		<text name="infohud_diameter" text="Diameter" />
-		<text name="infohud_growthState" text="Growth Stage" />
-		<text name="infohud_ageInHours" text="Age" />
-		<text name="infohud_fullGrown" text="Fully Grown" />
-		<text name="infohud_missing" text="missing" />
-		<text name="infohud_remaingTime" text="Remaining Time" />
-		<text name="infoDisplayExtension_currentPower" text="Power" />
-		
+		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Capacity Info"/>
+		<text name="infoDisplayExtension_USED_CAPACITY" text="Used Capacity"/>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Total Capacity"/>
+		<text name="infoDisplayExtension_MORE_ITEMS" text="more"/>
+		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Connected to"/>
+		<text name="Revamp_Store" text="Store"/>
+		<text name="Revamp_Spawn" text="Spawn"/>
+		<text name="infohud_diameter" text="Diameter"/>
+		<text name="infohud_growthState" text="Growth Stage"/>
+		<text name="infohud_ageInHours" text="Age"/>
+		<text name="infohud_fullGrown" text="Fully Grown"/>
+		<text name="infohud_missing" text="missing"/>
+		<text name="infohud_remaingTime" text="Remaining Time"/>
+		<text name="infoDisplayExtension_currentPower" text="Power"/>
+		<text name="infohud_Input" text="Input"/>
+		<text name="infohud_both" text="Input and Output"/>
+		<text name="infohud_Output" text="Output"/>
 		<!-- Animal Texts -->
-		<text name="infoDisplayExtension_animals_health" text="Health" />
-		<text name="infoDisplayExtension_animals_healthRange" text="Health" />
-		<text name="infoDisplayExtension_animals_duration" text="Reproduction Time" />
-		<text name="infoDisplayExtension_animals_durationRange" text="Reproduction Time" />
-		<text name="infoDisplayExtension_animals_reproduction" text="Reproduction Rate" />
-		<text name="infoDisplayExtension_animals_reproductionRange" text="Reproduction Rate" />
-		<text name="infoDisplayExtension_animals_beforeReproduction" text="Sexual Maturity" />
-		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Sexual Maturity" />
-		<text name="infoDisplayExtension_animals_nextBirthIn" text="Offspring in" />
-		<text name="infoDisplayExtension_animals_dirt" text="Cleanliness" />
-		<text name="infoDisplayExtension_animals_dirtRange" text="Cleanliness" />
-		<text name="infoDisplayExtension_animals_riding" text="Riding" />
-		<text name="infoDisplayExtension_animals_ridingRange" text="Riding" />
-		<text name="infoDisplayExtension_animals_fitness" text="Fitness" />
-		<text name="infoDisplayExtension_animals_fitnessRange" text="Fitness" />
+		<text name="infoDisplayExtension_animals_health" text="Health"/>
+		<text name="infoDisplayExtension_animals_healthRange" text="Health"/>
+		<text name="infoDisplayExtension_animals_duration" text="Reproduction Time"/>
+		<text name="infoDisplayExtension_animals_durationRange" text="Reproduction Time"/>
+		<text name="infoDisplayExtension_animals_reproduction" text="Reproduction Rate"/>
+		<text name="infoDisplayExtension_animals_reproductionRange" text="Reproduction Rate"/>
+		<text name="infoDisplayExtension_animals_beforeReproduction" text="Sexual Maturity"/>
+		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Sexual Maturity"/>
+		<text name="infoDisplayExtension_animals_nextBirthIn" text="Offspring in"/>
+		<text name="infoDisplayExtension_animals_dirt" text="Cleanliness"/>
+		<text name="infoDisplayExtension_animals_dirtRange" text="Cleanliness"/>
+		<text name="infoDisplayExtension_animals_riding" text="Riding"/>
+		<text name="infoDisplayExtension_animals_ridingRange" text="Riding"/>
+		<text name="infoDisplayExtension_animals_fitness" text="Fitness"/>
+		<text name="infoDisplayExtension_animals_fitnessRange" text="Fitness"/>
 	</texts>
 </l10n>

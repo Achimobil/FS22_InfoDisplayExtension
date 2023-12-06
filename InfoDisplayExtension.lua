@@ -204,31 +204,84 @@ function InfoDisplayExtension:updateInfoProductionPoint(superFunc, infoTable)
 	local fillType, fillLevel, fillLevelCapacity = nil
 	local fillTypesDisplayed = false
 
-	table.insert(infoTable, self.infoTables.storage)
+	--table.insert(infoTable, self.infoTables.storage)
 
+	-- temp list of input and output filltypes to show the three types seperately
+	local inputOutputType = {};
+	local inputOutputTypeInfo = {};
+	
+	local titleAdded = false;
 	for i = 1, #self.inputFillTypeIdsArray do
 		fillType = self.inputFillTypeIdsArray[i]
+		
+		local isOutput = false;
+		for i = 1, #self.outputFillTypeIdsArray do
+			fillType2 = self.outputFillTypeIdsArray[i]
+			if fillType == fillType2 then
+				inputOutputType[fillType] = true
+				isOutput = true;
+			end
+		end
+		
 		fillLevel = self:getFillLevel(fillType)
 		fillLevelCapacity = self:getCapacity(fillType)
 
 		if fillLevel > 1 then
 			fillTypesDisplayed = true
 			local fillType = g_fillTypeManager:getFillTypeByIndex(fillType);
-			table.insert(infoTable, {
-				title = fillType.title,
-				text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort)
-			})
+			if isOutput then
+				table.insert(inputOutputTypeInfo, {
+					title = fillType.title,
+					text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort)
+				})
+			else
+				if not titleAdded then
+					table.insert(infoTable, {
+						accentuate = true,
+						title = g_i18n:getText("ui_productions_buildingStorage") .. " - " .. g_i18n:getText("infohud_Input")
+					})
+					titleAdded = true;
+				end
+				table.insert(infoTable, {
+					title = fillType.title,
+					text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort)
+				})
+			end
 		end
 	end
+	
+	titleAdded = false;
+	for i = 1, #inputOutputTypeInfo do
+		if not titleAdded then
+			table.insert(infoTable, {
+				accentuate = true,
+				title = g_i18n:getText("ui_productions_buildingStorage") .. " - " .. g_i18n:getText("infohud_both")
+			})
+			titleAdded = true;
+		end
+		
+		inputOutputTypeInfoItem = inputOutputTypeInfo[i]
+		table.insert(infoTable, inputOutputTypeInfoItem)
+	end
 
+	titleAdded = false;
 	for i = 1, #self.outputFillTypeIdsArray do
 		fillType = self.outputFillTypeIdsArray[i]
 		fillLevel = self:getFillLevel(fillType)
 		fillLevelCapacity = self:getCapacity(fillType)
 
-		if fillLevel > 1 then
+		if fillLevel > 1 and inputOutputType[fillType] == nil then
 			fillTypesDisplayed = true
 			local fillType = g_fillTypeManager:getFillTypeByIndex(fillType);
+			
+			if not titleAdded then
+				table.insert(infoTable, {
+					accentuate = true,
+					title = g_i18n:getText("ui_productions_buildingStorage") .. " - " .. g_i18n:getText("infohud_Output")
+				})
+				titleAdded = true;
+			end
+				
 			table.insert(infoTable, {
 				title = fillType.title,
 				text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort)
@@ -237,6 +290,7 @@ function InfoDisplayExtension:updateInfoProductionPoint(superFunc, infoTable)
 	end
 
 	if not fillTypesDisplayed then
+		table.insert(infoTable, self.infoTables.storage)
 		table.insert(infoTable, self.infoTables.storageEmpty)
 	end
 
