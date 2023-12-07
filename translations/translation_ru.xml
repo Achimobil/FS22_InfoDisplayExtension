@@ -16,9 +16,9 @@
 		<text name="infohud_missing" text="требуется ещё"/>
 		<text name="infohud_remaingTime" text="Осталось времени"/>
 		<text name="infoDisplayExtension_currentPower" text="Мощность"/>
-		<text name="infohud_Input" text="Input"/>
-		<text name="infohud_both" text="Input and Output"/>
-		<text name="infohud_Output" text="Output"/>
+		<text name="infohud_Input" text="Принято"/>
+		<text name="infohud_both" text="Принято и Произведено"/>
+		<text name="infohud_Output" text="Произведено"/>
 		<!-- Animal Texts -->
 		<text name="infoDisplayExtension_animals_health" text="Здоровье"/>
 		<text name="infoDisplayExtension_animals_healthRange" text="Здоровье"/>
