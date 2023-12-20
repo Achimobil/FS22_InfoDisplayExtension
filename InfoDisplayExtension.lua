@@ -650,12 +650,31 @@ end;
 
 function InfoDisplayExtension:updateInfoPlaceableHusbandryFood(_, superFunc, infoTable)
 	superFunc(self, infoTable)
+	
+	if self.animalGrazing ~= nil and self.animalGrazing.outputFillTypes ~= nil then
+		local grazingFoodBuffer = 0;
+		local hasGrazing = false;
+		for fillTypeName, outputFillType in pairs(self.animalGrazing.outputFillTypes) do
+			grazingFoodBuffer = grazingFoodBuffer + outputFillType.foodBuffer;
+			hasGrazing = true;
+		end
+		
+		if hasGrazing and grazingFoodBuffer ~= 0 then
+			table.insert(infoTable,
+				{
+					title = g_i18n:getText("infoDisplayExtension_grazingFoodBuffer"), 
+					text = InfoDisplayExtension:formatVolume(grazingFoodBuffer, 0)
+				}
+			)
+		end
+	end
+	
 
 	local spec = self.spec_husbandryFood
 	local fillLevel = self:getTotalFood()
 	local capacity = self:getFoodCapacity()
 	spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
-
+	
 	table.insert(infoTable, spec.info)
 end
 PlaceableHusbandryFood.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryFood.updateInfo, InfoDisplayExtension.updateInfoPlaceableHusbandryFood)

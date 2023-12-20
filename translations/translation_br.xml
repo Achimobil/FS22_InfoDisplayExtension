@@ -35,5 +35,6 @@
 		<text name="infoDisplayExtension_animals_ridingRange" text="Cavalgado"/>
 		<text name="infoDisplayExtension_animals_fitness" text="Fitness"/>
 		<text name="infoDisplayExtension_animals_fitnessRange" text="Fitness"/>
+		<text name="infoDisplayExtension_grazingFoodBuffer" text="Grazing Buffer"/>
 	</texts>
 </l10n>

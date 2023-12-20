@@ -35,5 +35,6 @@
 		<text name="infoDisplayExtension_animals_ridingRange" text="Ежедневная прогулка"/>
 		<text name="infoDisplayExtension_animals_fitness" text="Физ. форма"/>
 		<text name="infoDisplayExtension_animals_fitnessRange" text="Физ. форма"/>
+		<text name="infoDisplayExtension_grazingFoodBuffer" text="Grazing Buffer"/>
 	</texts>
 </l10n>

@@ -35,5 +35,6 @@
 		<text name="infoDisplayExtension_animals_ridingRange" text="Moyenne d'équitation"/>
 		<text name="infoDisplayExtension_animals_fitness" text="Forme"/>
 		<text name="infoDisplayExtension_animals_fitnessRange" text="Moyenne de forme"/>
+		<text name="infoDisplayExtension_grazingFoodBuffer" text="Grazing Buffer"/>
 	</texts>
 </l10n>

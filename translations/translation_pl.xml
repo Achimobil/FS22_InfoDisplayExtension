@@ -36,5 +36,6 @@
 		<text name="infoDisplayExtension_animals_ridingRange" text="Jazda"/>
 		<text name="infoDisplayExtension_animals_fitness" text="Kondycja"/>
 		<text name="infoDisplayExtension_animals_fitnessRange" text="Kondycja"/>
+		<text name="infoDisplayExtension_grazingFoodBuffer" text="Grazing Buffer"/>
 	</texts>
 </l10n>
