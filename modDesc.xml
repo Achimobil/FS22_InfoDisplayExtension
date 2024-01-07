@@ -40,7 +40,7 @@ Changelog
 - Beim Tierverladen wird bei den eigenen Tieren jetzt die vorhandene Menge angezeigt
 - Anzeige der gekauften Arbeitsbreite bei Geräten hinzugefügt
 - Dreck in Prozent wird jetzt auch Angezeigt, wenn das Fahrzeug Dreckig ist
-- Benötigte Leistung Korrigiert so dass die standard Schadensanzeige wieder da ist
+- Benötigte Leistung Korrigiert so dass die Standard Schadensanzeige wieder da ist
 - Lua Fehler bei Produktionen die keinem gehören behoben
 
 1.6.0.0
