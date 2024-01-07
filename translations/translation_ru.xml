@@ -22,19 +22,19 @@
 		<!-- Animal Texts -->
 		<text name="infoDisplayExtension_animals_health" text="Здоровье"/>
 		<text name="infoDisplayExtension_animals_healthRange" text="Здоровье"/>
-		<text name="infoDisplayExtension_animals_duration" text="Период созревания"/>
-		<text name="infoDisplayExtension_animals_durationRange" text="Период созревания"/>
-		<text name="infoDisplayExtension_animals_reproduction" text="Воспроизводство"/>
-		<text name="infoDisplayExtension_animals_reproductionRange" text="Воспроизводство"/>
-		<text name="infoDisplayExtension_animals_beforeReproduction" text="Пубертат"/>
-		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Пубертат"/>
+		<text name="infoDisplayExtension_animals_duration" text="Срок беременности"/>
+		<text name="infoDisplayExtension_animals_durationRange" text="Срок беременности"/>
+		<text name="infoDisplayExtension_animals_reproduction" text="Стадии беременностей"/>
+		<text name="infoDisplayExtension_animals_reproductionRange" text="Стадии беременностей"/>
+		<text name="infoDisplayExtension_animals_beforeReproduction" text="Срок взросления"/>
+		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Срок взросления"/>
 		<text name="infoDisplayExtension_animals_nextBirthIn" text="Потомство через"/>
 		<text name="infoDisplayExtension_animals_dirt" text="Чистота"/>
 		<text name="infoDisplayExtension_animals_dirtRange" text="Чистота"/>
 		<text name="infoDisplayExtension_animals_riding" text="Ежедневная прогулка"/>
 		<text name="infoDisplayExtension_animals_ridingRange" text="Ежедневная прогулка"/>
-		<text name="infoDisplayExtension_animals_fitness" text="Физ. форма"/>
-		<text name="infoDisplayExtension_animals_fitnessRange" text="Физ. форма"/>
+		<text name="infoDisplayExtension_animals_fitness" text="Физическое состояние"/>
+		<text name="infoDisplayExtension_animals_fitnessRange" text="Физическое состояние"/>
 		<text name="infoDisplayExtension_grazingFoodBuffer" text="Трава на пастбище"/>
 	</texts>
 </l10n>
