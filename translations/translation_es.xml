@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+	<translationContributors>Vanquish81</translationContributors>
+	<texts>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Inf. Capacidad"/>
+		<text name="infoDisplayExtension_USED_CAPACITY" text="Capacidad Usada"/>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Capacidad Total"/>
+		<text name="infoDisplayExtension_MORE_ITEMS" text="más"/>
+		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Conectado A"/>
+		<text name="Revamp_Store" text="Almacenado"/>
+		<text name="Revamp_Spawn" text="Dispensando"/>
+		<text name="infohud_diameter" text="Diámetro"/>
+		<text name="infohud_growthState" text="Estado Crecimiento"/>
+		<text name="infohud_ageInHours" text="Edad"/>
+		<text name="infohud_fullGrown" text="Crecimiento Completado"/>
+		<text name="infohud_missing" text="Necesario"/>
+		<text name="infohud_remaingTime" text="Tiempo Restante"/>
+		<text name="infoDisplayExtension_currentPower" text="Potencia"/>
+		<text name="infohud_Input" text="Entrada"/>
+		<text name="infohud_both" text="Entrada Y Salida"/>
+		<text name="infohud_Output" text="Salida"/>
+		<!-- Animal Texts -->
+		<text name="infoDisplayExtension_animals_health" text="Salud"/>
+		<text name="infoDisplayExtension_animals_healthRange" text="Salud"/>
+		<text name="infoDisplayExtension_animals_duration" text="Info Tiempo Reproducción"/>
+		<text name="infoDisplayExtension_animals_durationRange" text="Rango Tiempo Reprod."/>
+		<text name="infoDisplayExtension_animals_reproduction" text="Info Tasa Reproduc."/>
+		<text name="infoDisplayExtension_animals_reproductionRange" text="Tasa Reproduc."/>
+		<text name="infoDisplayExtension_animals_beforeReproduction" text="Madurez Sexual"/>
+		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Madurez Sexual"/>
+		<text name="infoDisplayExtension_animals_nextBirthIn" text="Descendencia En"/>
+		<text name="infoDisplayExtension_animals_dirt" text="Info Limpieza"/>
+		<text name="infoDisplayExtension_animals_dirtRange" text="Limpieza"/>
+		<text name="infoDisplayExtension_animals_riding" text="Info Entrenamiento"/>
+		<text name="infoDisplayExtension_animals_ridingRange" text="Entrenamiento"/>
+		<text name="infoDisplayExtension_animals_fitness" text="Info Físico"/>
+		<text name="infoDisplayExtension_animals_fitnessRange" text="Aptitud Física"/>
+		<text name="infoDisplayExtension_grazingFoodBuffer" text="Zona de pastoreo"/>
+	</texts>
+</l10n>
