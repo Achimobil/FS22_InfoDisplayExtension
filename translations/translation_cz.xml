@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+	<translationContributors>Pérák</translationContributors>
+	<texts>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Informace o kapacitě"/>
+		<text name="infoDisplayExtension_USED_CAPACITY" text="Využitá kapacita"/>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Celková kapacita"/>
+		<text name="infoDisplayExtension_MORE_ITEMS" text="více"/>
+		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Připojeno k"/>
+		<text name="Revamp_Store" text="Uskladnění"/>
+		<text name="Revamp_Spawn" text="Vyskladnění"/>
+		<text name="infohud_diameter" text="Průměr"/>
+		<text name="infohud_growthState" text="Fáze růstu"/>
+		<text name="infohud_ageInHours" text="Věk"/>
+		<text name="infohud_fullGrown" text="Zcela vyrostlé"/>
+		<text name="infohud_missing" text="chybí"/>
+		<text name="infohud_remaingTime" text="Zbývající čas"/>
+		<text name="infoDisplayExtension_currentPower" text="Výkon"/>
+		<text name="infohud_Input" text="Vstup"/>
+		<text name="infohud_both" text="Vstup a Výstup"/>
+		<text name="infohud_Output" text="Výstup"/>
+		<!-- Animal Texts -->
+		<text name="infoDisplayExtension_animals_health" text="Zdraví"/>
+		<text name="infoDisplayExtension_animals_healthRange" text="Zdraví"/>
+		<text name="infoDisplayExtension_animals_duration" text="Doba reprodukce"/>
+		<text name="infoDisplayExtension_animals_durationRange" text="Doba reprodukce"/>
+		<text name="infoDisplayExtension_animals_reproduction" text="Míra reprodukce"/>
+		<text name="infoDisplayExtension_animals_reproductionRange" text="Míra reprodukce"/>
+		<text name="infoDisplayExtension_animals_beforeReproduction" text="Pohlavní dospělost"/>
+		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Pohlavní dospělost"/>
+		<text name="infoDisplayExtension_animals_nextBirthIn" text="Potomstvo v"/>
+		<text name="infoDisplayExtension_animals_dirt" text="Čistota"/>
+		<text name="infoDisplayExtension_animals_dirtRange" text="Čistota"/>
+		<text name="infoDisplayExtension_animals_riding" text="Jízda na koni"/>
+		<text name="infoDisplayExtension_animals_ridingRange" text="Jízda na koni"/>
+		<text name="infoDisplayExtension_animals_fitness" text="Kondice"/>
+		<text name="infoDisplayExtension_animals_fitnessRange" text="Kondice"/>
+		<text name="infoDisplayExtension_grazingFoodBuffer" text="Pastvina"/>
+	</texts>
+</l10n>
