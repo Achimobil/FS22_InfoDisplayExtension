@@ -23,20 +23,26 @@ InfoDisplayExtension.metadata = {
 };
 InfoDisplayExtension.modDir = g_currentModDirectory;
 
-function InfoDisplayExtension:formatVolume(liters, precision, unit)
-	if unit == "" then
-		unit = nil;
-	end
-	
+local g_additionalUnits = nil
+
+function InfoDisplayExtension:formatVolume(liters, precision, unit, fillTypeName)
+  unit = unit == "" and nil or (unit == false and "" or unit)
+
+  if g_additionalUnits ~= nil and fillTypeName ~= nil then
+    local formattedLiters, formattedUnit = g_additionalUnits:formatFillLevel(liters, fillTypeName)
+
+    if unit ~= "" then
+      unit = formattedUnit.shortName or unit
+    end
+
+    liters = formattedLiters
+  end
+
 	return g_i18n:formatVolume(liters, precision, unit)
 end
 
-function InfoDisplayExtension:formatCapacity(liters, capacity, precision, unit)
-	if unit == "" then
-		unit = nil;
-	end
-
-	return g_i18n:formatVolume(liters, precision, "") .. " / " .. g_i18n:formatVolume(capacity, precision, unit);
+function InfoDisplayExtension:formatCapacity(liters, capacity, precision, unit, fillTypeName)
+	return self:formatVolume(liters, precision, false, fillTypeName) .. " / " .. self:formatVolume(capacity, precision, unit, fillTypeName);
 end
 
 function InfoDisplayExtension:storeScaledValues(superFunc)
@@ -124,12 +130,12 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 			if fillTypeAndLevel.capacity == nil then
 				table.insert(infoTable, {
 					title = fillType.title,
-					text = InfoDisplayExtension:formatVolume(fillTypeAndLevel.fillLevel, 0, fillType.unitShort)
+					text = InfoDisplayExtension:formatVolume(fillTypeAndLevel.fillLevel, 0, fillType.unitShort, fillType.name)
 				})
 			else
 				table.insert(infoTable, {
 					title = fillType.title,
-					text = InfoDisplayExtension:formatCapacity(fillTypeAndLevel.fillLevel, fillTypeAndLevel.capacity, 0, fillType.unitShort)
+					text = InfoDisplayExtension:formatCapacity(fillTypeAndLevel.fillLevel, fillTypeAndLevel.capacity, 0, fillType.unitShort, fillType.name)
 				})
 			end
 		end
@@ -232,7 +238,7 @@ function InfoDisplayExtension:updateInfoProductionPoint(superFunc, infoTable)
 			if isOutput then
 				table.insert(inputOutputTypeInfo, {
 					title = fillType.title,
-					text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort)
+					text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort, fillType.name)
 				})
 			else
 				if not titleAdded then
@@ -244,7 +250,7 @@ function InfoDisplayExtension:updateInfoProductionPoint(superFunc, infoTable)
 				end
 				table.insert(infoTable, {
 					title = fillType.title,
-					text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort)
+					text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort, fillType.name)
 				})
 			end
 		end
@@ -284,7 +290,7 @@ function InfoDisplayExtension:updateInfoProductionPoint(superFunc, infoTable)
 				
 			table.insert(infoTable, {
 				title = fillType.title,
-				text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort)
+				text = InfoDisplayExtension:formatCapacity(fillLevel, fillLevelCapacity, 0, fillType.unitShort, fillType.name)
 			})
 		end
 	end
@@ -342,10 +348,9 @@ function InfoDisplayExtension:populateCellForItemInSection(superFunc, list, sect
 
 -- für große breiten rechts ausrichten
 			cell:getAttribute("fillLevel").textAlignment = RenderText.ALIGN_RIGHT
-			
 			cell:getAttribute("icon"):setImageFilename(fillTypeDesc.hudOverlayFilename)
 			cell:getAttribute("fillType"):setText(fillTypeDesc.title)
-			cell:getAttribute("fillLevel"):setText(InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0, fillTypeDesc.unitShort));
+			cell:getAttribute("fillLevel"):setText(InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0, fillTypeDesc.unitShort, fillTypeDesc.name));
 
 			if not isInput then
 				local outputMode = productionPoint:getOutputDistributionMode(fillType)
@@ -686,7 +691,8 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryMilk(_, superFunc, inf
 
 	local fillLevel = self:getHusbandryFillLevel(spec.fillType)
 	local capacity = self:getHusbandryCapacity(spec.fillType)
-	spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
+
+	spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0, nil, g_fillTypeManager:getFillTypeNameByIndex(spec.fillType));
 
 	table.insert(infoTable, spec.info)
 end
@@ -698,7 +704,7 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryLiquidManure(_, superF
 	local spec = self.spec_husbandryLiquidManure;
 	local fillLevel = self:getHusbandryFillLevel(spec.fillType);
 	local capacity = self:getHusbandryCapacity(spec.fillType);
-	spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
+	spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0, nil, g_fillTypeManager:getFillTypeNameByIndex(spec.fillType));
 
 	table.insert(infoTable, spec.info)
 end
@@ -710,7 +716,7 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryStraw(_, superFunc, in
 	local spec = self.spec_husbandryStraw;
 	local fillLevel = self:getHusbandryFillLevel(spec.inputFillType);
 	local capacity = self:getHusbandryCapacity(spec.inputFillType);
-	spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
+	spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0, nil, g_fillTypeManager:getFillTypeNameByIndex(spec.inputFillType));
 
 	table.insert(infoTable, spec.info)
 end
@@ -724,7 +730,7 @@ function InfoDisplayExtension:updateInfoPlaceableHusbandryWater(_, superFunc, in
 	if not spec.automaticWaterSupply then
 		local fillLevel = self:getHusbandryFillLevel(spec.fillType);
 		local capacity = self:getHusbandryCapacity(spec.fillType);
-		spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
+		spec.info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0, nil, g_fillTypeManager:getFillTypeNameByIndex(spec.fillType));
 
 		table.insert(infoTable, spec.info)
 	end
@@ -742,7 +748,7 @@ function InfoDisplayExtension:updateInfoPlaceableManureHeap(_, superFunc, infoTa
 
 	local fillLevel = spec.manureHeap:getFillLevel(spec.manureHeap.fillTypeIndex);
 	local capacity = spec.manureHeap:getCapacity(spec.manureHeap.fillTypeIndex);
-	spec.infoFillLevel.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
+	spec.infoFillLevel.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0, nil, g_fillTypeManager:getFillTypeNameByIndex(spec.manureHeap.fillTypeIndex));
 
 	table.insert(infoTable, spec.infoFillLevel)
 	
@@ -770,6 +776,11 @@ function InfoDisplayExtension:updateInfoFeedingRobot(_, infoTable)
 		for _, info in ipairs(self.infos) do
 			local fillLevel = 0
 			local capacity = 0
+      local fillTypeName = "UNKNOWN"
+
+      for _, fillType in ipairs(info.fillTypes) do
+        fillTypeName = g_fillTypeManager:getFillTypeNameByIndex(fillType)
+      end
 
 			-- nur den ersten filltype abfragen, da die anderen da schon drin sind
 			fillLevel = self:getFillLevel(info.fillTypes[1]);
@@ -778,7 +789,7 @@ function InfoDisplayExtension:updateInfoFeedingRobot(_, infoTable)
 				capacity = spot.capacity;
 			end
 
-			info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0);
+			info.text = InfoDisplayExtension:formatCapacity(fillLevel, capacity, 0, nil, fillTypeName);
 
 			table.insert(infoTable, info)
 		end
@@ -1144,6 +1155,14 @@ function InfoDisplayExtension:loadMap(name)
 		InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InfoDisplayExtension.populateCellForItemInSection)
 		InGameMenuProductionFrame.getProductionPoints = Utils.overwrittenFunction(InGameMenuProductionFrame.getProductionPoints, InfoDisplayExtension.getProductionPoints)
 	end
+end
+
+if g_modIsLoaded["FS22_AdditionalUnits"] then
+  local modEnv = FS22_AdditionalUnits
+
+  g_additionalUnits = modEnv.g_additionalUnits
+
+  modEnv.INFO_DISPLAY_EXTENSION_MOD_LOADED = true
 end
 
 addModEventListener(InfoDisplayExtension)
