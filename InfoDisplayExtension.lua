@@ -1161,8 +1161,6 @@ if g_modIsLoaded["FS22_AdditionalUnits"] then
   local modEnv = FS22_AdditionalUnits
 
   g_additionalUnits = modEnv.g_additionalUnits
-
-  modEnv.INFO_DISPLAY_EXTENSION_MOD_LOADED = true
 end
 
 addModEventListener(InfoDisplayExtension)
