@@ -26,7 +26,7 @@ InfoDisplayExtension.modDir = g_currentModDirectory;
 local g_additionalUnits = nil
 
 function InfoDisplayExtension:formatVolume(liters, precision, unit, fillTypeName)
-  unit = unit == "" and nil or (unit == false and "" or unit)
+  unit = unit ~= "" and (unit == false and "" or unit) or nil
 
   if g_additionalUnits ~= nil and fillTypeName ~= nil then
     local formattedLiters, formattedUnit = g_additionalUnits:formatFillLevel(liters, fillTypeName)
