@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+	<translationContributors>Rudolfet</translationContributors>
+	<texts>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY_TITLE" text="Informazioni sulla Capacità"/>
+		<text name="infoDisplayExtension_USED_CAPACITY" text="Capacità Usata"/>
+		<text name="infoDisplayExtension_TOTAL_CAPACITY" text="Capacità Totale"/>
+		<text name="infoDisplayExtension_MORE_ITEMS" text="altro"/>
+		<text name="infoDisplayExtension_MANURE_HEAP_CONNECTED" text="Collegato a"/>
+		<text name="Revamp_Store" text="Negozio"/>
+		<text name="Revamp_Spawn" text="Spawn"/>
+		<text name="infohud_diameter" text="Diametro"/>
+		<text name="infohud_growthState" text="Stadio di crescita"/>
+		<text name="infohud_ageInHours" text="Età"/>
+		<text name="infohud_fullGrown" text="Completamente cresciuti"/>
+		<text name="infohud_missing" text="mancanti"/>
+		<text name="infohud_remaingTime" text="Tempo Rimanente"/>
+		<text name="infoDisplayExtension_currentPower" text="Potenza"/>
+		<text name="infohud_Input" text="Input"/>
+		<text name="infohud_both" text="Input e Output"/>
+		<text name="infohud_Output" text="Output"/>
+		<!-- Animal Texts -->
+		<text name="infoDisplayExtension_animals_health" text="Salute"/>
+		<text name="infoDisplayExtension_animals_healthRange" text="Salute"/>
+		<text name="infoDisplayExtension_animals_duration" text="Tempo di Riproduzione"/>
+		<text name="infoDisplayExtension_animals_durationRange" text="Tempo di Riproduzione"/>
+		<text name="infoDisplayExtension_animals_reproduction" text="Tasso di riproduzione"/>
+		<text name="infoDisplayExtension_animals_reproductionRange" text="Tasso di riproduzione"/>
+		<text name="infoDisplayExtension_animals_beforeReproduction" text="Maturità sessuale"/>
+		<text name="infoDisplayExtension_animals_beforeReproductionRange" text="Maturità sessuale"/>
+		<text name="infoDisplayExtension_animals_nextBirthIn" text="Prole in"/>
+		<text name="infoDisplayExtension_animals_dirt" text="Pulizia"/>
+		<text name="infoDisplayExtension_animals_dirtRange" text="Pulizia"/>
+		<text name="infoDisplayExtension_animals_riding" text="Equitazione"/>
+		<text name="infoDisplayExtension_animals_ridingRange" text="Equitazione"/>
+		<text name="infoDisplayExtension_animals_fitness" text="Fitness"/>
+		<text name="infoDisplayExtension_animals_fitnessRange" text="Fitness"/>
+		<text name="infoDisplayExtension_grazingFoodBuffer" text="Buffer di pascolo"/>
+	</texts>
+</l10n>
