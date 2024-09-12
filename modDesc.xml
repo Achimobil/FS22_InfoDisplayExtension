@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="79">
 	<author>Achimobil</author>
-	<version>1.7.1.2</version>
+	<version>1.7.1.3</version>
 	<title>
 		<de>Info Display Erweiterung</de>
 		<en>Info Display Extension</en>
@@ -31,6 +31,7 @@ Das Verändern oder erneutes hochladen, ob ganz oder in Teilen, ist nicht gestat
 Fehler und Anregungen gerne auf <a href="https://github.com/Achimobil/FS22_InfoDisplayExtension">GitHub</a>
 
 Changelog
+1.7.1.3 - IT Übersetzungen von Rudolfet eingefügt
 1.7.1.2 - Kleiner fix für „Zusätzliche Einheiten“
 1.7.1.1 - Mod-Unterstützung für „Zusätzliche Einheiten“ hinzugefügt
 
