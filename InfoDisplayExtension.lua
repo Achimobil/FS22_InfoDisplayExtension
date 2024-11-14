@@ -63,7 +63,7 @@ function InfoDisplayExtension:storeScaledValues(superFunc)
 	self.rowWidth, self.rowHeight = normalize(408, 26)
 	self.listMarginWidth, self.listMarginHeight = normalize(16, 15)
 end
-KeyValueInfoHUDBox.storeScaledValues = Utils.overwrittenFunction(KeyValueInfoHUDBox.storeScaledValues, InfoDisplayExtension.storeScaledValues)
+-- KeyValueInfoHUDBox.storeScaledValues = Utils.overwrittenFunction(KeyValueInfoHUDBox.storeScaledValues, InfoDisplayExtension.storeScaledValues)
 
 function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 	superFunc(self, infoTable)
@@ -819,7 +819,7 @@ Weitere informationen zu Bäumen anzeigen.]]
 	end
 
 	local sizeX, sizeY, sizeZ, numConvexes, numAttachments = getSplitShapeStats(splitShape)
-	local splitType = g_splitTypeManager:getSplitTypeByIndex(splitTypeId)
+	local splitType = g_splitShapeManager:getSplitTypeByIndex(splitTypeId)
 	local splitTypeName = splitType and splitType.title
 	local length = math.max(sizeX, sizeY, sizeZ)
 	local box = self.objectBox
@@ -1152,8 +1152,8 @@ function InfoDisplayExtension:loadMap(name)
 	end
 	
 	if revampversion == "" or revampversion == "1.0.0.0" then
-		InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InfoDisplayExtension.populateCellForItemInSection)
-		InGameMenuProductionFrame.getProductionPoints = Utils.overwrittenFunction(InGameMenuProductionFrame.getProductionPoints, InfoDisplayExtension.getProductionPoints)
+		-- InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InfoDisplayExtension.populateCellForItemInSection)
+		-- InGameMenuProductionFrame.getProductionPoints = Utils.overwrittenFunction(InGameMenuProductionFrame.getProductionPoints, InfoDisplayExtension.getProductionPoints)
 	end
 end
 
