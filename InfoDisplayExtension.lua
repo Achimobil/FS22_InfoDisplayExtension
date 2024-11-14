@@ -36,26 +36,6 @@ function InfoDisplayExtension:formatCapacity(liters, capacity, precision, unit, 
 	return self:formatVolume(liters, precision, false, fillTypeName) .. " / " .. self:formatVolume(capacity, precision, unit, fillTypeName);
 end
 
-function InfoDisplayExtension:storeScaledValues(superFunc)
-	local scale = self.uiScale
-
-	local function normalize(x, y)
-		return x * scale * g_aspectScaleX / g_referenceScreenWidth, y * scale * g_aspectScaleY / g_referenceScreenHeight
-	end
-
-	self.boxWidth = normalize(440, 0)
-	local _ = nil
-	_, self.labelTextSize = normalize(0, HUDElement.TEXT_SIZE.DEFAULT_TITLE)
-	_, self.rowTextSize = normalize(0, HUDElement.TEXT_SIZE.DEFAULT_TEXT)
-	self.titleTextSize = self.labelTextSize
-	self.labelTextOffsetX, self.labelTextOffsetY = normalize(0, 3)
-	self.leftTextOffsetX, self.leftTextOffsetY = normalize(0, 6)
-	self.rightTextOffsetX, self.rightTextOffsetY = normalize(0, 6)
-	self.rowWidth, self.rowHeight = normalize(408, 26)
-	self.listMarginWidth, self.listMarginHeight = normalize(16, 15)
-end
--- KeyValueInfoHUDBox.storeScaledValues = Utils.overwrittenFunction(KeyValueInfoHUDBox.storeScaledValues, InfoDisplayExtension.storeScaledValues)
-
 function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 	superFunc(self, infoTable)
 
