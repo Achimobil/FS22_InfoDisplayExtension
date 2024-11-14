@@ -1,5 +1,5 @@
 --[[
-Copyright (C) Achimobil, 2022/2023
+Copyright (C) Achimobil, 2022-2024
 
 Author: Achimobil
 
@@ -13,6 +13,9 @@ No copy and use in own mods allowed.
 Das verändern und wiederöffentlichen, auch in Teilen, ist untersagt und wird abgemahnt.
 ]]
 
+	-- print("infoTriggerFillTypesAndLevels");
+	-- DebugUtil.printTableRecursively(spec.infoTriggerFillTypesAndLevels,"_",0,2);
+
 InfoDisplayExtension = {}
 
 InfoDisplayExtension.metadata = {
@@ -23,20 +26,8 @@ InfoDisplayExtension.metadata = {
 };
 InfoDisplayExtension.modDir = g_currentModDirectory;
 
-local g_additionalUnits = nil
-
 function InfoDisplayExtension:formatVolume(liters, precision, unit, fillTypeName)
-  unit = unit ~= "" and (unit == false and "" or unit) or nil
-
-  if g_additionalUnits ~= nil and fillTypeName ~= nil then
-    local formattedLiters, formattedUnit = g_additionalUnits:formatFillLevel(liters, fillTypeName)
-
-    if unit ~= "" then
-      unit = formattedUnit.shortName or unit
-    end
-
-    liters = formattedLiters
-  end
+	unit = unit ~= "" and (unit == false and "" or unit) or nil
 
 	return g_i18n:formatVolume(liters, precision, unit)
 end
@@ -81,7 +72,6 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 		if spec.loadingStation:hasFarmAccessToStorage(farmId, sourceStorage) then
 			totalCapacity = totalCapacity + sourceStorage.capacity;
 			
-			-- todo
 			if(sourceStorage.capacities ~= nil) then
 				for fillType, fillLevel in pairs(sourceStorage.fillLevels) do
 					if(sourceStorage.capacities[fillType] ~= nil) then
@@ -112,9 +102,6 @@ function InfoDisplayExtension:updateInfo(_, superFunc, infoTable)
 			table.insert(spec.infoTriggerFillTypesAndLevels, spec.fillTypeToFillTypeStorageTable[fillType])
 		end
 	end
-
-	-- print("infoTriggerFillTypesAndLevels");
-	-- DebugUtil.printTableRecursively(spec.infoTriggerFillTypesAndLevels,"_",0,2);
 
 	table.clear(spec.fillTypesAndLevelsAuxiliary)
 	table.sort(spec.infoTriggerFillTypesAndLevels, function (a, b)
@@ -765,9 +752,6 @@ function InfoDisplayExtension:updateInfoPlaceableManureHeap(_, superFunc, infoTa
 			text = unloadingStation:getName()
 		})
 	end	
-	
--- print("self.spec_manureHeap.manureHeap.unloadingStations")
--- DebugUtil.printTableRecursively(self.spec_manureHeap.manureHeap.unloadingStations,"_",0,2)
 end
 PlaceableManureHeap.updateInfo = Utils.overwrittenFunction(PlaceableManureHeap.updateInfo, InfoDisplayExtension.updateInfoPlaceableManureHeap)
 
@@ -897,7 +881,6 @@ PlayerHUDUpdater.showSplitShapeInfo = Utils.overwrittenFunction(PlayerHUDUpdater
 
 -- hier brauche ich nicht überschreiben, nur direkt die funktion möglich machen reicht.
 function InfoDisplayExtension:WearableShowInfo(superFunc, box)
-	-- print(string.format("InfoDisplayExtension:WearableShowInfo(%s, %s)", superFunc, box));
 	if self.ideNeededPowerValue == nil then
 		
 		local neededPower = PowerConsumer.loadSpecValueNeededPower(self.xmlFile)
@@ -945,7 +928,10 @@ end
 Wearable.showInfo = Utils.appendedFunction(Wearable.showInfo, InfoDisplayExtension.WearableShowInfo)
 
 function InfoDisplayExtension:showInfo(box)
-	if self.ideHasPower == nil then
+	if self.ideHasPower == nil and self.isDeleted == false then
+		
+	print("Achim");
+	DebugUtil.printTableRecursively(self,"_",0,2);
 		local powerConfig = Motorized.loadSpecValuePowerConfig(self.xmlFile)
 		
 		self.ideHasPower = 0;
@@ -1150,17 +1136,6 @@ function InfoDisplayExtension:loadMap(name)
 		  revampversion = activemod.version
 		end
 	end
-	
-	if revampversion == "" or revampversion == "1.0.0.0" then
-		-- InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InfoDisplayExtension.populateCellForItemInSection)
-		-- InGameMenuProductionFrame.getProductionPoints = Utils.overwrittenFunction(InGameMenuProductionFrame.getProductionPoints, InfoDisplayExtension.getProductionPoints)
-	end
-end
-
-if g_modIsLoaded["FS22_AdditionalUnits"] then
-  local modEnv = FS22_AdditionalUnits
-
-  g_additionalUnits = modEnv.g_additionalUnits
 end
 
 addModEventListener(InfoDisplayExtension)
